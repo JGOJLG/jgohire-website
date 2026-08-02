@@ -15,10 +15,12 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="#support">Support</Link>
-          <Link href="#about">About</Link>
-          <Link href="#services">Services</Link>
-          <Link href="#contact">Contact</Link>
+          <Link href="/about">About</Link>
+          <Link href="/#services">Services</Link>
+          <Link href="/resources">Resources</Link>
+          <Link href="/testimonials">Testimonials</Link>
+          <Link href="/linkedin-guide">LinkedIn Guide</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
 
         <Link href="/contact" className="button button-primary header-button">
@@ -37,16 +39,35 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      {open ? (
+      {open && (
         <div className="mobile-nav">
           <div className="site-shell mobile-nav-inner">
-            <Link href="#support" onClick={() => setOpen(false)}>Support</Link>
-            <Link href="#about" onClick={() => setOpen(false)}>About</Link>
-            <Link href="#services" onClick={() => setOpen(false)}>Services</Link>
-            <Link href="/contact" onClick={() => setOpen(false)}>Book a Consultation</Link>
+            <Link href="/about" onClick={() => setOpen(false)}>
+              About
+            </Link>
+
+            <Link href="/#services" onClick={() => setOpen(false)}>
+              Services
+            </Link>
+
+            <Link href="/resources" onClick={() => setOpen(false)}>
+              Resources
+            </Link>
+
+            <Link href="/testimonials" onClick={() => setOpen(false)}>
+              Testimonials
+            </Link>
+
+            <Link href="/linkedin-guide" onClick={() => setOpen(false)}>
+              LinkedIn Guide
+            </Link>
+
+            <Link href="/contact" onClick={() => setOpen(false)}>
+              Book a Consultation
+            </Link>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

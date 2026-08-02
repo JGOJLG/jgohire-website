@@ -18,30 +18,28 @@ export default function ContactPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const payload = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      service: formData.get("service"),
-      message: formData.get("message"),
-      referralSource: formData.get("referralSource"),
-      website: formData.get("website"),
-    };
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          firstName: formData.get("firstName"),
+          lastName: formData.get("lastName"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          service: formData.get("service"),
+          message: formData.get("message"),
+          referralSource: formData.get("referralSource"),
+          website: formData.get("website"),
+        }),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || "Unable to submit the form.");
+        throw new Error(result.error || "Unable to submit form.");
       }
 
       form.reset();
@@ -74,20 +72,15 @@ export default function ContactPage() {
 
       <section className="contact-hero">
         <div className="site-shell contact-hero-content">
-          <p className="contact-eyebrow">Let’s Talk</p>
+          <p className="contact-eyebrow">Let's Talk</p>
 
-          <h1>
-            Not sure where
-            <br />
-            to start?
-          </h1>
+          <h1>Not sure where to start?</h1>
 
           <h2>That is exactly what this conversation is for.</h2>
 
           <p className="contact-hero-copy">
             Tell me where you are in your career, what challenges you are
-            facing, and what you are hoping to achieve. Together, we’ll
-            determine the best next step.
+            facing, and what you are hoping to achieve.
           </p>
 
           <div className="contact-reassurance">
@@ -97,35 +90,7 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-form-section">
-        <div className="site-shell contact-form-layout">
-          <aside className="contact-sidebar">
-            <p className="contact-sidebar-label">What happens next?</p>
-
-            <h2>A simple first step.</h2>
-
-            <div className="contact-steps">
-              <div>
-                <span>01</span>
-                <p>You tell me what support you’re looking for.</p>
-              </div>
-
-              <div>
-                <span>02</span>
-                <p>I’ll personally review your information.</p>
-              </div>
-
-              <div>
-                <span>03</span>
-                <p>I’ll follow up with the best next step.</p>
-              </div>
-            </div>
-
-            <p className="contact-direct-email">
-              Prefer email?
-              <a href="mailto:jen@jgohire.com">jen@jgohire.com</a>
-            </p>
-          </aside>
-
+        <div className="site-shell contact-form-full-wrap">
           <div className="contact-form-card">
             {status === "success" ? (
               <div className="contact-success">
@@ -138,8 +103,7 @@ export default function ContactPage() {
                 <h2>Thank you for reaching out.</h2>
 
                 <p>
-                  Your information has been submitted successfully. I’ll review
-                  everything and get back to you soon.
+                  I received your information and will get back to you soon.
                 </p>
 
                 <Link href="/" className="contact-submit-button">
@@ -154,8 +118,8 @@ export default function ContactPage() {
                   <h2>Tell me a little about you.</h2>
 
                   <p>
-                    Complete the form below, and I’ll be in touch to discuss
-                    how JGO Hire can support you.
+                    Complete the form below and I will follow up with next
+                    steps.
                   </p>
                 </div>
 
@@ -220,21 +184,34 @@ export default function ContactPage() {
                       <option value="" disabled>
                         Select a service
                       </option>
+
                       <option value="Interview Coaching">
                         Interview Coaching
                       </option>
-                      <option value="Resume Writing">Resume Writing</option>
+
+                      <option value="Resume Writing">
+                        Resume Writing
+                      </option>
+
                       <option value="LinkedIn Optimization">
                         LinkedIn Optimization
                       </option>
-                      <option value="Career Coaching">Career Coaching</option>
+
+                      <option value="Career Coaching">
+                        Career Coaching
+                      </option>
+
                       <option value="Job Search Strategy">
                         Job Search Strategy
                       </option>
-                      <option value="Career Documents">
-                        Career Documents
+
+                      <option value="Career Materials">
+                        Career Materials
                       </option>
-                      <option value="Not Sure Yet">I’m not sure yet</option>
+
+                      <option value="Not Sure Yet">
+                        I'm not sure yet
+                      </option>
                     </select>
                   </label>
 
@@ -258,6 +235,7 @@ export default function ContactPage() {
                       <option value="" disabled>
                         Select an option
                       </option>
+
                       <option value="Instagram">Instagram</option>
                       <option value="LinkedIn">LinkedIn</option>
                       <option value="TikTok">TikTok</option>
@@ -296,6 +274,11 @@ export default function ContactPage() {
                   <p className="contact-privacy">
                     Your information will only be used to respond to your
                     inquiry.
+                  </p>
+
+                  <p className="contact-email-note">
+                    Prefer email?{" "}
+                    <a href="mailto:jen@jgohire.com">jen@jgohire.com</a>
                   </p>
                 </form>
               </>
