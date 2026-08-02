@@ -25,7 +25,7 @@ const guides = [
     ],
     more: "+ full countdown inside",
     downloadUrl:
-      "/downloads/JGO-Hire-30-Minute-Interview-Countdown.pdf",
+  "/downloads/JGO-Hire-30-Minute-Interview-Countdown-v2.pdf",
   },
 ];
 
