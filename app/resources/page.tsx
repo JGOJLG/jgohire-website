@@ -253,7 +253,7 @@ export default function ResourcesPage() {
 
                 <div className="resource-library-actions">
                   <Link
-                    href={resource.href}
+                    href={`/client-access?next=${encodeURIComponent(resource.href)}`}
                     className="button button-primary"
                   >
                     Unlock the Guide
