@@ -1,0 +1,239 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import "./course.css";
+
+const courseModules = [
+  {
+    number: "01",
+    title: "Start Here",
+    lessons: [
+      "Introduction",
+      "About the Author",
+      "Mindset",
+      "AI Tips",
+      "How Networking Actually Works on LinkedIn",
+    ],
+  },
+  {
+    number: "02",
+    title: "Build Your Profile",
+    lessons: [
+      "Profile Photo",
+      "Banner Photo",
+      "Headline",
+      "Your Location",
+      "About Section",
+      "Experience",
+      "Education",
+      "Volunteer Experience",
+    ],
+  },
+  {
+    number: "03",
+    title: "Strengthen Your Profile",
+    lessons: [
+      "Certifications, Projects & Publications",
+      "Skills",
+      "Recommendations",
+      "Open to Work",
+      "Connections",
+      "Additional Sections",
+    ],
+  },
+  {
+    number: "04",
+    title: "Finish Strong",
+    lessons: ["Wrap Up", "Bonus Content"],
+  },
+];
+
+const totalLessons = courseModules.reduce(
+  (total, module) => total + module.lessons.length,
+  0
+);
+
+export default async function CoursePage() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+
+  if (!data?.claims) {
+    redirect("/login");
+  }
+
+  const email =
+    typeof data.claims.email === "string" ? data.claims.email : "Member";
+
+  return (
+    <main className="course-dashboard-page">
+      <header className="course-dashboard-header">
+        <Link href="/" className="course-dashboard-logo">
+          <span>JGO HIRE</span>
+          <small>Career Coach + Recruiter</small>
+        </Link>
+
+        <div className="course-dashboard-account">
+          <div className="course-dashboard-member">
+            <span className="course-dashboard-member-dot" />
+            <span>{email}</span>
+          </div>
+
+          <form action="/auth/signout" method="post">
+            <button type="submit">Log Out</button>
+          </form>
+        </div>
+      </header>
+
+      <section className="course-dashboard-shell">
+        <div className="course-dashboard-welcome">
+          <div className="course-dashboard-copy">
+            <div className="course-dashboard-badge">
+              <span aria-hidden="true">✦</span>
+              Member Course
+            </div>
+
+            <p className="course-dashboard-eyebrow">
+              LinkedIn Optimization Guide
+            </p>
+
+            <h1>Your course is ready.</h1>
+
+            <p className="course-dashboard-description">
+              Work through the guide at your own pace and return whenever you
+              are ready to continue.
+            </p>
+          </div>
+
+          <aside className="course-dashboard-progress-card">
+            <div className="course-dashboard-progress-top">
+              <div>
+                <p>Your Progress</p>
+                <strong>0%</strong>
+              </div>
+
+              <span>0 of {totalLessons} complete</span>
+            </div>
+
+            <div
+              className="course-dashboard-progress-track"
+              aria-label="Course progress: 0 percent"
+            >
+              <span style={{ width: "0%" }} />
+            </div>
+
+            <Link
+              href="/course/introduction"
+              className="course-dashboard-continue"
+            >
+              <span>
+                <small>Start with</small>
+                Introduction
+              </span>
+
+              <span aria-hidden="true">→</span>
+            </Link>
+          </aside>
+        </div>
+
+        <section className="course-dashboard-overview">
+          <div className="course-dashboard-overview-item">
+            <span>01</span>
+            <div>
+              <strong>{totalLessons} lessons</strong>
+              <p>Complete guide</p>
+            </div>
+          </div>
+
+          <div className="course-dashboard-overview-item">
+            <span>02</span>
+            <div>
+              <strong>4 modules</strong>
+              <p>Clear learning path</p>
+            </div>
+          </div>
+
+          <div className="course-dashboard-overview-item">
+            <span>03</span>
+            <div>
+              <strong>Lifetime access</strong>
+              <p>Return anytime</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="course-dashboard-content">
+          <div className="course-dashboard-heading">
+            <div>
+              <p className="course-dashboard-eyebrow">Course Content</p>
+              <h2>LinkedIn Optimization Guide</h2>
+            </div>
+
+            <span>{totalLessons} lessons</span>
+          </div>
+
+          <div className="course-dashboard-modules">
+            {courseModules.map((module, moduleIndex) => (
+              <details
+                className="course-dashboard-module"
+                key={module.title}
+                open={moduleIndex === 0}
+              >
+                <summary>
+                  <span className="course-dashboard-module-number">
+                    {module.number}
+                  </span>
+
+                  <div className="course-dashboard-module-title">
+                    <strong>{module.title}</strong>
+                    <span>{module.lessons.length} lessons</span>
+                  </div>
+
+                  <span className="course-dashboard-module-icon">+</span>
+                </summary>
+
+                <div className="course-dashboard-lessons">
+                  {module.lessons.map((lesson, lessonIndex) => {
+                    const isFirstLesson =
+                      moduleIndex === 0 && lessonIndex === 0;
+
+                    return (
+                      <Link
+                        href={
+                          isFirstLesson
+                            ? "/course/introduction"
+                            : "/course"
+                        }
+                        className={
+                          isFirstLesson
+                            ? "course-dashboard-lesson course-dashboard-lesson-active"
+                            : "course-dashboard-lesson"
+                        }
+                        key={lesson}
+                      >
+                        <span className="course-dashboard-lesson-number">
+                          {String(lessonIndex + 1).padStart(2, "0")}
+                        </span>
+
+                        <div>
+                          <p>{lesson}</p>
+                          {isFirstLesson && <small>Start here</small>}
+                        </div>
+
+                        <span
+                          className="course-dashboard-lesson-status"
+                          aria-hidden="true"
+                        >
+                          {isFirstLesson ? "→" : "○"}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      </section>
+    </main>
+  );
+}

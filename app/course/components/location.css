@@ -1,0 +1,556 @@
+.location-course {
+  margin-top: 28px;
+}
+
+.location-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid #e2e7df;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.location-topbar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-topbar span {
+  color: #788079;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.location-topbar strong {
+  color: #173d31;
+  font-size: 13px;
+}
+
+.location-progress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8ede6;
+}
+
+.location-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #173d31;
+  transition: width 0.25s ease;
+}
+
+.location-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.location-steps {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 6px;
+}
+
+.location-step {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #37443b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.location-step:hover {
+  background: #f5f7f3;
+}
+
+.location-step-active {
+  border-color: #dce4d8;
+  background: #edf2ea;
+}
+
+.location-step > span {
+  color: #858d86;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.location-step p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.location-content {
+  min-width: 0;
+  padding: 34px;
+  border: 1px solid #e2e7df;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(34, 48, 40, 0.055);
+}
+
+.location-heading {
+  margin-bottom: 24px;
+}
+
+.location-heading p {
+  margin: 0 0 8px;
+  color: #627768;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.location-heading h2 {
+  margin: 0;
+  color: #1f2d25;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.location-body {
+  display: grid;
+  gap: 18px;
+}
+
+.location-image-placeholder {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  padding: 30px;
+  border: 1px dashed #bcc9ba;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(120, 144, 112, 0.12), transparent 26%),
+    linear-gradient(135deg, #eef3eb, #f9fbf8);
+  text-align: center;
+}
+
+.location-placeholder-map {
+  position: relative;
+  width: min(420px, 90%);
+  height: 150px;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    linear-gradient(120deg, transparent 0 36%, rgba(255,255,255,.34) 36% 42%, transparent 42% 100%),
+    linear-gradient(22deg, transparent 0 58%, rgba(255,255,255,.26) 58% 64%, transparent 64% 100%),
+    #7f9580;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.16);
+}
+
+.location-placeholder-map span {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255,255,255,.22);
+}
+
+.location-placeholder-map span:nth-child(1) {
+  width: 180px;
+  height: 18px;
+  left: -20px;
+  top: 26px;
+  transform: rotate(18deg);
+}
+
+.location-placeholder-map span:nth-child(2) {
+  width: 160px;
+  height: 18px;
+  right: -24px;
+  bottom: 24px;
+  transform: rotate(-16deg);
+}
+
+.location-placeholder-map span:nth-child(3) {
+  width: 18px;
+  height: 180px;
+  left: 54%;
+  top: -18px;
+  transform: rotate(8deg);
+}
+
+.location-placeholder-map i {
+  position: absolute;
+  left: 58%;
+  top: 45%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 0;
+  background: #173d31;
+  transform: rotate(-45deg);
+  box-shadow: 0 8px 18px rgba(23,61,49,.25);
+}
+
+.location-image-placeholder strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.location-image-placeholder p {
+  margin: 6px 0 0;
+  color: #707b73;
+  font-size: 13px;
+}
+
+.location-reading-card,
+.location-statement-card,
+.location-howto-card,
+.location-filter-grid article,
+.location-warning-card,
+.location-tip-card,
+.location-final-card {
+  border-radius: 14px;
+}
+
+.location-reading-card {
+  padding: 26px;
+  border: 1px solid #e4e9e1;
+  background: #fbfcfa;
+}
+
+.location-reading-card p,
+.location-filter-grid p,
+.location-warning-card p,
+.location-tip-card p,
+.location-final-card p {
+  margin: 0 0 17px;
+  color: #38463c;
+  font-size: 15px;
+  line-height: 1.82;
+}
+
+.location-reading-card p:last-child,
+.location-filter-grid p:last-child,
+.location-warning-card p:last-child,
+.location-tip-card p:last-child,
+.location-final-card p:last-child {
+  margin-bottom: 0;
+}
+
+.location-statement-card {
+  padding: 30px;
+  background: #173d31;
+  color: #ffffff;
+}
+
+.location-statement-card > span,
+.location-warning-card > span,
+.location-tip-card > span,
+.location-final-card > span {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.location-statement-card > span {
+  color: #bfd0c4;
+}
+
+.location-statement-card p {
+  margin: 0;
+  max-width: 680px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.location-howto-card {
+  overflow: hidden;
+  border: 1px solid #e2e7df;
+  background: #ffffff;
+}
+
+.location-howto-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  background: #173d31;
+  color: #ffffff;
+}
+
+.location-howto-header span {
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #173d31;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.location-howto-header strong {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.location-howto-body {
+  padding: 26px;
+}
+
+.location-howto-body > div {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e9e3;
+}
+
+.location-howto-body > div:first-child {
+  padding-top: 0;
+}
+
+.location-howto-body > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.location-howto-body span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #173d31;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.location-howto-body p {
+  margin: 2px 0 0;
+  color: #38463c;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.location-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.location-filter-grid article {
+  padding: 24px;
+  border: 1px solid #e4e9e1;
+  background: #f8faf7;
+}
+
+.location-filter-grid article > span {
+  color: #607363;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.location-filter-grid h3,
+.location-warning-card h3,
+.location-final-card h3 {
+  margin: 12px 0 10px;
+  color: #243129;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.location-filter-grid p {
+  color: #677269;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.location-warning-card {
+  padding: 30px;
+  background: #17231d;
+  color: #ffffff;
+}
+
+.location-warning-card > span {
+  color: #bfd0c4;
+}
+
+.location-warning-card h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 34px;
+}
+
+.location-warning-card p {
+  color: rgba(255,255,255,.8);
+}
+
+.location-tip-card,
+.location-final-card {
+  padding: 28px;
+  border: 1px solid #dce5d8;
+  background: linear-gradient(135deg, #edf3ea, #ffffff);
+}
+
+.location-tip-card > span,
+.location-final-card > span {
+  color: #173d31;
+}
+
+.location-final-card h3 {
+  margin-top: 0;
+  font-size: 34px;
+}
+
+.location-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.location-controls button {
+  min-height: 48px;
+  padding: 0 17px;
+  border: 1px solid #dce3da;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #173d31;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.location-controls button:last-child {
+  background: #173d31;
+  color: #ffffff;
+}
+
+.location-controls button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.location-next-lesson-card {
+  min-height: 64px;
+  min-width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: #173d31;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(23, 61, 49, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.location-next-lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(23, 61, 49, 0.2);
+}
+
+.location-next-lesson-card > span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.location-next-lesson-card small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.location-next-lesson-card strong {
+  font-size: 13px;
+}
+
+.location-next-lesson-card > span:last-child {
+  font-size: 20px;
+}
+
+@media (max-width: 880px) {
+  .location-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .location-steps {
+    position: static;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .location-filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .location-topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .location-topbar > div:first-child {
+    display: none;
+  }
+
+  .location-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .location-content {
+    padding: 24px 18px;
+  }
+
+  .location-howto-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .location-controls {
+    flex-direction: column;
+  }
+
+  .location-controls button,
+  .location-next-lesson-card {
+    width: 100%;
+  }
+}

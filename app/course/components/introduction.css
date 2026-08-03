@@ -1,0 +1,445 @@
+.intro-course {
+  margin-top: 34px;
+}
+
+.intro-course-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255,255,255,.86);
+  border-radius: 18px;
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(16px);
+}
+
+.intro-course-topbar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.intro-course-topbar span {
+  color: #7d8980;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.intro-course-topbar strong {
+  color: #526855;
+  font-size: 13px;
+}
+
+.intro-course-progress {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e1e9de;
+}
+
+.intro-course-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #91aa88, #6e8867);
+  transition: width .25s ease;
+}
+
+.intro-course-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.intro-course-steps {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 8px;
+}
+
+.intro-course-step {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  background: transparent;
+  color: #445247;
+  text-align: left;
+  cursor: pointer;
+}
+
+.intro-course-step:hover {
+  background: rgba(255,255,255,.55);
+}
+
+.intro-course-step-active {
+  border-color: rgba(105,132,96,.14);
+  background: rgba(231,239,227,.9);
+}
+
+.intro-course-step > span {
+  color: #849087;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.intro-course-step p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.intro-course-content {
+  min-width: 0;
+  padding: 36px;
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 26px;
+  background: rgba(255,255,255,.74);
+  box-shadow: 0 22px 60px rgba(51,75,55,.08);
+  backdrop-filter: blur(18px);
+}
+
+.intro-course-heading {
+  margin-bottom: 26px;
+}
+
+.intro-course-heading p {
+  margin: 0 0 9px;
+  color: #6f8a67;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.intro-course-heading h2 {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.intro-course-body {
+  display: grid;
+  gap: 18px;
+}
+
+.intro-step-card,
+.intro-step-callout,
+.intro-step-checklist,
+.intro-step-compare article,
+.intro-step-accordion {
+  border-radius: 20px;
+}
+
+.intro-step-card {
+  padding: 28px;
+  border: 1px solid rgba(79,103,82,.09);
+  background: rgba(247,250,245,.78);
+}
+
+.intro-step-card p,
+.intro-step-callout p,
+.intro-step-compare p,
+.intro-step-accordion p {
+  margin: 0 0 17px;
+  color: #3e4c42;
+  font-size: 15px;
+  line-height: 1.82;
+}
+
+.intro-step-card p:last-child,
+.intro-step-callout p:last-child,
+.intro-step-compare p:last-child,
+.intro-step-accordion p:last-child {
+  margin-bottom: 0;
+}
+
+.intro-step-card-short p {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.intro-step-callout {
+  padding: 28px;
+}
+
+.intro-step-callout > span {
+  display: inline-block;
+  margin-bottom: 13px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.intro-step-callout-light {
+  border: 1px solid rgba(94,121,89,.14);
+  background: linear-gradient(145deg, #e8f0e5, #f8fbf6);
+}
+
+.intro-step-callout-light > span {
+  background: #6f8967;
+  color: #fff;
+}
+
+.intro-step-callout-dark {
+  background: #26362c;
+  color: #fff;
+}
+
+.intro-step-callout-dark > span {
+  background: rgba(255,255,255,.12);
+  color: #c9d8c5;
+}
+
+.intro-step-callout-dark p {
+  color: rgba(255,255,255,.8);
+}
+
+.intro-step-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.intro-step-compare article {
+  padding: 26px;
+  border: 1px solid rgba(79,103,82,.09);
+  background: rgba(247,250,245,.78);
+}
+
+.intro-step-compare article:last-child {
+  background: linear-gradient(145deg, #e8f0e5, #f8fbf6);
+}
+
+.intro-step-compare span {
+  display: block;
+  margin-bottom: 12px;
+  color: #6f8a67;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.intro-step-accordion {
+  overflow: hidden;
+  border: 1px solid rgba(79,103,82,.09);
+  background: rgba(247,250,245,.78);
+}
+
+.intro-step-accordion details {
+  border-bottom: 1px solid rgba(79,103,82,.09);
+}
+
+.intro-step-accordion details:last-child {
+  border-bottom: 0;
+}
+
+.intro-step-accordion summary {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  color: #3e4c42;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.intro-step-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.intro-step-accordion details[open] summary span {
+  transform: rotate(45deg);
+}
+
+.intro-step-accordion p {
+  padding: 0 20px 20px;
+}
+
+.intro-step-checklist {
+  padding: 30px;
+  border: 1px solid rgba(79,103,82,.09);
+  background: linear-gradient(145deg, #eef4eb, #fff);
+}
+
+.intro-step-checklist > p {
+  margin: 0;
+  color: #6f8a67;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.intro-step-checklist h3 {
+  margin: 10px 0 22px;
+  font-family: "Playfair Display", serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.intro-step-checklist label {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(79,103,82,.09);
+  border-radius: 14px;
+  background: rgba(255,255,255,.66);
+}
+
+.intro-step-checklist input {
+  width: 20px;
+  height: 20px;
+  accent-color: #6f8967;
+}
+
+.intro-step-checklist span {
+  color: #3f4d43;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.intro-step-checklist input:checked + span {
+  color: #8a958c;
+  text-decoration: line-through;
+}
+
+.intro-course-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.intro-course-controls button {
+  min-height: 50px;
+  padding: 0 18px;
+  border: 1px solid rgba(79,103,82,.12);
+  border-radius: 14px;
+  background: #fff;
+  color: #526855;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.intro-course-controls button:last-child {
+  background: #6f8967;
+  color: #fff;
+}
+
+.intro-course-controls button:disabled {
+  cursor: default;
+  opacity: .35;
+}
+
+@media (max-width: 840px) {
+  .intro-course-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-course-steps {
+    position: static;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .intro-course-topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .intro-course-topbar > div:first-child {
+    display: none;
+  }
+
+  .intro-course-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-course-content {
+    padding: 24px 18px;
+  }
+
+  .intro-step-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-course-controls {
+    flex-direction: column;
+  }
+
+  .intro-course-controls button {
+    width: 100%;
+  }
+}
+
+.intro-course-next-lesson-card {
+  min-height: 64px;
+  min-width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: #173d31;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(23, 61, 49, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.intro-course-next-lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(23, 61, 49, 0.2);
+}
+
+.intro-course-next-lesson-card > span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.intro-course-next-lesson-card small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.intro-course-next-lesson-card strong {
+  font-size: 13px;
+}
+
+.intro-course-next-lesson-card > span:last-child {
+  font-size: 20px;
+}

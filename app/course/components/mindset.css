@@ -1,0 +1,397 @@
+.mindset-course {
+  margin-top: 28px;
+}
+
+.mindset-course-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid #e2e7df;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.mindset-course-topbar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mindset-course-topbar span {
+  color: #788079;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mindset-course-topbar strong {
+  color: #173d31;
+  font-size: 13px;
+}
+
+.mindset-course-progress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8ede6;
+}
+
+.mindset-course-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #173d31;
+  transition: width 0.25s ease;
+}
+
+.mindset-course-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.mindset-course-steps {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 6px;
+}
+
+.mindset-course-step {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #37443b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mindset-course-step:hover {
+  background: #f5f7f3;
+}
+
+.mindset-course-step-active {
+  border-color: #dce4d8;
+  background: #edf2ea;
+}
+
+.mindset-course-step > span {
+  color: #858d86;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.mindset-course-step p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.mindset-course-content {
+  min-width: 0;
+  padding: 34px;
+  border: 1px solid #e2e7df;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(34, 48, 40, 0.055);
+}
+
+.mindset-course-heading {
+  margin-bottom: 24px;
+}
+
+.mindset-course-heading p {
+  margin: 0 0 8px;
+  color: #627768;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mindset-course-heading h2 {
+  margin: 0;
+  color: #1f2d25;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.mindset-course-body {
+  display: grid;
+  gap: 18px;
+}
+
+.mindset-reading-card,
+.mindset-statement-card,
+.mindset-callout-card,
+.mindset-final-card,
+.mindset-two-card-grid article {
+  border-radius: 14px;
+}
+
+.mindset-reading-card {
+  padding: 26px;
+  border: 1px solid #e4e9e1;
+  background: #fbfcfa;
+}
+
+.mindset-reading-card p,
+.mindset-statement-card p,
+.mindset-callout-card p,
+.mindset-final-card p,
+.mindset-two-card-grid p {
+  margin: 0 0 17px;
+  font-size: 15px;
+  line-height: 1.82;
+}
+
+.mindset-reading-card p:last-child,
+.mindset-statement-card p:last-child,
+.mindset-callout-card p:last-child,
+.mindset-final-card p:last-child,
+.mindset-two-card-grid p:last-child {
+  margin-bottom: 0;
+}
+
+.mindset-reading-card p {
+  color: #38463c;
+}
+
+.mindset-statement-card {
+  padding: 30px;
+  background: #173d31;
+  color: #ffffff;
+}
+
+.mindset-statement-card > span,
+.mindset-callout-card > span,
+.mindset-final-card > span {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mindset-statement-card > span {
+  color: #bfd0c4;
+}
+
+.mindset-statement-card p {
+  max-width: 680px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.mindset-two-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.mindset-two-card-grid article {
+  padding: 24px;
+  border: 1px solid #e4e9e1;
+  background: #f8faf7;
+}
+
+.mindset-two-card-grid span {
+  color: #607363;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.mindset-two-card-grid h3 {
+  margin: 12px 0 10px;
+  color: #243129;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.mindset-two-card-grid p {
+  color: #677269;
+  font-size: 14px;
+}
+
+.mindset-callout-card {
+  padding: 26px;
+  border: 1px solid #dce5d8;
+  background: #edf3ea;
+}
+
+.mindset-callout-card > span,
+.mindset-final-card > span {
+  color: #173d31;
+}
+
+.mindset-callout-card p {
+  color: #38463c;
+}
+
+.mindset-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.mindset-tool-grid span {
+  min-height: 46px;
+  display: grid;
+  place-items: center;
+  padding: 0 12px;
+  border: 1px solid #dfe5dc;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #173d31;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mindset-final-card {
+  padding: 28px;
+  border: 1px solid #dce5d8;
+  background: linear-gradient(135deg, #edf3ea, #ffffff);
+}
+
+.mindset-final-card p {
+  color: #2f3d34;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.mindset-course-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.mindset-course-controls button {
+  min-height: 48px;
+  padding: 0 17px;
+  border: 1px solid #dce3da;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #173d31;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.mindset-course-controls button:last-child {
+  background: #173d31;
+  color: #ffffff;
+}
+
+.mindset-course-controls button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+@media (max-width: 880px) {
+  .mindset-course-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mindset-course-steps {
+    position: static;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .mindset-course-topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .mindset-course-topbar > div:first-child {
+    display: none;
+  }
+
+  .mindset-course-steps,
+  .mindset-two-card-grid,
+  .mindset-tool-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mindset-course-content {
+    padding: 24px 18px;
+  }
+
+  .mindset-course-controls {
+    flex-direction: column;
+  }
+
+  .mindset-course-controls button {
+    width: 100%;
+  }
+}
+
+.mindset-course-next-lesson-card {
+  min-height: 64px;
+  min-width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: #173d31;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(23, 61, 49, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.mindset-course-next-lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(23, 61, 49, 0.2);
+}
+
+.mindset-course-next-lesson-card > span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mindset-course-next-lesson-card small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mindset-course-next-lesson-card strong {
+  font-size: 13px;
+}
+
+.mindset-course-next-lesson-card > span:last-child {
+  font-size: 20px;
+}

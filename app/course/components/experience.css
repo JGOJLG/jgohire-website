@@ -1,0 +1,673 @@
+.experience-course {
+  margin-top: 28px;
+}
+
+.experience-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid #e2e7df;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.experience-topbar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.experience-topbar span {
+  color: #788079;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.experience-topbar strong {
+  color: #173d31;
+  font-size: 13px;
+}
+
+.experience-progress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8ede6;
+}
+
+.experience-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #173d31;
+  transition: width 0.25s ease;
+}
+
+.experience-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.experience-steps {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 6px;
+}
+
+.experience-step {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #37443b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.experience-step:hover {
+  background: #f5f7f3;
+}
+
+.experience-step-active {
+  border-color: #dce4d8;
+  background: #edf2ea;
+}
+
+.experience-step > span {
+  color: #858d86;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.experience-step p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.experience-content {
+  min-width: 0;
+  padding: 34px;
+  border: 1px solid #e2e7df;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(34, 48, 40, 0.055);
+}
+
+.experience-heading {
+  margin-bottom: 24px;
+}
+
+.experience-heading p {
+  margin: 0 0 8px;
+  color: #627768;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.experience-heading h2 {
+  margin: 0;
+  color: #1f2d25;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.experience-body {
+  display: grid;
+  gap: 18px;
+}
+
+.experience-image-placeholder {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  padding: 30px;
+  border: 1px dashed #bcc9ba;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(120, 144, 112, 0.12), transparent 26%),
+    linear-gradient(135deg, #eef3eb, #f9fbf8);
+  text-align: center;
+}
+
+.experience-placeholder-card {
+  width: min(440px, 90%);
+  min-height: 170px;
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.14);
+}
+
+.experience-placeholder-card span {
+  display: block;
+  height: 12px;
+  border-radius: 999px;
+  background: #d8e2d6;
+}
+
+.experience-placeholder-card span:nth-child(1) {
+  width: 46%;
+  height: 20px;
+  background: #173d31;
+}
+
+.experience-placeholder-card span:nth-child(2) {
+  width: 32%;
+  background: #9aae98;
+}
+
+.experience-placeholder-card span:nth-child(3) {
+  width: 94%;
+}
+
+.experience-placeholder-card span:nth-child(4) {
+  width: 82%;
+}
+
+.experience-image-placeholder strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.experience-image-placeholder p {
+  margin: 6px 0 0;
+  color: #707b73;
+  font-size: 13px;
+}
+
+.experience-reading-card,
+.experience-statement-card,
+.experience-howto-card,
+.experience-tip-card,
+.experience-focus-grid article,
+.experience-resource-card,
+.experience-impact-grid article,
+.experience-compare-card,
+.experience-dark-card,
+.experience-prompt-card,
+.experience-detail-grid article,
+.experience-final-card {
+  border-radius: 14px;
+}
+
+.experience-reading-card {
+  padding: 26px;
+  border: 1px solid #e4e9e1;
+  background: #fbfcfa;
+}
+
+.experience-reading-card p,
+.experience-tip-card p,
+.experience-focus-grid p,
+.experience-resource-card p,
+.experience-impact-grid p,
+.experience-compare-card p,
+.experience-dark-card p,
+.experience-prompt-body p,
+.experience-detail-grid p,
+.experience-final-card p {
+  margin: 0 0 17px;
+  color: #38463c;
+  font-size: 15px;
+  line-height: 1.82;
+}
+
+.experience-reading-card p:last-child,
+.experience-tip-card p:last-child,
+.experience-focus-grid p:last-child,
+.experience-resource-card p:last-child,
+.experience-impact-grid p:last-child,
+.experience-compare-card p:last-child,
+.experience-dark-card p:last-child,
+.experience-prompt-body p:last-child,
+.experience-detail-grid p:last-child,
+.experience-final-card p:last-child {
+  margin-bottom: 0;
+}
+
+.experience-statement-card {
+  padding: 30px;
+  background: #173d31;
+  color: #ffffff;
+}
+
+.experience-statement-card > span,
+.experience-tip-card > span,
+.experience-resource-card > span,
+.experience-compare-card > span,
+.experience-dark-card > span,
+.experience-prompt-top span,
+.experience-final-card > span {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-statement-card > span {
+  color: #bfd0c4;
+}
+
+.experience-statement-card p {
+  margin: 0;
+  max-width: 680px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.experience-howto-card {
+  overflow: hidden;
+  border: 1px solid #e2e7df;
+  background: #ffffff;
+}
+
+.experience-howto-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  background: #173d31;
+  color: #ffffff;
+}
+
+.experience-howto-header span {
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #173d31;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-howto-header strong {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.experience-howto-body {
+  padding: 26px;
+}
+
+.experience-howto-body > div {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid #e5e9e3;
+}
+
+.experience-howto-body > div:first-child {
+  padding-top: 0;
+}
+
+.experience-howto-body > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.experience-howto-body span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #173d31;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.experience-howto-body p {
+  margin: 2px 0 0;
+  color: #38463c;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.experience-tip-card,
+.experience-resource-card,
+.experience-final-card {
+  padding: 28px;
+  border: 1px solid #dce5d8;
+  background: linear-gradient(135deg, #edf3ea, #ffffff);
+}
+
+.experience-tip-card > span,
+.experience-resource-card > span,
+.experience-final-card > span {
+  color: #173d31;
+}
+
+.experience-focus-grid,
+.experience-impact-grid,
+.experience-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.experience-focus-grid article,
+.experience-impact-grid article,
+.experience-detail-grid article {
+  padding: 24px;
+  border: 1px solid #e4e9e1;
+  background: #f8faf7;
+}
+
+.experience-focus-grid article > span,
+.experience-detail-grid article > span {
+  color: #607363;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.experience-focus-grid h3,
+.experience-resource-card h3,
+.experience-impact-grid h3,
+.experience-compare-card h3,
+.experience-dark-card h3,
+.experience-prompt-top h3,
+.experience-detail-grid h3,
+.experience-final-card h3 {
+  margin: 12px 0 10px;
+  color: #243129;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.experience-focus-grid p,
+.experience-impact-grid p,
+.experience-detail-grid p {
+  color: #677269;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.experience-resource-card h3,
+.experience-final-card h3 {
+  margin-top: 0;
+  font-size: 34px;
+}
+
+.experience-resource-card a {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 0 17px;
+  border-radius: 999px;
+  background: #173d31;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.experience-compare-card {
+  padding: 28px;
+  border: 1px solid #dce5d8;
+  background: linear-gradient(135deg, #edf3ea, #ffffff);
+}
+
+.experience-compare-card > span {
+  color: #173d31;
+}
+
+.experience-compare-card h3 {
+  margin-top: 0;
+  font-size: 34px;
+}
+
+.experience-compare-card > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.experience-compare-card article {
+  padding: 22px;
+  border: 1px solid #dfe5dc;
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+}
+
+.experience-compare-card strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #173d31;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.experience-dark-card {
+  padding: 30px;
+  background: #17231d;
+  color: #ffffff;
+}
+
+.experience-dark-card > span {
+  color: #bfd0c4;
+}
+
+.experience-dark-card h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 34px;
+}
+
+.experience-dark-card p {
+  color: rgba(255,255,255,.8);
+}
+
+.experience-prompt-card {
+  padding: 30px;
+  background: #0d261d;
+  color: #ffffff;
+}
+
+.experience-prompt-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.experience-prompt-top span {
+  color: #bfd0c4;
+}
+
+.experience-prompt-top h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 34px;
+}
+
+.experience-prompt-top small {
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.72);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.experience-prompt-body {
+  padding: 24px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.96);
+}
+
+.experience-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.experience-controls button {
+  min-height: 48px;
+  padding: 0 17px;
+  border: 1px solid #dce3da;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #173d31;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.experience-controls button:last-child {
+  background: #173d31;
+  color: #ffffff;
+}
+
+.experience-controls button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.experience-next-lesson-card {
+  min-height: 64px;
+  min-width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: #173d31;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(23, 61, 49, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.experience-next-lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(23, 61, 49, 0.2);
+}
+
+.experience-next-lesson-card > span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.experience-next-lesson-card small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-next-lesson-card strong {
+  font-size: 13px;
+}
+
+.experience-next-lesson-card > span:last-child {
+  font-size: 20px;
+}
+
+@media (max-width: 880px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-steps {
+    position: static;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .experience-focus-grid,
+  .experience-impact-grid,
+  .experience-detail-grid,
+  .experience-compare-card > div {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-prompt-top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .experience-topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .experience-topbar > div:first-child {
+    display: none;
+  }
+
+  .experience-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-content {
+    padding: 24px 18px;
+  }
+
+  .experience-howto-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .experience-controls {
+    flex-direction: column;
+  }
+
+  .experience-controls button,
+  .experience-next-lesson-card {
+    width: 100%;
+  }
+}

@@ -1,0 +1,51 @@
+"use client";
+
+import { useActionState } from "react";
+import { login, type LoginState } from "./actions";
+
+const initialState: LoginState = {};
+
+export default function LoginForm() {
+  const [state, formAction, isPending] = useActionState(
+    login,
+    initialState
+  );
+
+  return (
+    <form action={formAction} className="course-login-form">
+      <label htmlFor="course-login-email">
+        <span>Email address</span>
+        <input
+          id="course-login-email"
+          type="email"
+          name="email"
+          autoComplete="email"
+          placeholder="you@example.com"
+          required
+        />
+      </label>
+
+      <label htmlFor="course-login-password">
+        <span>Password</span>
+        <input
+          id="course-login-password"
+          type="password"
+          name="password"
+          autoComplete="current-password"
+          placeholder="Enter your password"
+          required
+        />
+      </label>
+
+      {state.error ? (
+        <p className="course-login-error" role="alert">
+          {state.error}
+        </p>
+      ) : null}
+
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Logging in..." : "Log In"}
+      </button>
+    </form>
+  );
+}
