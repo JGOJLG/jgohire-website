@@ -19,7 +19,7 @@ export default function SiteHeader() {
           <Link href="/#services">Services</Link>
           <Link href="/resources">Resources</Link>
           <Link href="/testimonials">Testimonials</Link>
-          <Link href="/linkedin-guide">LinkedIn Guide</Link>
+          <Link href="/course">LinkedIn Guide</Link>
           <Link href="/contact">Contact</Link>
         </nav>
 
@@ -58,7 +58,7 @@ export default function SiteHeader() {
               Testimonials
             </Link>
 
-            <Link href="/linkedin-guide" onClick={() => setOpen(false)}>
+            <Link href="/course" onClick={() => setOpen(false)}>
               LinkedIn Guide
             </Link>
 
