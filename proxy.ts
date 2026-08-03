@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const protectedRoutes = ["/coreframework", "/interviewready"];
+
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  const isProtectedRoute =
-    pathname === "/coreframework" ||
-    pathname.startsWith("/coreframework/") ||
-    pathname === "/interviewready" ||
-    pathname.startsWith("/interviewready/");
+  const isProtectedRoute = protectedRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
 
   if (!isProtectedRoute) {
     return NextResponse.next();
@@ -20,12 +20,13 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const loginUrl = request.nextUrl.clone();
+  const resourcesUrl = request.nextUrl.clone();
+  resourcesUrl.pathname = "/resources";
+  resourcesUrl.search = "";
+  resourcesUrl.searchParams.set("unlock", pathname);
+  resourcesUrl.hash = "client-exclusive";
 
-  loginUrl.pathname = "/client-access";
-  loginUrl.searchParams.set("redirect", pathname);
-
-  return NextResponse.redirect(loginUrl);
+  return NextResponse.redirect(resourcesUrl);
 }
 
 export const config = {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ClientResourceUnlock from "./ClientResourceUnlock";
 
 const resourceNavigation = [
   {
@@ -104,9 +105,7 @@ export default function ResourcesPage() {
       <section className="resources-hero">
         <div className="site-shell resources-hero-content">
           <p className="eyebrow">JGO Hire Resources</p>
-
           <h1>Career resources for every stage of your job search.</h1>
-
           <p className="resources-hero-copy">
             Explore free guides, client-exclusive frameworks, and digital
             resources designed to help you communicate your value with more
@@ -155,9 +154,7 @@ export default function ResourcesPage() {
         <div className="site-shell">
           <div className="resources-section-heading">
             <p className="eyebrow">Free Resources</p>
-
             <h2>Simple guides you can use right away.</h2>
-
             <p>
               Practical resources to support your applications, job-search
               strategy, and interview preparation.
@@ -171,14 +168,12 @@ export default function ResourcesPage() {
                   <span className="resource-library-label">
                     {resource.label}
                   </span>
-
                   <span className="resource-library-icon" aria-hidden="true">
                     ↓
                   </span>
                 </div>
 
                 <h3>{resource.title}</h3>
-
                 <p className="resource-library-description">
                   {resource.description}
                 </p>
@@ -211,9 +206,7 @@ export default function ResourcesPage() {
         <div className="site-shell">
           <div className="resources-section-heading">
             <p className="eyebrow">Client Exclusive</p>
-
             <h2>Frameworks for stronger interview preparation.</h2>
-
             <p>
               Available to JGO Hire clients and designed to support confidence,
               clarity, and execution.
@@ -230,14 +223,12 @@ export default function ResourcesPage() {
                   <span className="resource-library-label">
                     {resource.label}
                   </span>
-
                   <span className="resource-library-icon" aria-hidden="true">
                     🔒
                   </span>
                 </div>
 
                 <h3>{resource.title}</h3>
-
                 <p className="resource-library-description">
                   {resource.description}
                 </p>
@@ -252,17 +243,12 @@ export default function ResourcesPage() {
                 </div>
 
                 <div className="resource-library-actions">
-                  <Link
-                    href={`/client-access?next=${encodeURIComponent(resource.href)}`}
-                    className="button button-primary"
-                  >
-                    Unlock the Guide
-                  </Link>
+                  <ClientResourceUnlock
+                    resourceTitle={resource.title}
+                    destination={resource.href}
+                  />
 
-                  <Link
-                    href="/contact"
-                    className="button button-secondary"
-                  >
+                  <Link href="/contact" className="button button-secondary">
                     Become a Client
                   </Link>
                 </div>
@@ -279,9 +265,7 @@ export default function ResourcesPage() {
         <div className="site-shell">
           <div className="resources-section-heading">
             <p className="eyebrow">Digital Guides</p>
-
             <h2>Prefer to work through it on your own?</h2>
-
             <p>
               Purchase individual resources and work through the strategy at
               your own pace.
@@ -291,9 +275,7 @@ export default function ResourcesPage() {
           <div className="resources-digital-card">
             <div className="resources-digital-copy">
               <span className="resource-library-label">DIY Option</span>
-
               <h3>The LinkedIn Optimization Guide</h3>
-
               <p>
                 A step-by-step guide to help you strengthen your LinkedIn
                 profile, improve your positioning, and show up more confidently
@@ -327,9 +309,7 @@ export default function ResourcesPage() {
         <div className="site-shell">
           <div className="resources-final-card">
             <p className="eyebrow">Personalized Support</p>
-
             <h2>Want help deciding what you need?</h2>
-
             <p>
               Tell me where you are in your job search, and we’ll determine the
               strongest next step together.
