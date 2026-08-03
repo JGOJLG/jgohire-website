@@ -305,18 +305,24 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="resources-final-section">
+      <section className="resources-support-section">
         <div className="site-shell">
-          <div className="resources-final-card">
-            <p className="eyebrow">Personalized Support</p>
-            <h2>Want help deciding what you need?</h2>
-            <p>
-              Tell me where you are in your job search, and we’ll determine the
-              strongest next step together.
-            </p>
+          <div className="resources-support-card">
+            <div className="resources-support-copy">
+              <p className="eyebrow">Personalized Support</p>
 
-            <Link href="/contact" className="button button-light">
+              <h2>Not sure what your next step should be?</h2>
+
+              <p>
+                Tell me where you are in your job search, what feels stuck, and
+                what you are working toward. We’ll identify the strongest next
+                move together.
+              </p>
+            </div>
+
+            <Link href="/contact" className="resources-support-button">
               Book a Consultation
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
