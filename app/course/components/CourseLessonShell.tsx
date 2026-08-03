@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
 import IntroductionLesson from "./IntroductionLesson";
 import AboutAuthorLesson from "./AboutAuthorLesson";
 import MindsetLesson from "./MindsetLesson";
@@ -17,6 +18,14 @@ import EducationLesson from "./EducationLesson";
 import VolunteerExperienceLesson from "./VolunteerExperienceLesson";
 import CertificationsProjectsPublicationsLesson from "./CertificationsProjectsPublicationsLesson";
 import SkillsLesson from "./SkillsLesson";
+import RecommendationsLesson from "./RecommendationsLesson";
+import OpenToWorkLesson from "./OpenToWorkLesson";
+import ConnectionsLesson from "./ConnectionsLesson";
+import AdditionalSectionsLesson from "./AdditionalSectionsLesson";
+import WrapUpLesson from "./WrapUpLesson";
+import BonusContentLesson from "./BonusContentLesson";
+import LeaveAReviewLesson from "./LeaveAReviewLesson";
+
 import {
   courseLessons,
   courseModules,
@@ -36,22 +45,16 @@ export default function CourseLessonShell({
 
   const totalLessons = courseLessons.length;
   const currentNumber = lessonIndex + 1;
-  const progress = Math.round((currentNumber / totalLessons) * 100);
 
-  const previousLesson =
-    lessonIndex > 0 ? courseLessons[lessonIndex - 1] : null;
-
-  const nextLesson =
-    lessonIndex < totalLessons - 1
-      ? courseLessons[lessonIndex + 1]
-      : null;
+  const progress = Math.round(
+    (currentNumber / totalLessons) * 100
+  );
 
   useEffect(() => {
-    if (!isCourseMenuOpen) {
-      return;
-    }
+    if (!isCourseMenuOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
     function handleEscape(event: KeyboardEvent) {
@@ -69,73 +72,84 @@ export default function CourseLessonShell({
   }, [isCourseMenuOpen]);
 
   function renderLesson() {
-    if (lesson.slug === "introduction") {
-      return <IntroductionLesson />;
-    }
+    switch (lesson.slug) {
+      case "introduction":
+        return <IntroductionLesson />;
 
-    if (lesson.slug === "about-the-author") {
-      return <AboutAuthorLesson />;
-    }
+      case "about-the-author":
+        return <AboutAuthorLesson />;
 
-    if (lesson.slug === "mindset") {
-      return <MindsetLesson />;
-    }
+      case "mindset":
+        return <MindsetLesson />;
 
-    if (lesson.slug === "ai-tips") {
-      return <AITipsLesson />;
-    }
+      case "ai-tips":
+        return <AITipsLesson />;
 
-    if (lesson.slug === "networking-on-linkedin") {
-      return <NetworkingLesson />;
-    }
+      case "networking-on-linkedin":
+        return <NetworkingLesson />;
 
-    if (lesson.slug === "profile-photo") {
-      return <ProfilePhotoLesson />;
-    }
+      case "profile-photo":
+        return <ProfilePhotoLesson />;
 
-    if (lesson.slug === "banner-photo") {
-      return <BannerPhotoLesson />;
-    }
+      case "banner-photo":
+        return <BannerPhotoLesson />;
 
-    if (lesson.slug === "headline") {
-      return <HeadlineLesson />;
-    }
+      case "headline":
+        return <HeadlineLesson />;
 
-    if (lesson.slug === "your-location") {
-      return <LocationLesson />;
-    }
+      case "your-location":
+        return <LocationLesson />;
 
-    if (lesson.slug === "about-section") {
-      return <AboutSectionLesson />;
-    }
+      case "about-section":
+        return <AboutSectionLesson />;
 
-    if (lesson.slug === "experience") {
-      return <ExperienceLesson />;
-    }
+      case "experience":
+        return <ExperienceLesson />;
 
-    if (lesson.slug === "education") {
-      return <EducationLesson />;
-    }
+      case "education":
+        return <EducationLesson />;
 
-    if (lesson.slug === "volunteer-experience") {
-      return <VolunteerExperienceLesson />;
-    }
+      case "volunteer-experience":
+        return <VolunteerExperienceLesson />;
 
-    if (lesson.slug === "certifications-projects-publications") {
-      return <CertificationsProjectsPublicationsLesson />;
-    }
+      case "certifications-projects-publications":
+        return <CertificationsProjectsPublicationsLesson />;
 
-    if (lesson.slug === "skills") {
-      return <SkillsLesson />;
-    }
+      case "skills":
+        return <SkillsLesson />;
 
-    return (
-      <section className="course-empty-lesson">
-        <span>✦</span>
-        <h2>{lesson.title}</h2>
-        <p>This lesson page is ready for its existing content.</p>
-      </section>
-    );
+      case "recommendations":
+        return <RecommendationsLesson />;
+
+      case "open-to-work":
+        return <OpenToWorkLesson />;
+
+      case "connections":
+        return <ConnectionsLesson />;
+
+      case "additional-sections":
+        return <AdditionalSectionsLesson />;
+
+      case "wrap-up":
+        return <WrapUpLesson />;
+
+      case "bonus-content":
+        return <BonusContentLesson />;
+
+      case "leave-a-review":
+        return <LeaveAReviewLesson />;
+
+      default:
+        return (
+          <section className="course-empty-lesson">
+            <span>✦</span>
+            <h2>{lesson.title}</h2>
+            <p>
+              This lesson page is ready for its existing content.
+            </p>
+          </section>
+        );
+    }
   }
 
   return (
@@ -155,10 +169,8 @@ export default function CourseLessonShell({
             type="button"
             className="course-shell-menu-button"
             onClick={() => setIsCourseMenuOpen(true)}
-            aria-expanded={isCourseMenuOpen}
-            aria-controls="course-shell-menu"
           >
-            <span aria-hidden="true" className="course-shell-menu-icon">
+            <span className="course-shell-menu-icon">
               <i />
               <i />
               <i />
@@ -175,7 +187,10 @@ export default function CourseLessonShell({
             <h1>{lesson.title}</h1>
           </div>
 
-          <Link href="/course" className="course-shell-home-link">
+          <Link
+            href="/course"
+            className="course-shell-home-link"
+          >
             Course Home
           </Link>
         </div>
@@ -183,100 +198,134 @@ export default function CourseLessonShell({
         <section className="course-shell-lesson-area">
           {renderLesson()}
         </section>
-
       </section>
-
       <footer className="course-shell-progress-footer">
         <div className="course-shell-progress-inner">
-          <span>Overall Progress</span>
+          <span>
+            Overall Progress
+          </span>
 
           <div className="course-shell-progress-track">
-            <span style={{ width: `${progress}%` }} />
+            <span
+              style={{
+                width: `${progress}%`,
+              }}
+            />
           </div>
 
-          <strong>{progress}%</strong>
+          <strong>
+            {progress}%
+          </strong>
         </div>
       </footer>
+
 
       {isCourseMenuOpen && (
         <div
           className="course-shell-menu-overlay"
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
+            if (
+              event.target ===
+              event.currentTarget
+            ) {
               setIsCourseMenuOpen(false);
             }
           }}
         >
           <aside
-            id="course-shell-menu"
             className="course-shell-menu-panel"
-            aria-label="Course menu"
+            id="course-shell-menu"
           >
             <div className="course-shell-menu-top">
               <div>
-                <p>LinkedIn Optimization Guide</p>
-                <h2>Course Menu</h2>
+                <p>
+                  LinkedIn Optimization Guide
+                </p>
+
+                <h2>
+                  Course Menu
+                </h2>
               </div>
 
               <button
                 type="button"
-                onClick={() => setIsCourseMenuOpen(false)}
-                aria-label="Close course menu"
+                onClick={() =>
+                  setIsCourseMenuOpen(false)
+                }
               >
                 ×
               </button>
             </div>
 
+
             <div className="course-shell-menu-progress">
               <div>
-                <span>Your Progress</span>
-                <strong>{progress}%</strong>
+                <span>
+                  Your Progress
+                </span>
+
+                <strong>
+                  {progress}%
+                </strong>
               </div>
 
               <div>
-                <span style={{ width: `${progress}%` }} />
+                <span
+                  style={{
+                    width: `${progress}%`,
+                  }}
+                />
               </div>
             </div>
 
+
             <nav className="course-shell-menu-lessons">
-              {courseModules.map((moduleName) => (
-                <section key={moduleName}>
-                  <h3>{moduleName}</h3>
+              {courseModules.map(
+                (moduleName) => (
+                  <section key={moduleName}>
+                    <h3>
+                      {moduleName}
+                    </h3>
 
-                  {courseLessons
-                    .filter((item) => item.module === moduleName)
-                    .map((item) => {
-                      const itemIndex = courseLessons.findIndex(
-                        (lessonItem) => lessonItem.slug === item.slug
-                      );
-
-                      const isActive = item.slug === lesson.slug;
-
-                      return (
+                    {courseLessons
+                      .filter(
+                        (item) =>
+                          item.module === moduleName
+                      )
+                      .map((item, index) => (
                         <Link
                           key={item.slug}
                           href={`/course/${item.slug}`}
-                          onClick={() => setIsCourseMenuOpen(false)}
+                          onClick={() =>
+                            setIsCourseMenuOpen(false)
+                          }
                           className={
-                            isActive
+                            item.slug === lesson.slug
                               ? "course-shell-menu-link course-shell-menu-link-active"
                               : "course-shell-menu-link"
                           }
                         >
                           <span>
-                            {String(itemIndex + 1).padStart(2, "0")}
+                            {String(index + 1).padStart(
+                              2,
+                              "0"
+                            )}
                           </span>
 
-                          <p>{item.title}</p>
+                          <p>
+                            {item.title}
+                          </p>
 
-                          <span aria-hidden="true">
-                            {isActive ? "→" : "○"}
+                          <span>
+                            {item.slug === lesson.slug
+                              ? "→"
+                              : "○"}
                           </span>
                         </Link>
-                      );
-                    })}
-                </section>
-              ))}
+                      ))}
+                  </section>
+                )
+              )}
             </nav>
           </aside>
         </div>

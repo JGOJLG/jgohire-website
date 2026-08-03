@@ -53,7 +53,16 @@ export const courseLessons: CourseLesson[] = [
     module: "Strengthen Your Profile",
   },
   { slug: "wrap-up", title: "Wrap Up", module: "Finish Strong" },
-  { slug: "bonus-content", title: "Bonus Content", module: "Finish Strong" },
+{
+  slug: "bonus-content",
+  title: "Bonus Content",
+  module: "Finish Strong",
+},
+{
+  slug: "leave-a-review",
+  title: "Leave a Review",
+  module: "Finish Strong",
+},
 ];
 
 export const courseModules = Array.from(
