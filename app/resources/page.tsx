@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import ClientResourceUnlock from "./ClientResourceUnlock";
 
 const resourceNavigation = [
@@ -243,10 +244,22 @@ export default function ResourcesPage() {
                 </div>
 
                 <div className="resource-library-actions">
-                  <ClientResourceUnlock
-                    resourceTitle={resource.title}
-                    destination={resource.href}
-                  />
+                  <Suspense
+  fallback={
+    <button
+      type="button"
+      className="button button-primary"
+      disabled
+    >
+      Unlock the Guide
+    </button>
+  }
+>
+  <ClientResourceUnlock
+    resourceTitle={resource.title}
+    destination={resource.href}
+  />
+</Suspense>
 
                   <Link href="/contact" className="button button-secondary">
                     Become a Client
