@@ -1,16 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const hasAccess = request.cookies.get("jgo_client_access")?.value === "granted";
+export function proxy(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
 
-  if (hasAccess) {
+  const isProtectedRoute =
+    pathname === "/coreframework" ||
+    pathname.startsWith("/coreframework/") ||
+    pathname === "/interviewready" ||
+    pathname.startsWith("/interviewready/");
+
+  if (!isProtectedRoute) {
     return NextResponse.next();
   }
 
-  const unlockUrl = new URL("/client-access", request.url);
-  unlockUrl.searchParams.set("next", request.nextUrl.pathname);
+  const hasClientAccess =
+    request.cookies.get("jgo_client_access")?.value === "granted";
 
-  return NextResponse.redirect(unlockUrl);
+  if (hasClientAccess) {
+    return NextResponse.next();
+  }
+
+  const loginUrl = request.nextUrl.clone();
+
+  loginUrl.pathname = "/client-access";
+  loginUrl.searchParams.set("redirect", pathname);
+
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
