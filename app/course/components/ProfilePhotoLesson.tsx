@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import "./profile-photo.css";
 
 const steps = [

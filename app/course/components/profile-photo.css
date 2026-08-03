@@ -536,3 +536,15 @@
     width: 100%;
   }
 }
+.profile-photo-image {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #e2e7df;
+  background: #ffffff;
+}
+
+.profile-photo-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
