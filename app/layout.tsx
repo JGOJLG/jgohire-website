@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   description:
     "Recruiter-backed career coaching, resume strategy, LinkedIn optimization, interview preparation, and job search support.",
   metadataBase: new URL("https://www.jgohire.com"),
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png" },
+    ],
+  },
+
   openGraph: {
     title: "JGO Hire | Career Coach & Recruiter",
     description:
