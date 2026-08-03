@@ -155,7 +155,7 @@ export default function TestimonialsPage() {
                   )}`}
                   aria-hidden={index !== activeIndex}
                 >
-                  <div className="testimonial-carousel-stars">
+                  <div className="testimonial-carousel-stars" aria-label="5 stars">
                     ★★★★★
                   </div>
 
@@ -200,11 +200,6 @@ export default function TestimonialsPage() {
               />
             ))}
           </div>
-
-          <p className="testimonial-carousel-count">
-            {String(activeIndex + 1).padStart(2, "0")} /{" "}
-            {String(testimonials.length).padStart(2, "0")}
-          </p>
         </div>
       </section>
 
