@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import "./additional-sections.css";
 
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="additional-sections-image-placeholder">
-          <div className="additional-sections-profile-box">
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
-
-          <div>
-            <strong>LinkedIn Profile Sections</strong>
-            <p>Add your LinkedIn profile screenshot here.</p>
-          </div>
+        <div className="additional-sections-image">
+          <Image
+            src="/course/additional-sections.png"
+            alt="LinkedIn profile sections example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="additional-sections-reading-card">

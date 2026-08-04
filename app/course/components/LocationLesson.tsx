@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./location.css";
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="location-image-placeholder">
-          <div className="location-placeholder-map" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <i />
-          </div>
-
-          <div>
-            <strong>Location Field Example</strong>
-            <p>Add your LinkedIn location screenshot here.</p>
-          </div>
+        <div className="location-image">
+          <Image
+            src="/course/location.png"
+            alt="LinkedIn location field example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="location-reading-card">

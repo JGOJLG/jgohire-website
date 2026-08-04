@@ -101,65 +101,19 @@
 
 .connections-body { display: grid; gap: 18px; }
 
-.connections-image-placeholder {
-  min-height: 300px;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 18px;
-  padding: 30px;
-  border: 1px dashed #bcc9ba;
+.connections-image {
+  overflow: hidden;
+  border: 1px solid #e2e7df;
   border-radius: 16px;
-  background:
-    radial-gradient(circle at 70% 30%, rgba(120,144,112,.12), transparent 26%),
-    linear-gradient(135deg, #eef3eb, #f9fbf8);
-  text-align: center;
+  background: #eef3eb;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.1);
 }
 
-.connections-network {
-  position: relative;
-  width: min(460px, 92%);
-  height: 180px;
-  border-radius: 18px;
-  background: #ffffff;
-  box-shadow: 0 14px 30px rgba(23,61,49,.14);
-}
-
-.connections-network .node {
-  position: absolute;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #173d31;
-  box-shadow: 0 0 0 8px #edf3ea;
-  z-index: 2;
-}
-
-.node-one { left: 18%; top: 20%; }
-.node-two { left: 48%; top: 12%; }
-.node-three { right: 14%; top: 36%; }
-.node-four { left: 34%; bottom: 18%; }
-.node-five { right: 32%; bottom: 12%; }
-
-.connections-network .line {
-  position: absolute;
-  height: 2px;
-  background: #a9bba9;
-  transform-origin: left center;
-}
-
-.line-one { width: 145px; left: 23%; top: 30%; transform: rotate(-8deg); }
-.line-two { width: 140px; left: 52%; top: 28%; transform: rotate(18deg); }
-.line-three { width: 112px; left: 24%; top: 48%; transform: rotate(35deg); }
-.line-four { width: 120px; left: 43%; bottom: 30%; transform: rotate(-12deg); }
-
-.connections-image-placeholder strong {
+.connections-image img {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 28px;
-  font-weight: 500;
+  width: 100%;
+  height: auto;
 }
-.connections-image-placeholder p { margin: 6px 0 0; color: #707b73; font-size: 13px; }
 
 .connections-reading-card,
 .connections-statement-card,

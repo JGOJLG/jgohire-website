@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import "./skills.css";
 
@@ -10,19 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="skills-image-placeholder">
-          <div className="skills-placeholder-tags" aria-hidden="true">
-            <span>Skill</span>
-            <span>Tool</span>
-            <span>Expertise</span>
-            <span>Keyword</span>
-            <span>Platform</span>
-          </div>
-
-          <div>
-            <strong>Skills Section Example</strong>
-            <p>Add your LinkedIn Skills section screenshot here.</p>
-          </div>
+        <div className="skills-image">
+          <Image
+            src="/course/skills.png"
+            alt="LinkedIn Skills section example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="skills-reading-card">
@@ -51,16 +47,14 @@ const steps = [
         <div className="skills-howto-body">
           <div>
             <span>01</span>
-            <p>
-              Click the pencil icon next to the Skills section and search for skills to add them one by one.
-            </p>
+            <p>Click the pencil icon next to the Skills section and search for skills to add them one by one.</p>
           </div>
         </div>
       </section>
     ),
   },
   {
-    title: "How Recruiters Use Skills",
+    title: "How Recruiters Use This Section",
     eyebrow: "Step 3",
     content: (
       <>
@@ -82,9 +76,7 @@ const steps = [
 
         <aside className="skills-tip-card">
           <span>Quick Tip</span>
-          <p>
-            Only include skills you can actually speak to. If it comes up in an interview, you need to be able to back it up.
-          </p>
+          <p>Only include skills you can actually speak to. If it comes up in an interview, you need to be able to back it up.</p>
         </aside>
 
         <aside className="skills-tip-card">
@@ -127,16 +119,14 @@ const steps = [
           <article>
             <span>03</span>
             <h3>Top 3 Skills</h3>
-            <p>
-              LinkedIn displays these first, so make sure they are your strongest and most relevant.
-            </p>
+            <p>LinkedIn displays these first, so make sure they are your strongest and most relevant.</p>
           </article>
         </div>
       </>
     ),
   },
   {
-    title: "Using AI to Improve Your Skills",
+    title: "Find the Right Skills",
     eyebrow: "Step 5",
     content: (
       <>
@@ -166,15 +156,97 @@ const steps = [
     ),
   },
   {
-    title: "Final Takeaway",
+    title: "Skills Support Your Story",
     eyebrow: "Step 6",
     content: (
       <aside className="skills-final-card">
         <span>Final Takeaway</span>
         <h3>Skills support your story.</h3>
-
         <p>
           Once you have the list, compare it to your actual experience and only keep what you can genuinely speak to. Whatever skills you list on LinkedIn should also be on your resume.
+        </p>
+      </aside>
+    ),
+  },
+  {
+    title: "Endorsements",
+    eyebrow: "Step 7",
+    content: (
+      <>
+        <div className="skills-image">
+          <Image
+            src="/course/endorsements.png"
+            alt="LinkedIn Endorsements example"
+            width={1200}
+            height={675}
+            priority
+          />
+        </div>
+
+        <aside className="skills-statement-card">
+          <span>Endorsements Rule</span>
+          <p>Endorsements help validate your skills because other people are confirming them, not just you.</p>
+        </aside>
+
+        <div className="skills-reading-card">
+          <p>Endorsements are one of the most overlooked parts of this section.</p>
+
+          <p>
+            An endorsement is when someone in your network confirms that you have a specific skill. It shows up as a number next to each skill and adds credibility because it is not just you claiming it. Other people are backing it up.
+          </p>
+
+          <p>To get endorsed, reach out to former coworkers, classmates, or managers and ask. Most people are happy to do it.</p>
+
+          <p>
+            You should also endorse others. Go to someone's profile, scroll to their skills section, and click endorse next to any skill you know they genuinely have. LinkedIn often notifies them and many will return the favor.
+          </p>
+        </div>
+      </>
+    ),
+  },
+  {
+    title: "Why Endorsements Matter",
+    eyebrow: "Step 8",
+    content: (
+      <>
+        <div className="skills-value-grid">
+          <article>
+            <span>01</span>
+            <h3>Ask Former Colleagues</h3>
+            <p>Reach out to former coworkers, classmates, managers, or clients who can genuinely speak to your skills.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Focus on Relevant Skills</h3>
+            <p>Prioritize endorsements for the skills most important to the roles you want next.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Give to Receive</h3>
+            <p>Endorsing others often encourages them to visit your profile and return the favor.</p>
+          </article>
+        </div>
+
+        <aside className="skills-tip-card">
+          <span>Quick Tip</span>
+          <p>
+            Endorsements and recommendations are not the same thing. Endorsements are tied to specific skills. Recommendations are written statements about you as a professional. We will cover recommendations later in this guide.
+          </p>
+        </aside>
+      </>
+    ),
+  },
+  {
+    title: "Final Takeaway",
+    eyebrow: "Step 9",
+    content: (
+      <aside className="skills-final-card">
+        <span>Final Takeaway</span>
+        <h3>Make your profile work together.</h3>
+        <p>
+          Your skills section is one piece of a larger puzzle. It will not get you a job on its own, but it adds context and it helps you show up. Your skills, experience, and headline all work together. Make sure they are aligned, telling the same story, and allow you to show up in the proper searches.
         </p>
       </aside>
     ),
@@ -218,7 +290,7 @@ export default function SkillsLesson() {
           {steps.map((step, index) => (
             <button
               type="button"
-              key={step.title}
+              key={`${step.title}-${index}`}
               className={
                 index === activeStep
                   ? "skills-step skills-step-active"

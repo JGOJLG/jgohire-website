@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./certifications-projects-publications.css";
@@ -10,29 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="cpp-image-placeholder">
-          <div className="cpp-placeholder-layout" aria-hidden="true">
-            <article>
-              <span />
-              <span />
-              <span />
-            </article>
-            <article>
-              <span />
-              <span />
-              <span />
-            </article>
-            <article>
-              <span />
-              <span />
-              <span />
-            </article>
-          </div>
-
-          <div>
-            <strong>Additional Sections Example</strong>
-            <p>Add your LinkedIn Certifications, Projects, and Publications screenshot here.</p>
-          </div>
+        <div className="cpp-image">
+          <Image
+            src="/course/certifications-projects-publications.png"
+            alt="LinkedIn Certifications, Projects, and Publications example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="cpp-reading-card">

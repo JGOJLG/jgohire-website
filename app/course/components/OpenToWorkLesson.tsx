@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import "./open-to-work.css";
 
 const steps = [
   { title: "Why Open to Work Matters", eyebrow: "Step 1", content: (<>
-    <div className="otw-image-placeholder"><div className="otw-placeholder-card" aria-hidden="true"><span/><span/><span/><span/></div><div><strong>Open to Work Example</strong><p>Add your LinkedIn Open to Work screenshot here.</p></div></div>
+    <div className="otw-image"><Image src="/course/open-to-work.png" alt="LinkedIn Open to Work example" width={1200} height={675} priority/></div>
     <div className="otw-reading-card"><p>Open to Work is a LinkedIn setting that signals to recruiters that you are available and open to new opportunities.</p></div>
     <aside className="otw-statement-card"><span>Open to Work Rule</span><p>If you are actively looking for a new position, turn on “Open to Work”. It actually helps.</p></aside>
   </>) },

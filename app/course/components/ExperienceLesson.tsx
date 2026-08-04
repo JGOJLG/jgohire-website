@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./experience.css";
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="experience-image-placeholder">
-          <div className="experience-placeholder-card" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div>
-            <strong>Experience Section Example</strong>
-            <p>Add your LinkedIn Experience section screenshot here.</p>
-          </div>
+        <div className="experience-image">
+          <Image
+            src="/course/experience.png"
+            alt="LinkedIn Experience section example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="experience-reading-card">

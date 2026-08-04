@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./education.css";
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="education-image-placeholder">
-          <div className="education-placeholder-card" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div>
-            <strong>Education Section Example</strong>
-            <p>Add your LinkedIn Education section screenshot here.</p>
-          </div>
+        <div className="education-image">
+          <Image
+            src="/course/education.png"
+            alt="LinkedIn Education section example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="education-reading-card">

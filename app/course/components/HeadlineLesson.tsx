@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./headline.css";
@@ -10,6 +11,16 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
+        <div className="headline-image">
+          <Image
+            src="/course/headline.png"
+            alt="LinkedIn headline example"
+            width={1200}
+            height={675}
+            priority
+          />
+        </div>
+
         <div className="headline-reading-card">
           <p>
             Now that we have the visuals covered, let's make sure what people actually read is just as strong. Your headline is the line of text directly under your name at the top of your LinkedIn profile. It shows up in search results and it is one of the first things anyone sees. A strong headline tells people exactly who you are and what you do in just a few words. In years past this was largely overlooked. Now it is one of the first things recruiters see and reference when looking at a profile. Your headline also appears when you send someone a message on LinkedIn, showing up right below your name.
@@ -51,7 +62,7 @@ const steps = [
       <>
         <div className="headline-reading-card">
           <p>
-            This is where AI comes back in. Most people type "write me a LinkedIn headline" and are surprised when what comes back feels flat and generic. That is because they gave AI nothing to work with. You have to give it direction. Here’s how.
+            This is where AI comes back in. Most people type "write me a LinkedIn headline" and are surprised when what comes back feels flat and generic. That is because they gave AI nothing to work with. You have to give it direction. Here's how.
           </p>
 
           <p>

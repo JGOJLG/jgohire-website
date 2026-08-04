@@ -161,66 +161,18 @@
 }
 
 
-.additional-sections-image-placeholder {
-  min-height: 300px;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 18px;
-  padding: 30px;
-  border: 1px dashed #bcc9ba;
+.additional-sections-image {
+  overflow: hidden;
+  border: 1px solid #e2e7df;
   border-radius: 16px;
-  background:
-    radial-gradient(circle at 70% 30%, rgba(120,144,112,.12), transparent 26%),
-    linear-gradient(135deg, #eef3eb, #f9fbf8);
-  text-align: center;
+  background: #eef3eb;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.1);
 }
 
-.additional-sections-profile-box {
-  width: min(360px, 90%);
-  height: 150px;
-  padding: 20px;
-  display: grid;
-  gap: 12px;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 14px 30px rgba(23,61,49,.14);
-}
-
-.additional-sections-profile-box div {
-  height: 14px;
-  border-radius: 999px;
-  background: #e8ede6;
-}
-
-.additional-sections-profile-box div:first-child {
-  width: 55%;
-  height: 28px;
-}
-
-.additional-sections-profile-box div:nth-child(2) {
-  width: 85%;
-}
-
-.additional-sections-profile-box div:nth-child(3) {
-  width: 65%;
-}
-
-.additional-sections-profile-box div:nth-child(4) {
-  width: 45%;
-}
-
-.additional-sections-image-placeholder strong {
+.additional-sections-image img {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 28px;
-  font-weight: 500;
-}
-
-.additional-sections-image-placeholder p {
-  margin: 6px 0 0;
-  color: #707b73;
-  font-size: 13px;
+  width: 100%;
+  height: auto;
 }
 
 

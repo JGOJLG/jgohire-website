@@ -137,6 +137,20 @@
   gap: 18px;
 }
 
+.banner-photo-image {
+  overflow: hidden;
+  border: 1px solid #e2e7df;
+  border-radius: 16px;
+  background: #eef3eb;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.1);
+}
+
+.banner-photo-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .banner-photo-image-placeholder {
   min-height: 260px;
   display: grid;

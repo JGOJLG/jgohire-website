@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import "./recommendations.css";
 
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="recommendations-image-placeholder">
-          <div className="recommendations-placeholder-card" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div>
-            <strong>Recommendations Section Example</strong>
-            <p>Add your LinkedIn Recommendations screenshot here.</p>
-          </div>
+        <div className="recommendations-image">
+          <Image
+            src="/course/recommendations.png"
+            alt="LinkedIn Recommendations section example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="recommendations-reading-card">

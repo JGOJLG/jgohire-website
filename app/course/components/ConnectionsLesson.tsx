@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import "./connections.css";
 
@@ -10,23 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="connections-image-placeholder">
-          <div className="connections-network" aria-hidden="true">
-            <span className="node node-one" />
-            <span className="node node-two" />
-            <span className="node node-three" />
-            <span className="node node-four" />
-            <span className="node node-five" />
-            <i className="line line-one" />
-            <i className="line line-two" />
-            <i className="line line-three" />
-            <i className="line line-four" />
-          </div>
-
-          <div>
-            <strong>Connections Example</strong>
-            <p>Add your LinkedIn Connections screenshot here.</p>
-          </div>
+        <div className="connections-image">
+          <Image
+            src="/course/connections.png"
+            alt="LinkedIn Connections example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="connections-reading-card">

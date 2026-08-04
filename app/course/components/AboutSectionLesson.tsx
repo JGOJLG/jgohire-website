@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./about-section.css";
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="about-section-image-placeholder">
-          <div className="about-section-placeholder-card" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div>
-            <strong>About Section Example</strong>
-            <p>Add your LinkedIn About section screenshot here.</p>
-          </div>
+        <div className="about-section-image">
+          <Image
+            src="/course/about-section.png"
+            alt="LinkedIn About section example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="about-section-reading-card">

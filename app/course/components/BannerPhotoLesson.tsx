@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./banner-photo.css";
@@ -10,17 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="banner-photo-image-placeholder">
-          <div className="banner-photo-placeholder-art" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div>
-            <strong>Banner Photo Example</strong>
-            <p>Add your LinkedIn banner image here.</p>
-          </div>
+        <div className="banner-photo-image">
+          <Image
+            src="/course/banner-photo.png"
+            alt="LinkedIn banner photo example"
+            width={1584}
+            height={396}
+            priority
+          />
         </div>
 
         <div className="banner-photo-reading-card">

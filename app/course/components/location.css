@@ -137,87 +137,18 @@
   gap: 18px;
 }
 
-.location-image-placeholder {
-  min-height: 300px;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 18px;
-  padding: 30px;
-  border: 1px dashed #bcc9ba;
-  border-radius: 16px;
-  background:
-    radial-gradient(circle at 70% 30%, rgba(120, 144, 112, 0.12), transparent 26%),
-    linear-gradient(135deg, #eef3eb, #f9fbf8);
-  text-align: center;
-}
-
-.location-placeholder-map {
-  position: relative;
-  width: min(420px, 90%);
-  height: 150px;
+.location-image {
   overflow: hidden;
-  border-radius: 18px;
-  background:
-    linear-gradient(120deg, transparent 0 36%, rgba(255,255,255,.34) 36% 42%, transparent 42% 100%),
-    linear-gradient(22deg, transparent 0 58%, rgba(255,255,255,.26) 58% 64%, transparent 64% 100%),
-    #7f9580;
-  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.16);
+  border: 1px solid #e2e7df;
+  border-radius: 16px;
+  background: #eef3eb;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.1);
 }
 
-.location-placeholder-map span {
-  position: absolute;
-  border-radius: 999px;
-  background: rgba(255,255,255,.22);
-}
-
-.location-placeholder-map span:nth-child(1) {
-  width: 180px;
-  height: 18px;
-  left: -20px;
-  top: 26px;
-  transform: rotate(18deg);
-}
-
-.location-placeholder-map span:nth-child(2) {
-  width: 160px;
-  height: 18px;
-  right: -24px;
-  bottom: 24px;
-  transform: rotate(-16deg);
-}
-
-.location-placeholder-map span:nth-child(3) {
-  width: 18px;
-  height: 180px;
-  left: 54%;
-  top: -18px;
-  transform: rotate(8deg);
-}
-
-.location-placeholder-map i {
-  position: absolute;
-  left: 58%;
-  top: 45%;
-  width: 34px;
-  height: 34px;
-  border-radius: 50% 50% 50% 0;
-  background: #173d31;
-  transform: rotate(-45deg);
-  box-shadow: 0 8px 18px rgba(23,61,49,.25);
-}
-
-.location-image-placeholder strong {
+.location-image img {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 28px;
-  font-weight: 500;
-}
-
-.location-image-placeholder p {
-  margin: 6px 0 0;
-  color: #707b73;
-  font-size: 13px;
+  width: 100%;
+  height: auto;
 }
 
 .location-reading-card,

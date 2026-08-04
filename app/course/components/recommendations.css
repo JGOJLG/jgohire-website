@@ -64,32 +64,19 @@
 
 .recommendations-body { display: grid; gap: 18px; }
 
-.recommendations-image-placeholder {
-  min-height: 300px; display: grid; place-items: center; align-content: center;
-  gap: 18px; padding: 30px; border: 1px dashed #bcc9ba; border-radius: 16px;
-  background: radial-gradient(circle at 70% 30%, rgba(120,144,112,.12), transparent 26%),
-              linear-gradient(135deg, #eef3eb, #f9fbf8);
-  text-align: center;
+.recommendations-image {
+  overflow: hidden;
+  border: 1px solid #e2e7df;
+  border-radius: 16px;
+  background: #eef3eb;
+  box-shadow: 0 14px 30px rgba(23, 61, 49, 0.1);
 }
 
-.recommendations-placeholder-card {
-  width: min(440px, 90%); min-height: 170px; display: grid; gap: 12px;
-  padding: 24px; border-radius: 18px; background: #ffffff;
-  box-shadow: 0 14px 30px rgba(23,61,49,.14);
+.recommendations-image img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-.recommendations-placeholder-card span {
-  display: block; height: 12px; border-radius: 999px; background: #d8e2d6;
-}
-.recommendations-placeholder-card span:nth-child(1) { width: 56%; height: 20px; background: #173d31; }
-.recommendations-placeholder-card span:nth-child(2) { width: 30%; background: #9aae98; }
-.recommendations-placeholder-card span:nth-child(3) { width: 92%; }
-.recommendations-placeholder-card span:nth-child(4) { width: 78%; }
-
-.recommendations-image-placeholder strong {
-  display: block; font-family: "Playfair Display", Georgia, serif;
-  font-size: 28px; font-weight: 500;
-}
-.recommendations-image-placeholder p { margin: 6px 0 0; color: #707b73; font-size: 13px; }
 
 .recommendations-reading-card,
 .recommendations-statement-card,

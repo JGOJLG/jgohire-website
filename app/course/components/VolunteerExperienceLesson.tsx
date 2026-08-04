@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import "./volunteer-experience.css";
@@ -10,18 +11,14 @@ const steps = [
     eyebrow: "Step 1",
     content: (
       <>
-        <div className="volunteer-image-placeholder">
-          <div className="volunteer-placeholder-card" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div>
-            <strong>Volunteer Experience Example</strong>
-            <p>Add your LinkedIn Volunteer Experience screenshot here.</p>
-          </div>
+        <div className="volunteer-image">
+          <Image
+            src="/course/volunteer-experience.png"
+            alt="LinkedIn Volunteer Experience example"
+            width={1200}
+            height={675}
+            priority
+          />
         </div>
 
         <div className="volunteer-reading-card">
