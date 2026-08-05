@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,9 +13,7 @@ export const metadata: Metadata = {
       { url: "/favicon.ico" },
       { url: "/icon.png", type: "image/png" },
     ],
-    apple: [
-      { url: "/apple-icon.png" },
-    ],
+    apple: [{ url: "/apple-icon.png" }],
   },
 
   openGraph: {
@@ -34,7 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <main>{children}</main>
+
+        <Footer />
+      </body>
     </html>
   );
 }
