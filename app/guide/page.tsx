@@ -235,7 +235,6 @@ export default function LinkedInGuidePage() {
               <details
                 className={styles.module}
                 key={module.title}
-                open={index === 0}
               >
                 <summary>
                   <span className={styles.moduleNumber}>{module.number}</span>
