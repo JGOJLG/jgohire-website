@@ -11,6 +11,7 @@ type ContactRequest = {
   service?: unknown;
   message?: unknown;
   referralSource?: unknown;
+  referralName?: unknown;
   website?: unknown;
 };
 
@@ -55,6 +56,7 @@ export async function POST(request: Request) {
     const service = cleanText(body.service, 150);
     const message = cleanText(body.message, 5000);
     const referralSource = cleanText(body.referralSource, 150);
+    const referralName = cleanText(body.referralName, 150);
     const website = cleanText(body.website, 250);
 
     // Hidden spam field. Real visitors will leave this blank.
@@ -65,6 +67,13 @@ export async function POST(request: Request) {
     if (!firstName || !lastName || !email || !message) {
       return NextResponse.json(
         { error: "Please complete all required fields." },
+        { status: 400 }
+      );
+    }
+
+    if (referralSource === "Referral" && !referralName) {
+      return NextResponse.json(
+        { error: "Please enter the name of the person who referred you." },
         { status: 400 }
       );
     }
@@ -84,15 +93,20 @@ export async function POST(request: Request) {
       replyTo: email,
       subject: `New JGO Hire inquiry from ${fullName}`,
       text: [
-        `New JGO Hire website inquiry`,
-        ``,
+        "New JGO Hire website inquiry",
+        "",
         `Name: ${fullName}`,
         `Email: ${email}`,
         `Phone: ${phone || "Not provided"}`,
         `Service: ${service || "Not selected"}`,
         `How they found JGO Hire: ${referralSource || "Not provided"}`,
-        ``,
-        `Message:`,
+        `Referral name: ${
+          referralSource === "Referral"
+            ? referralName || "Not provided"
+            : "Not applicable"
+        }`,
+        "",
+        "Message:",
         message,
       ].join("\n"),
       html: `
@@ -111,32 +125,52 @@ export async function POST(request: Request) {
                 <td style="padding:10px 0;font-weight:700;">Name</td>
                 <td style="padding:10px 0;">${escapeHtml(fullName)}</td>
               </tr>
+
               <tr>
                 <td style="padding:10px 0;font-weight:700;">Email</td>
                 <td style="padding:10px 0;">${escapeHtml(email)}</td>
               </tr>
+
               <tr>
                 <td style="padding:10px 0;font-weight:700;">Phone</td>
                 <td style="padding:10px 0;">${escapeHtml(
                   phone || "Not provided"
                 )}</td>
               </tr>
+
               <tr>
                 <td style="padding:10px 0;font-weight:700;">Service</td>
                 <td style="padding:10px 0;">${escapeHtml(
                   service || "Not selected"
                 )}</td>
               </tr>
+
               <tr>
                 <td style="padding:10px 0;font-weight:700;">Found JGO Hire</td>
                 <td style="padding:10px 0;">${escapeHtml(
                   referralSource || "Not provided"
                 )}</td>
               </tr>
+
+              ${
+                referralSource === "Referral"
+                  ? `
+                    <tr>
+                      <td style="padding:10px 0;font-weight:700;">Referral Name</td>
+                      <td style="padding:10px 0;">${escapeHtml(
+                        referralName || "Not provided"
+                      )}</td>
+                    </tr>
+                  `
+                  : ""
+              }
             </table>
 
             <div style="margin-top:26px;padding:22px;background:#f7f3ec;border-radius:14px;">
-              <p style="margin:0 0 10px;font-weight:700;">What brought them here:</p>
+              <p style="margin:0 0 10px;font-weight:700;">
+                What brought them here:
+              </p>
+
               <p style="margin:0;line-height:1.7;white-space:pre-wrap;">${escapeHtml(
                 message
               )}</p>

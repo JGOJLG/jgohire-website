@@ -19,20 +19,22 @@ export default function Hero() {
               Book a Consultation
             </Link>
 
-            <Link href="#support" className="button button-secondary">
-              See How I Can Help
+            <Link href="/#services" className="button button-secondary">
+              Explore Services
             </Link>
           </div>
 
-          <div className="hero-stats">
+          <div className="hero-stats" aria-label="JGO Hire experience">
             <div>
               <strong>10+</strong>
               <span>Years recruiting</span>
             </div>
+
             <div>
               <strong>1,000+</strong>
               <span>Resumes reviewed</span>
             </div>
+
             <div>
               <strong>Thousands</strong>
               <span>Candidates supported</span>
@@ -52,7 +54,10 @@ export default function Hero() {
           <div className="hero-note">
             <span className="hero-note-kicker">Why JGO Hire</span>
             <strong>Real recruiting experience.</strong>
-            <p>Career advice from someone who understands hiring from the inside.</p>
+            <p>
+              Career advice from someone who understands hiring from the
+              inside.
+            </p>
           </div>
         </div>
       </div>

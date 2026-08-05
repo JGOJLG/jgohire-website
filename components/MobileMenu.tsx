@@ -9,10 +9,11 @@ type MobileMenuProps = {
 };
 
 const navigation = [
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Resources", href: "#resources" },
-  { label: "Results", href: "#results" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Resources", href: "/resources" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "LinkedIn Guide", href: "/guide" },
 ];
 
 export default function MobileMenu({
@@ -42,10 +43,12 @@ export default function MobileMenu({
 
       <aside className="mobile-menu-panel" aria-label="Mobile navigation">
         <div className="mobile-menu-top">
-          <div>
-            <p className="mobile-menu-brand">JGO HIRE</p>
-            <p className="mobile-menu-subtitle">Career Coach + Recruiter</p>
-          </div>
+          <Link href="/" className="mobile-menu-brand-wrap" onClick={onClose}>
+            <span className="mobile-menu-brand">JGO HIRE</span>
+            <span className="mobile-menu-subtitle">
+              Career Coach + Recruiter
+            </span>
+          </Link>
 
           <button
             type="button"
@@ -53,7 +56,7 @@ export default function MobileMenu({
             onClick={onClose}
             aria-label="Close menu"
           >
-            ×
+            <span aria-hidden="true">×</span>
           </button>
         </div>
 
@@ -66,13 +69,23 @@ export default function MobileMenu({
           ))}
         </nav>
 
-        <Link
-          href="/contact"
-          className="button button-primary mobile-menu-cta"
-          onClick={onClose}
-        >
-          Book a Consultation
-        </Link>
+        <div className="mobile-menu-actions">
+          <Link
+            href="/contact"
+            className="button button-primary mobile-menu-cta"
+            onClick={onClose}
+          >
+            Book a Consultation
+          </Link>
+
+          <Link
+            href="/login?redirect=/course"
+            className="mobile-menu-member-link"
+            onClick={onClose}
+          >
+            Course Member Login
+          </Link>
+        </div>
 
         <p className="mobile-menu-note">
           Recruiter-backed strategy for resumes, LinkedIn, interviews, and
