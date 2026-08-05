@@ -8,6 +8,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export default function ContactPage() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [referralSource, setReferralSource] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,6 +33,10 @@ export default function ContactPage() {
           service: formData.get("service"),
           message: formData.get("message"),
           referralSource: formData.get("referralSource"),
+          referralName:
+            referralSource === "Referral"
+              ? formData.get("referralName")
+              : null,
           website: formData.get("website"),
         }),
       });
@@ -43,6 +48,7 @@ export default function ContactPage() {
       }
 
       form.reset();
+      setReferralSource("");
       setStatus("success");
     } catch (error) {
       setErrorMessage(
@@ -72,7 +78,7 @@ export default function ContactPage() {
 
       <section className="contact-hero">
         <div className="site-shell contact-hero-content">
-          <p className="contact-eyebrow">Let's Talk</p>
+          <p className="contact-eyebrow">Let&apos;s Talk</p>
 
           <h1>Not sure where to start?</h1>
 
@@ -210,7 +216,7 @@ export default function ContactPage() {
                       </option>
 
                       <option value="Not Sure Yet">
-                        I'm not sure yet
+                        I&apos;m not sure yet
                       </option>
                     </select>
                   </label>
@@ -231,7 +237,13 @@ export default function ContactPage() {
                   <label className="contact-field">
                     <span>How did you hear about JGO Hire?</span>
 
-                    <select name="referralSource" defaultValue="">
+                    <select
+                      name="referralSource"
+                      value={referralSource}
+                      onChange={(event) =>
+                        setReferralSource(event.target.value)
+                      }
+                    >
                       <option value="" disabled>
                         Select an option
                       </option>
@@ -246,6 +258,22 @@ export default function ContactPage() {
                       <option value="Other">Other</option>
                     </select>
                   </label>
+
+                  {referralSource === "Referral" ? (
+                    <label className="contact-field">
+                      <span>
+                        Name of referral <small>Required</small>
+                      </span>
+
+                      <input
+                        type="text"
+                        name="referralName"
+                        placeholder="Who referred you to JGO Hire?"
+                        autoComplete="off"
+                        required
+                      />
+                    </label>
+                  ) : null}
 
                   <label className="contact-honeypot" aria-hidden="true">
                     Website
