@@ -83,8 +83,7 @@ export default async function LoginPage() {
             </div>
 
             <p className="course-login-help">
-              Need help accessing your account?{" "}
-              <Link href="/contact">Contact JGO Hire</Link>
+              Most access issues can be fixed instantly with a password reset.
             </p>
           </div>
         </div>

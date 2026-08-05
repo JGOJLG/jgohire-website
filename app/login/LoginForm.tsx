@@ -1,15 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { login, type LoginState } from "./actions";
 
 const initialState: LoginState = {};
 
 export default function LoginForm() {
-  const [state, formAction, isPending] = useActionState(
-    login,
-    initialState
-  );
+  const [state, formAction, isPending] = useActionState(login, initialState);
 
   return (
     <form action={formAction} className="course-login-form">
@@ -36,6 +34,11 @@ export default function LoginForm() {
           required
         />
       </label>
+
+      <div className="course-login-form-links">
+        <Link href="/forgot-password">Forgot password?</Link>
+        <Link href="/account-help">Can&apos;t access your account?</Link>
+      </div>
 
       {state.error ? (
         <p className="course-login-error" role="alert">
