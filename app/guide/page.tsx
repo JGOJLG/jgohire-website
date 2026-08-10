@@ -90,7 +90,7 @@ function PriceLabel({ compact = false }: { compact?: boolean }) {
       }
     >
       <span className={styles.buttonOldPrice}>$500</span>
-      <span className={styles.buttonCurrentPrice}>$23</span>
+      <span className={styles.buttonCurrentPrice}>$150</span>
     </span>
   );
 }
@@ -202,7 +202,7 @@ export default function LinkedInGuidePage() {
 
                 <div className={styles.priceRow}>
                   <span className={styles.oldPrice}>$500</span>
-                  <strong>$23</strong>
+                  <strong>$150</strong>
                 </div>
 
                 <p>One payment. Lifetime access.</p>
@@ -347,7 +347,7 @@ export default function LinkedInGuidePage() {
             <div className={styles.finalPrice}>
               <div className={styles.finalPriceRow}>
                 <span>$500</span>
-                <strong>$23</strong>
+                <strong>$150</strong>
               </div>
 
               <small>One-time payment. Lifetime access.</small>
