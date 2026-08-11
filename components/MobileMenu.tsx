@@ -42,10 +42,20 @@ export default function MobileMenu({
         aria-label="Close menu"
       />
 
-      <aside className="mobile-menu-panel" aria-label="Mobile navigation">
+      <aside
+        className="mobile-menu-panel"
+        aria-label="Mobile navigation"
+      >
         <div className="mobile-menu-top">
-          <Link href="/" className="mobile-menu-brand-wrap" onClick={onClose}>
-            <span className="mobile-menu-brand">JGO HIRE</span>
+          <Link
+            href="/"
+            className="mobile-menu-brand-wrap"
+            onClick={onClose}
+          >
+            <span className="mobile-menu-brand">
+              JGO HIRE
+            </span>
+
             <span className="mobile-menu-subtitle">
               Career Coach + Recruiter
             </span>
@@ -63,7 +73,11 @@ export default function MobileMenu({
 
         <nav className="mobile-menu-nav">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} onClick={onClose}>
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onClose}
+            >
               <span>{item.label}</span>
               <span aria-hidden="true">→</span>
             </Link>
@@ -89,8 +103,8 @@ export default function MobileMenu({
         </div>
 
         <p className="mobile-menu-note">
-          Recruiter-backed strategy for resumes, LinkedIn, interviews, and
-          career clarity.
+          Recruiter-backed strategy for resumes, LinkedIn,
+          interviews, and career clarity.
         </p>
       </aside>
     </div>

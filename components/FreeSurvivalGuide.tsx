@@ -23,7 +23,8 @@ export default function FreeSurvivalGuide() {
             borderRadius: "32px",
             border: "1px solid rgba(93, 116, 91, 0.18)",
             background: "rgba(255, 255, 255, 0.72)",
-            boxShadow: "0 30px 80px rgba(43, 61, 47, 0.08)",
+            boxShadow:
+              "0 30px 80px rgba(43, 61, 47, 0.08)",
             padding: "clamp(36px, 6vw, 72px)",
           }}
         >
@@ -35,12 +36,19 @@ export default function FreeSurvivalGuide() {
               borderRadius: "999px",
               right: "-120px",
               top: "-150px",
-              background: "rgba(99, 122, 91, 0.10)",
+              background:
+                "rgba(99, 122, 91, 0.10)",
+              filter: "blur(3px)",
               pointerEvents: "none",
             }}
           />
 
-          <div style={{ position: "relative", maxWidth: "820px" }}>
+          <div
+            style={{
+              position: "relative",
+              maxWidth: "820px",
+            }}
+          >
             <p
               style={{
                 margin: 0,
@@ -66,7 +74,12 @@ export default function FreeSurvivalGuide() {
               }}
             >
               Your job search could use a{" "}
-              <em style={{ color: "#637a5b", fontWeight: 400 }}>
+              <em
+                style={{
+                  color: "#637a5b",
+                  fontWeight: 400,
+                }}
+              >
                 survival guide.
               </em>
             </h2>
@@ -80,10 +93,12 @@ export default function FreeSurvivalGuide() {
                 lineHeight: 1.75,
               }}
             >
-              The modern job search is a lot. Conflicting resume advice, AI,
-              endless applications, ghosting, interviews that go nowhere. I put
-              together 7 recruiter-backed rules to help you cut through the noise
-              and focus on what actually matters.
+              The modern job search is a lot.
+              Conflicting resume advice, AI, endless
+              applications, ghosting, interviews that go
+              nowhere. I put together 7 recruiter-backed
+              rules to help you cut through the noise and
+              focus on what actually matters.
             </p>
 
             <div
@@ -94,26 +109,30 @@ export default function FreeSurvivalGuide() {
                 marginTop: "30px",
               }}
             >
-              {["7 Survival Rules", "Recruiter Perspective", "30-Second Quiz", "Free PDF"].map(
-                (item) => (
-                  <span
-                    key={item}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "9px 13px",
-                      borderRadius: "999px",
-                      background: "#eef2eb",
-                      border: "1px solid rgba(99, 122, 91, 0.14)",
-                      color: "#4d6247",
-                      fontSize: "12px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {item}
-                  </span>
-                ),
-              )}
+              {[
+                "7 Survival Rules",
+                "Recruiter Perspective",
+                "30-Second Quiz",
+                "Free PDF",
+              ].map((item) => (
+                <span
+                  key={item}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    padding: "9px 13px",
+                    borderRadius: "999px",
+                    background: "#eef2eb",
+                    border:
+                      "1px solid rgba(99, 122, 91, 0.14)",
+                    color: "#4d6247",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                  }}
+                >
+                  {item}
+                </span>
+              ))}
             </div>
 
             <div
@@ -139,7 +158,8 @@ export default function FreeSurvivalGuide() {
                   fontSize: "15px",
                   fontWeight: 700,
                   textDecoration: "none",
-                  boxShadow: "0 12px 28px rgba(77, 98, 71, 0.18)",
+                  boxShadow:
+                    "0 12px 28px rgba(77, 98, 71, 0.18)",
                 }}
               >
                 Get the Free Survival Guide →
@@ -154,8 +174,8 @@ export default function FreeSurvivalGuide() {
                   lineHeight: 1.55,
                 }}
               >
-                Plus, take my 30-second quiz to find out what kind of job seeker
-                you are.
+                Plus, take my 30-second quiz to find out
+                what kind of job seeker you are.
               </p>
             </div>
           </div>

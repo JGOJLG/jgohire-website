@@ -17,7 +17,9 @@ export default function HomePage() {
       <CredibilityStrip />
       <HowCanIHelp />
       <Services />
+
       <FreeSurvivalGuide />
+
       <LinkedInGuide />
       <RecruiterAdvantage />
       <FinalCTA />

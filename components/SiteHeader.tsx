@@ -13,20 +13,32 @@ export default function SiteHeader() {
         <div className="site-shell header-inner">
           <Link href="/" className="brand">
             <span className="brand-name">JGO HIRE</span>
-            <span className="brand-tagline">Career Coach + Recruiter</span>
+            <span className="brand-tagline">
+              Career Coach + Recruiter
+            </span>
           </Link>
 
-          <nav className="desktop-nav" aria-label="Primary navigation">
+          <nav
+            className="desktop-nav"
+            aria-label="Primary navigation"
+          >
             <Link href="/about">About</Link>
             <Link href="/#services">Services</Link>
-            <Link href="/freesurvivalguide">Free Survival Guide</Link>
+
+            <Link href="/freesurvivalguide">
+              Free Survival Guide
+            </Link>
+
             <Link href="/resources">Resources</Link>
             <Link href="/testimonials">Testimonials</Link>
             <Link href="/guide">LinkedIn Guide</Link>
             <Link href="/contact">Contact</Link>
           </nav>
 
-          <Link href="/contact" className="button button-primary header-button">
+          <Link
+            href="/contact"
+            className="button button-primary header-button"
+          >
             Book a Consultation
           </Link>
 
@@ -43,7 +55,10 @@ export default function SiteHeader() {
         </div>
       </header>
 
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
+      <MobileMenu
+        open={open}
+        onClose={() => setOpen(false)}
+      />
     </>
   );
 }
