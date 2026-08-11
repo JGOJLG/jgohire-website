@@ -11,6 +11,7 @@ type MobileMenuProps = {
 const navigation = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/#services" },
+  { label: "Free Survival Guide", href: "/freesurvivalguide" },
   { label: "Resources", href: "/resources" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "LinkedIn Guide", href: "/guide" },
