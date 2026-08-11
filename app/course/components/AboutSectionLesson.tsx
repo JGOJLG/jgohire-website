@@ -79,11 +79,31 @@ const steps = [
       <>
         <div className="about-section-reading-card">
           <p>
-            Keep it simple. What do you do, what are you good at, what have you worked on, and what are you looking for. If someone reads it and understands you immediately, you did it right. No big words, nothing fancy, just clear and real. This is also a good place to bring in your keywords when mentioning your skillset, which makes you more searchable by recruiters and is one of the first things they see on your profile, especially if they are using the LinkedIn Recruiter tool.
+            Keep it simple. What do you do, what are you good at, what have you worked on, and what are you looking for? If someone reads it and understands you immediately, you did it right. No big words, nothing fancy, just clear and real.
           </p>
 
           <p>
-            Start by pasting your resume or experience into AI. Do not just ask it to "write me an About section" with no context. That is how you end up with something generic that sounds like everyone else. Give it something real to work with, then guide it.
+            For most About sections, I recommend writing in a <strong>pronoun-free, implied first-person style</strong>. This means you are writing about yourself without repeatedly using “I,” “me,” or “my,” but you are also not referring to yourself in the third person.
+          </p>
+
+          <p>
+            <strong>Instead of:</strong> “I am a recruiting professional with 3 years of experience in technical recruiting.”
+          </p>
+
+          <p>
+            <strong>Try:</strong> “Recruiting professional with 3 years of experience in technical recruiting.”
+          </p>
+
+          <p>
+            It keeps your About section polished, direct, and easy to scan without making it sound like someone else wrote your bio. The exception is a more personal, story-driven About section, where using first person can feel more natural.
+          </p>
+
+          <p>
+            This is also a great place to naturally incorporate keywords when mentioning your skills and experience. These keywords can help make your profile more searchable to recruiters and are some of the first pieces of information they see when reviewing your profile, especially when using LinkedIn Recruiter.
+          </p>
+
+          <p>
+            Start by pasting your resume or experience into AI. Do not just ask it to “write me an About section” with no context. That is how you end up with something generic that sounds like everyone else. Give it something real to work with, then guide it.
           </p>
         </div>
 
@@ -143,7 +163,25 @@ const steps = [
 
         <div className="about-section-prompt-body">
           <p>
-            You have the knowledge of an extremely talented Recruiter and LinkedIn Guru. Knowing that, write a LinkedIn About section based on my background and the roles I am targeting in [INSERT ROLES AND INDUSTRY]. Keep it clear, concise, and easy to read. Avoid generic phrases and anything overly corporate. It should sound natural and human. Structure it with a short intro, key experience and skills, and a brief closing on what I am looking for. Use short paragraphs and keep it skimmable. Do not make anything up. [PASTE RESUME/EXPERIENCE]
+            You have the knowledge of an extremely talented Recruiter and LinkedIn expert. Knowing that, write a LinkedIn About section based on my background and the roles I am targeting in [INSERT ROLES AND INDUSTRY].
+
+Write in a pronoun-free, implied first-person style. Do not use “I,” “me,” “my,” or refer to me in the third person. For example: “Recruiting professional with 3 years of experience…” rather than “I am a recruiting professional…” or “[Name] is a recruiting professional…”
+
+Keep it clear, concise, and easy to read. Avoid generic phrases, buzzwords, and anything overly corporate. It should sound natural and human, not AI-generated.
+
+Structure it with:
+
+• A strong, concise opening that quickly communicates who I am professionally
+• My most relevant experience, strengths, and skills
+• Keywords that naturally align with the roles I am targeting
+• A brief closing that communicates what I am looking for next
+
+Use short paragraphs and keep it skimmable. Do not make up, assume, or exaggerate any information that is not included in my background.
+
+Target Roles/Industry: [INSERT ROLES AND INDUSTRY]
+
+My Resume/Experience:
+[PASTE RESUME/EXPERIENCE]
           </p>
         </div>
       </aside>
@@ -165,7 +203,25 @@ const steps = [
 
         <div className="about-section-prompt-body">
           <p>
-            You have the knowledge of an extremely talented Recruiter and LinkedIn Guru. Knowing that, write a LinkedIn About section that is a general overview of my background, experience, and strengths. Do not frame it as actively job searching. Keep it professional but natural. Focus on what I do, what I am good at, and the types of work I have experience in. Keep it clear, concise, and easy to read with short paragraphs. Do not make anything up. [PASTE RESUME/EXPERIENCE]
+            You have the knowledge of an extremely talented Recruiter and LinkedIn expert. Knowing that, write a LinkedIn About section that provides a strong, general overview of my professional background, experience, and strengths without suggesting that I am actively job searching.
+
+Write in a pronoun-free, implied first-person style. Do not use “I,” “me,” “my,” or refer to me in the third person. For example: “Marketing professional with 5 years of experience…” rather than “I am a marketing professional…” or “[Name] is a marketing professional…”
+
+Keep it professional but natural and human, not overly corporate or AI-generated. Avoid generic phrases, unnecessary buzzwords, and language that sounds like a resume copied directly into LinkedIn.
+
+Structure it with:
+
+• A strong, concise opening that quickly communicates who I am professionally
+• My most relevant experience, strengths, and areas of expertise
+• The types of work, projects, industries, or environments I have experience in
+• Relevant skills and keywords incorporated naturally throughout
+
+Use short paragraphs and keep it clear, concise, and skimmable. Do not include language about seeking new opportunities, being open to work, looking for my next role, or anything else that could signal to my current employer that I am job searching.
+
+Do not make up, assume, or exaggerate any information that is not included in my background.
+
+My Resume/Experience:
+[PASTE RESUME/EXPERIENCE]
           </p>
         </div>
       </aside>
@@ -187,7 +243,25 @@ const steps = [
 
         <div className="about-section-prompt-body">
           <p>
-            You have the knowledge of an extremely talented Recruiter and LinkedIn Guru. Knowing that, write a LinkedIn About section that feels slightly more personal and conversational while still being professional. Start with a brief intro about how I got into my field, then highlight my experience, skills, and what I enjoy working on. Keep it natural and human, not overly polished. Make it easy to read with short paragraphs. Do not make anything up. [PASTE RESUME/EXPERIENCE]
+            You have the knowledge of an extremely talented Recruiter and LinkedIn expert. Knowing that, write a LinkedIn About section that tells the story of my professional background in a more personal and conversational way while still remaining professional.
+
+Write in first person, using “I,” “me,” and “my” naturally. It should sound like a real person explaining their career and experience, not like a formal professional bio or a resume summary.
+
+Start with a brief, engaging introduction about how I got into my field or what led me to the work I do today. Then naturally transition into my experience, strengths, skills, and the types of work I enjoy most.
+
+Structure it with:
+
+• A personal but concise opening about my career path or how I got into my field
+• My most relevant experience and professional strengths
+• The skills, projects, or areas of work I particularly enjoy
+• A brief closing that ties my experience and interests together
+
+Keep the tone natural, conversational, and human. Avoid generic phrases, unnecessary buzzwords, overly corporate language, and anything that sounds AI-generated. Do not make the story overly dramatic or force a narrative that is not supported by the information provided.
+
+Use short paragraphs and keep it clear and easy to read. Do not make up, assume, or exaggerate any information that is not included in my background. If there is not enough information to explain how I got into my field, do not invent a story.
+
+My Resume/Experience:
+[PASTE RESUME/EXPERIENCE]
           </p>
         </div>
       </aside>
@@ -209,7 +283,27 @@ const steps = [
 
         <div className="about-section-prompt-body">
           <p>
-            You have the knowledge of an extremely talented Recruiter and LinkedIn Guru. Knowing that, write a LinkedIn About section that highlights my background, experience, and key skills while keeping the tone professional and natural. It should not sound like I am actively job searching, but can lightly mention openness to new opportunities. Keep it clear, concise, and easy to skim. Avoid generic or overly corporate language and do not make anything up. [PASTE RESUME/EXPERIENCE]
+            You have the knowledge of an extremely talented Recruiter and LinkedIn expert. Knowing that, write a LinkedIn About section that highlights my professional background, experience, strengths, and key skills while subtly communicating that I am open to new opportunities.
+
+Write in a pronoun-free, implied first-person style. Do not use “I,” “me,” “my,” or refer to me in the third person. For example: “Product marketing professional with 5 years of experience…” rather than “I am a product marketing professional…” or “[Name] is a product marketing professional…”
+
+Keep it professional, natural, and human. It should not read like an active job-search announcement or suggest urgency around finding a new role.
+
+Structure it with:
+
+• A strong, concise opening that quickly communicates who I am professionally
+• My most relevant experience, strengths, and areas of expertise
+• Relevant skills and keywords incorporated naturally throughout
+• A brief closing that lightly communicates openness to relevant opportunities, conversations, or connections
+
+Keep any mention of being open to opportunities subtle and confident. Avoid phrases such as “actively seeking,” “currently looking for a new role,” “seeking my next opportunity,” or anything that sounds overly eager or urgent.
+
+Use short paragraphs and keep it clear, concise, and easy to skim. Avoid generic phrases, unnecessary buzzwords, overly corporate language, and anything that sounds AI-generated.
+
+Do not make up, assume, or exaggerate any information that is not included in my background.
+
+My Resume/Experience:
+[PASTE RESUME/EXPERIENCE]
           </p>
         </div>
       </aside>
