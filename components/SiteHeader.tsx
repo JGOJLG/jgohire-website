@@ -19,6 +19,7 @@ export default function SiteHeader() {
           <nav className="desktop-nav" aria-label="Primary navigation">
             <Link href="/about">About</Link>
             <Link href="/#services">Services</Link>
+            <Link href="/freesurvivalguide">Free Survival Guide</Link>
             <Link href="/resources">Resources</Link>
             <Link href="/testimonials">Testimonials</Link>
             <Link href="/guide">LinkedIn Guide</Link>
