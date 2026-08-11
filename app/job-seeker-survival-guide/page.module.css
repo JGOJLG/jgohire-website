@@ -1,0 +1,774 @@
+.page {
+  min-height: 100vh;
+  background: #f7f3ec;
+  color: #223028;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(228, 223, 214, 0.9);
+  background: rgba(247, 243, 236, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.headerInner,
+.footerInner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.headerInner {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brand span,
+.footerInner strong {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.brand small,
+.footerInner span {
+  color: #667168;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.downloadButton,
+.backLink,
+.primaryCta,
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.downloadButton:hover,
+.backLink:hover,
+.primaryCta:hover,
+.secondaryCta:hover {
+  transform: translateY(-2px);
+}
+
+.downloadButton {
+  min-height: 44px;
+  padding: 10px 18px;
+  background: #4d6247;
+  color: white;
+  box-shadow: 0 10px 24px rgba(77, 98, 71, 0.18);
+}
+
+.backLink {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #e4dfd6;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.shell {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.narrowShell {
+  width: min(820px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #637a5b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 92px 0 98px;
+  background:
+    radial-gradient(circle at 78% 15%, rgba(99, 122, 91, 0.2), transparent 30%),
+    linear-gradient(180deg, #fbfaf7 0%, #f7f3ec 100%);
+}
+
+.heroGlow {
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  right: -120px;
+  bottom: -180px;
+  border-radius: 50%;
+  background: rgba(99, 122, 91, 0.12);
+  filter: blur(12px);
+}
+
+.hero h1 {
+  position: relative;
+  max-width: 900px;
+  margin: 18px 0 20px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(64px, 8vw, 108px);
+  line-height: 0.88;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.hero h1 span {
+  display: block;
+  color: #637a5b;
+  font-style: italic;
+}
+
+.heroSubtitle {
+  max-width: 760px;
+  margin: 0;
+  color: #2f4036;
+  font-size: clamp(23px, 2.7vw, 34px);
+  line-height: 1.25;
+  font-family: "Playfair Display", serif;
+}
+
+.heroIntro {
+  max-width: 680px;
+  margin: 26px 0 0;
+  color: #667168;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.heroMeta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+  margin-top: 46px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(34, 48, 40, 0.14);
+}
+
+.heroMeta div {
+  padding-right: 24px;
+}
+
+.heroMeta strong,
+.heroMeta span {
+  display: block;
+}
+
+.heroMeta strong {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.heroMeta span {
+  margin-top: 4px;
+  color: #667168;
+  font-size: 13px;
+}
+
+.realitySection,
+.crazySection {
+  padding: 100px 0;
+}
+
+.realitySection {
+  background: #ffffff;
+}
+
+.realitySection h2,
+.rulesHeading h2,
+.applicationIntro h2,
+.crazySection h2,
+.nextCard h2 {
+  margin: 14px 0 0;
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.realitySection h2,
+.crazySection h2 {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1;
+}
+
+.leadCopy {
+  margin-top: 30px;
+}
+
+.leadCopy p,
+.introClosing,
+.crazySection > div > p,
+.nextCard > p {
+  color: #667168;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bigLine {
+  color: #223028 !important;
+  font-family: "Playfair Display", serif;
+  font-size: 31px !important;
+  font-style: italic;
+}
+
+.notNeededCard {
+  margin-top: 34px;
+  padding: 30px;
+  border-radius: 24px;
+  background: #eef2eb;
+  border: 1px solid #dfe7dc;
+}
+
+.notNeededCard > p {
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+
+.notNeededCard ul,
+.checklistBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notNeededCard li,
+.checklistBox li {
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.6;
+}
+
+.notNeededCard li + li,
+.checklistBox li + li {
+  margin-top: 10px;
+}
+
+.notNeededCard li::before,
+.checklistBox li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #637a5b;
+  font-weight: 800;
+}
+
+.notNeededCard strong {
+  display: block;
+  margin-top: 24px;
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  color: #4d6247;
+}
+
+.introClosing {
+  margin-top: 34px;
+}
+
+.letsGo {
+  margin: 24px 0 0;
+  color: #223028;
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-style: italic;
+}
+
+.rulesSection {
+  padding: 100px 0 110px;
+  background: #f7f3ec;
+}
+
+.rulesHeading {
+  max-width: 780px;
+}
+
+.rulesHeading h2,
+.applicationIntro h2,
+.nextCard h2 {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.03;
+}
+
+.rulesList {
+  display: grid;
+  gap: 22px;
+  margin-top: 50px;
+}
+
+.ruleCard {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 34px;
+  padding: 42px;
+  border-radius: 28px;
+  background: white;
+  border: 1px solid #e4dfd6;
+  box-shadow: 0 20px 60px rgba(34, 48, 40, 0.06);
+}
+
+.ruleNumber {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: #e8eee5;
+  color: #637a5b;
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+}
+
+.ruleLabel {
+  margin: 0;
+  color: #637a5b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.ruleContent h3 {
+  max-width: 800px;
+  margin: 10px 0 0;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(32px, 3.8vw, 48px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.ruleBody {
+  margin-top: 24px;
+}
+
+.ruleBody p {
+  margin: 0;
+  color: #667168;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.ruleBody p + p {
+  margin-top: 14px;
+}
+
+.checklistBox {
+  margin-top: 28px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #faf8f3;
+  border: 1px solid #ece7df;
+}
+
+.checklistBox h4 {
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+.checklistBox li {
+  color: #4e5d53;
+  font-size: 15px;
+}
+
+.realityCheck {
+  margin-top: 24px;
+  padding: 22px 24px;
+  border-left: 4px solid #637a5b;
+  background: #eef2eb;
+  border-radius: 0 18px 18px 0;
+}
+
+.realityCheck span {
+  color: #637a5b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.realityCheck p {
+  margin: 8px 0 0;
+  color: #334239;
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.applicationSection {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.applicationCard {
+  overflow: hidden;
+  border-radius: 32px;
+  background: #223028;
+  color: white;
+  box-shadow: 0 30px 80px rgba(34, 48, 40, 0.2);
+}
+
+.applicationIntro {
+  max-width: 800px;
+  padding: 54px 54px 34px;
+}
+
+.applicationIntro .eyebrow {
+  color: #b9c8b3;
+}
+
+.applicationIntro h2 {
+  color: white;
+}
+
+.applicationIntro > p:last-child {
+  margin: 22px 0 0;
+  color: #cad2cc;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.applicationSteps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.applicationStep {
+  position: relative;
+  padding: 30px 34px;
+  background: #2c3b32;
+}
+
+.stepNumber {
+  display: block;
+  margin-bottom: 22px;
+  color: #91a28d;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+}
+
+.applicationStep strong {
+  display: block;
+  color: #d5dfd1;
+  font-size: 12px;
+  letter-spacing: 0.13em;
+}
+
+.applicationStep p {
+  margin: 8px 0 0;
+  color: white;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.applyNow {
+  padding: 28px 54px;
+  color: #223028;
+  background: #dfe8db;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-style: italic;
+}
+
+.crazySection {
+  background: #f7f3ec;
+}
+
+.reminders {
+  display: grid;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.reminders p {
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #e4dfd6;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.youNeed {
+  margin-top: 38px !important;
+  color: #223028 !important;
+  font-family: "Playfair Display", serif;
+  font-size: 30px !important;
+}
+
+.needGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.needGrid span {
+  padding: 18px 20px;
+  border-radius: 15px;
+  background: #e8eee5;
+  color: #334239;
+  font-weight: 700;
+}
+
+.finalStatement {
+  margin-top: 42px;
+  padding-top: 32px;
+  border-top: 1px solid #dcd6cc;
+}
+
+.finalStatement p {
+  margin: 0;
+  color: #667168;
+  font-size: 18px;
+}
+
+.finalStatement strong {
+  display: block;
+  margin-top: 6px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 500;
+  color: #4d6247;
+}
+
+.nextSection {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.nextCard {
+  padding: 56px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 90% 20%, rgba(99, 122, 91, 0.14), transparent 30%),
+    #faf8f3;
+  border: 1px solid #e4dfd6;
+}
+
+.nextLead {
+  max-width: 740px;
+}
+
+.nextDivider {
+  width: 80px;
+  height: 4px;
+  margin: 32px 0;
+  border-radius: 999px;
+  background: #637a5b;
+}
+
+.servicesLine {
+  margin-top: 24px;
+  color: #536158;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 700;
+}
+
+.servicesLine span {
+  margin: 0 6px;
+  color: #9ba59d;
+}
+
+.nextActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.primaryCta,
+.secondaryCta {
+  min-height: 50px;
+  padding: 14px 24px;
+}
+
+.primaryCta {
+  background: #4d6247;
+  color: white;
+  box-shadow: 0 12px 28px rgba(77, 98, 71, 0.2);
+}
+
+.secondaryCta {
+  border: 1px solid #ded8ce;
+  background: white;
+}
+
+.footer {
+  padding: 34px 0;
+  border-top: 1px solid #e4dfd6;
+  background: #223028;
+  color: white;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footerInner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footerInner span {
+  color: #aeb8b0;
+}
+
+.footerInner p {
+  margin: 0;
+  color: #b8c0ba;
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .headerInner {
+    min-height: 72px;
+  }
+
+  .headerActions {
+    gap: 8px;
+  }
+
+  .downloadButton,
+  .backLink {
+    min-height: 40px;
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .backLink {
+    display: none;
+  }
+
+  .brand span {
+    font-size: 20px;
+  }
+
+  .hero {
+    padding: 70px 0 76px;
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 17vw, 80px);
+  }
+
+  .heroSubtitle {
+    font-size: 24px;
+  }
+
+  .heroIntro {
+    font-size: 16px;
+  }
+
+  .heroMeta {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .heroMeta div {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: baseline;
+    padding-right: 0;
+  }
+
+  .realitySection,
+  .rulesSection,
+  .applicationSection,
+  .crazySection,
+  .nextSection {
+    padding: 72px 0;
+  }
+
+  .ruleCard {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 28px 22px;
+  }
+
+  .ruleNumber {
+    width: 58px;
+    height: 58px;
+    font-size: 23px;
+  }
+
+  .ruleContent h3 {
+    font-size: 34px;
+  }
+
+  .applicationIntro {
+    padding: 36px 24px 28px;
+  }
+
+  .applicationSteps {
+    grid-template-columns: 1fr;
+  }
+
+  .applicationStep {
+    padding: 26px 24px;
+  }
+
+  .applyNow {
+    padding: 24px;
+    font-size: 23px;
+  }
+
+  .needGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .nextCard {
+    padding: 34px 24px;
+  }
+
+  .nextActions {
+    flex-direction: column;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+  }
+
+  .footerInner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
