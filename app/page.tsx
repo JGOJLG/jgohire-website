@@ -6,6 +6,7 @@ import Services from "@/components/Services";
 import RecruiterAdvantage from "@/components/RecruiterAdvantage";
 import FinalCTA from "@/components/FinalCTA";
 import LinkedInGuide from "@/components/LinkedInGuide";
+import JobSearchQuizPopup from "@/components/JobSearchQuizPopup";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,8 @@ export default function HomePage() {
       <LinkedInGuide />
       <RecruiterAdvantage />
       <FinalCTA />
+
+      <JobSearchQuizPopup />
     </main>
   );
 }
