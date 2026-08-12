@@ -84,10 +84,10 @@ export default function WelcomePage() {
               <span className="jgo-arrow">→</span>
             </Link>
 
-            <a className="jgo-button" href="#site-footer">
-              <strong>Join our Email List</strong>
-              <span className="jgo-arrow">↓</span>
-            </a>
+            <Link className="jgo-button" href="/freesurvivalguide">
+              <strong>Free Survival Guide</strong>
+              <span className="jgo-arrow">→</span>
+            </Link>
 
             <Link className="jgo-button" href="/">
               <strong>Explore JGO Hire</strong>
