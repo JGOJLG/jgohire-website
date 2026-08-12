@@ -1,79 +1,37 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import ClientResourceUnlock from "./ClientResourceUnlock";
-
-const resourceNavigation = [
-  {
-    title: "Free Resources",
-    description: "Guides and tools you can use right away.",
-    href: "#free-resources",
-    number: "01",
-  },
-  {
-    title: "Client Exclusive",
-    description: "Frameworks available to JGO Hire clients.",
-    href: "#client-exclusive",
-    number: "02",
-  },
-  {
-    title: "Digital Guides",
-    description: "Self-paced resources available for purchase.",
-    href: "#digital-guides",
-    number: "03",
-  },
-  {
-    title: "Personalized Support",
-    description: "Work directly with Jen on your career goals.",
-    href: "/contact",
-    number: "04",
-  },
-];
+import "./resources.css";
 
 const freeResources = [
   {
-    label: "Free Guide",
     title: "10 Reasons You’re Not Hearing Back After Applying",
     description:
-      "Learn why qualified candidates get overlooked and how to improve your chances of getting interviews.",
-    preview: [
-      "Your resume is not telling the right story.",
-      "You are applying like everyone else.",
-      "Your value is not clear quickly enough.",
-    ],
+      "Learn why qualified candidates get overlooked and what to change so your applications have a better chance of turning into interviews.",
     href: "/free",
-    buttonLabel: "Download Free Guide",
   },
   {
-    label: "Free Guide",
     title: "30-Minute Interview Countdown",
     description:
-      "A simple countdown to help you feel calm, focused, and ready before you click Join.",
-    preview: [
-      "Review your achievements, job description, and interviewer’s name.",
-      "Test your camera, microphone, internet, and interview space.",
-      "Take a breath, relax your shoulders, sit up tall, and smile.",
-    ],
+      "A simple pre-interview countdown to help you feel calm, focused, and ready before you click Join.",
     href: "/free",
-    buttonLabel: "Download Free Guide",
   },
 ];
 
 const clientResources = [
   {
-    label: "Client Exclusive",
     title: "JGO CORE™ Framework",
     description:
       "Build stories, not scripts. Use CORE to structure clear, confident interview answers.",
     preview: [
       "Context: Set the stage.",
-      "Ownership: Clarify your personal contribution.",
+      "Ownership: Clarify your contribution.",
       "Response: Explain the actions you took.",
       "Effect: Share the result or impact.",
     ],
     href: "/coreframework",
   },
   {
-    label: "Client Exclusive",
     title: "JGO READY™ Interview Framework",
     description:
       "A complete interview preparation system with checklists, reminders, mindset support, and preparation tools.",
@@ -87,181 +45,151 @@ const clientResources = [
   },
 ];
 
+const guides = [
+  {
+    eyebrow: "LinkedIn Guide",
+    title: "LinkedIn Optimization Guide",
+    description:
+      "A step-by-step recruiter-backed guide to strengthen your profile and positioning.",
+    meta: "$23 • Lifetime access",
+    href: "/guide",
+    cta: "View the guide",
+  },
+  {
+    eyebrow: "Free Guide + Quiz",
+    title: "Job Seeker Survival Guide",
+    description:
+      "Take the 30-second job search reality check and get the free survival guide.",
+    meta: "Free",
+    href: "/freesurvivalguide",
+    cta: "Get the guide",
+  },
+];
+
 export default function ResourcesPage() {
   return (
-    <main className="resources-page">
-      <header className="contact-header">
-        <div className="site-shell contact-header-inner">
-          <Link href="/" className="contact-logo">
+    <main className="resources-clean-page">
+      <header className="resources-clean-header">
+        <div className="resources-clean-shell resources-clean-header-inner">
+          <Link href="/" className="resources-clean-logo">
             <span>JGO HIRE</span>
             <small>Career Coach + Recruiter</small>
           </Link>
 
-          <Link href="/" className="contact-back-link">
+          <Link href="/" className="resources-clean-back">
             Back to Home
           </Link>
         </div>
       </header>
 
-      <section className="resources-hero">
-        <div className="site-shell resources-hero-content">
-          <p className="eyebrow">JGO Hire Resources</p>
-          <h1>Career resources for every stage of your job search.</h1>
-          <p className="resources-hero-copy">
-            Explore free guides, client-exclusive frameworks, and digital
-            resources designed to help you communicate your value with more
-            clarity and confidence.
+      <section className="resources-clean-hero">
+        <div className="resources-clean-shell resources-clean-hero-inner">
+          <span className="resources-clean-eyebrow">JGO Hire Resources</span>
+          <h1>Start here.</h1>
+          <p>
+            Free job search tools first. Client-only frameworks when you want
+            deeper support. A few focused guides if you prefer to work through
+            things on your own.
           </p>
         </div>
       </section>
 
-      <section className="resources-navigation-section">
-        <div className="site-shell">
-          <div className="resources-navigation-heading">
-            <p className="eyebrow">Browse the Library</p>
-            <h2>What are you looking for?</h2>
+      <section className="resources-clean-section resources-free-section">
+        <div className="resources-clean-shell">
+          <div className="resources-clean-heading">
+            <div>
+              <span className="resources-clean-eyebrow">Free Resources</span>
+              <h2>Use these right now.</h2>
+            </div>
+            <p>
+              No overwhelm. Just practical resources designed to help with the
+              parts of the job search that tend to get people stuck.
+            </p>
           </div>
 
-          <nav
-            className="resources-navigation-grid"
-            aria-label="Resource categories"
-          >
-            {resourceNavigation.map((item) => (
+          <div className="resources-free-grid">
+            {freeResources.map((resource) => (
               <Link
-                key={item.title}
-                href={item.href}
-                className="resources-navigation-card"
+                key={resource.title}
+                href={resource.href}
+                className="resources-free-card"
               >
-                <span className="resources-navigation-number">
-                  {item.number}
-                </span>
-
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+                <div className="resources-free-card-top">
+                  <span>Free</span>
+                  <span aria-hidden="true">↓</span>
                 </div>
-
-                <span className="resources-navigation-arrow">→</span>
+                <h3>{resource.title}</h3>
+                <p>{resource.description}</p>
+                <strong>
+                  Get the resource <span aria-hidden="true">→</span>
+                </strong>
               </Link>
             ))}
-          </nav>
-        </div>
-      </section>
-
-      <section
-        className="resources-section resources-section-white"
-        id="free-resources"
-      >
-        <div className="site-shell">
-          <div className="resources-section-heading">
-            <p className="eyebrow">Free Resources</p>
-            <h2>Simple guides you can use right away.</h2>
-            <p>
-              Practical resources to support your applications, job-search
-              strategy, and interview preparation.
-            </p>
-          </div>
-
-          <div className="resources-grid">
-            {freeResources.map((resource) => (
-              <article key={resource.title} className="resource-library-card">
-                <div className="resource-library-top">
-                  <span className="resource-library-label">
-                    {resource.label}
-                  </span>
-                  <span className="resource-library-icon" aria-hidden="true">
-                    ↓
-                  </span>
-                </div>
-
-                <h3>{resource.title}</h3>
-                <p className="resource-library-description">
-                  {resource.description}
-                </p>
-
-                <div className="resource-library-preview">
-                  {resource.preview.map((item, index) => (
-                    <div key={item}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <p>{item}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  href={resource.href}
-                  className="button button-primary resource-library-button"
-                >
-                  {resource.buttonLabel}
-                </Link>
-              </article>
-            ))}
           </div>
         </div>
       </section>
 
-      <section
-        className="resources-section resources-section-cream"
-        id="client-exclusive"
-      >
-        <div className="site-shell">
-          <div className="resources-section-heading">
-            <p className="eyebrow">Client Exclusive</p>
-            <h2>Frameworks for stronger interview preparation.</h2>
+      <section className="resources-client-section">
+        <div className="resources-client-glow resources-client-glow-one" />
+        <div className="resources-client-glow resources-client-glow-two" />
+
+        <div className="resources-clean-shell resources-client-shell">
+          <div className="resources-client-copy">
+            <span className="resources-client-pill">Client Exclusive</span>
+            <h2>The tools clients get behind the scenes.</h2>
             <p>
-              Available to JGO Hire clients and designed to support confidence,
-              clarity, and execution.
+              These are the frameworks I use to help clients prepare with more
+              structure, confidence, and clarity. You can preview what is inside,
+              but full access is reserved for JGO Hire clients.
             </p>
+            <Link href="/contact" className="resources-client-main-cta">
+              Become a JGO Hire client <span aria-hidden="true">→</span>
+            </Link>
           </div>
 
-          <div className="resources-grid">
+          <div className="resources-client-grid">
             {clientResources.map((resource) => (
-              <article
-                key={resource.title}
-                className="resource-library-card resource-library-card-locked"
-              >
-                <div className="resource-library-top">
-                  <span className="resource-library-label">
-                    {resource.label}
-                  </span>
-                  <span className="resource-library-icon" aria-hidden="true">
-                    🔒
-                  </span>
+              <article key={resource.title} className="resources-client-card">
+                <div className="resources-client-card-top">
+                  <span>Client only</span>
+                  <span aria-hidden="true">🔒</span>
                 </div>
 
                 <h3>{resource.title}</h3>
-                <p className="resource-library-description">
-                  {resource.description}
-                </p>
+                <p>{resource.description}</p>
 
-                <div className="resource-library-preview">
-                  {resource.preview.map((item) => (
-                    <div key={item}>
-                      <span aria-hidden="true">✓</span>
-                      <p>{item}</p>
-                    </div>
-                  ))}
+                <div className="resources-client-preview-wrap">
+                  <div className="resources-client-preview">
+                    {resource.preview.map((item) => (
+                      <div key={item}>
+                        <span>✓</span>
+                        <p>{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="resources-client-blur-label">
+                    <span>Client access</span>
+                  </div>
                 </div>
 
-                <div className="resource-library-actions">
+                <div className="resources-client-actions">
                   <Suspense
-  fallback={
-    <button
-      type="button"
-      className="button button-primary"
-      disabled
-    >
-      Unlock the Guide
-    </button>
-  }
->
-  <ClientResourceUnlock
-    resourceTitle={resource.title}
-    destination={resource.href}
-  />
-</Suspense>
-
-                  <Link href="/contact" className="button button-secondary">
+                    fallback={
+                      <button
+                        type="button"
+                        className="resources-client-unlock"
+                        disabled
+                      >
+                        Unlock
+                      </button>
+                    }
+                  >
+                    <ClientResourceUnlock
+                      resourceTitle={resource.title}
+                      destination={resource.href}
+                    />
+                  </Suspense>
+                  <Link href="/contact" className="resources-client-secondary">
                     Become a Client
                   </Link>
                 </div>
@@ -271,72 +199,29 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section
-        className="resources-section resources-section-white"
-        id="digital-guides"
-      >
-        <div className="site-shell">
-          <div className="resources-section-heading">
-            <p className="eyebrow">Digital Guides</p>
-            <h2>Prefer to work through it on your own?</h2>
-            <p>
-              Purchase individual resources and work through the strategy at
-              your own pace.
-            </p>
+      <section className="resources-guides-section">
+        <div className="resources-clean-shell">
+          <div className="resources-guides-heading">
+            <span className="resources-clean-eyebrow">Guides</span>
+            <h2>Prefer something self-paced?</h2>
           </div>
 
-          <div className="resources-digital-card">
-            <div className="resources-digital-copy">
-              <span className="resource-library-label">DIY Option</span>
-              <h3>The LinkedIn Optimization Guide</h3>
-              <p>
-                A step-by-step guide to help you strengthen your LinkedIn
-                profile, improve your positioning, and show up more confidently
-                online.
-              </p>
-
-              <div className="resources-digital-price">
-                <span className="resources-old-price">$500 value</span>
-                <strong>only $23</strong>
-              </div>
-
-              <Link href="/guide" className="button button-light">
-                Purchase the Guide
+          <div className="resources-guides-grid">
+            {guides.map((guide) => (
+              <Link key={guide.title} href={guide.href} className="resources-guide-card">
+                <div>
+                  <span className="resources-guide-eyebrow">{guide.eyebrow}</span>
+                  <h3>{guide.title}</h3>
+                  <p>{guide.description}</p>
+                </div>
+                <div className="resources-guide-bottom">
+                  <span>{guide.meta}</span>
+                  <strong>
+                    {guide.cta} <span aria-hidden="true">→</span>
+                  </strong>
+                </div>
               </Link>
-            </div>
-
-            <div className="resources-digital-preview">
-              <small>JGO Hire</small>
-              <strong>
-                LinkedIn
-                <br />
-                Optimization Guide
-              </strong>
-              <span>Recruiter-backed profile strategy</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="resources-support-section">
-        <div className="site-shell">
-          <div className="resources-support-card">
-            <div className="resources-support-copy">
-              <p className="eyebrow">Personalized Support</p>
-
-              <h2>Not sure what your next step should be?</h2>
-
-              <p>
-                Tell me where you are in your job search, what feels stuck, and
-                what you are working toward. We’ll identify the strongest next
-                move together.
-              </p>
-            </div>
-
-            <Link href="/contact" className="resources-support-button">
-              Book a Consultation
-              <span aria-hidden="true">→</span>
-            </Link>
+            ))}
           </div>
         </div>
       </section>
