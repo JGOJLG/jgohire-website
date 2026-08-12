@@ -51,7 +51,9 @@ const guides = [
     title: "LinkedIn Optimization Guide",
     description:
       "A step-by-step recruiter-backed guide to strengthen your profile and positioning.",
-    meta: "$23 • Lifetime access",
+    oldPrice: "$500",
+    price: "$150",
+    meta: "Lifetime access",
     href: "/guide",
     cta: "View the guide",
   },
@@ -60,7 +62,8 @@ const guides = [
     title: "Job Seeker Survival Guide",
     description:
       "Take the 30-second job search reality check and get the free survival guide.",
-    meta: "Free",
+    price: "Free",
+    meta: "",
     href: "/freesurvivalguide",
     cta: "Get the guide",
   },
@@ -84,12 +87,10 @@ export default function ResourcesPage() {
 
       <section className="resources-clean-hero">
         <div className="resources-clean-shell resources-clean-hero-inner">
-          <span className="resources-clean-eyebrow">JGO Hire Resources</span>
-          <h1>Start here.</h1>
+          <h1>Free Career Resources</h1>
           <p>
-            Free job search tools first. Client-only frameworks when you want
-            deeper support. A few focused guides if you prefer to work through
-            things on your own.
+            Practical tools to help you strengthen your job search, prepare for
+            interviews, and move forward with more clarity and confidence.
           </p>
         </div>
       </section>
@@ -215,7 +216,13 @@ export default function ResourcesPage() {
                   <p>{guide.description}</p>
                 </div>
                 <div className="resources-guide-bottom">
-                  <span>{guide.meta}</span>
+                  <span className="resources-guide-price-wrap">
+                    {guide.oldPrice && (
+                      <span className="resources-guide-old-price">{guide.oldPrice}</span>
+                    )}
+                    <strong className="resources-guide-price">{guide.price}</strong>
+                    {guide.meta && <span className="resources-guide-meta">{guide.meta}</span>}
+                  </span>
                   <strong>
                     {guide.cta} <span aria-hidden="true">→</span>
                   </strong>
