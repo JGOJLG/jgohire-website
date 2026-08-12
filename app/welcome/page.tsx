@@ -99,9 +99,9 @@ export default function WelcomePage() {
           <section className="jgo-welcome-hero">
             <div className="jgo-welcome-hero-copy">
               <div className="jgo-pill"><span className="jgo-spark">✦</span> JGO Hire</div>
-              <h1>Welcome to your job search advantage.</h1>
+              <h1>Welcome. Let’s make the job search easier.</h1>
               <p className="jgo-welcome-lead">
-                Real recruiter insight, practical career tools, and support designed to help you show up stronger at every stage of the search.
+                Real recruiter insight, practical career tools, and support designed to help you navigate the job search with more clarity and confidence.
               </p>
               <div className="jgo-welcome-hero-actions">
                 <Link className="jgo-hero-button jgo-hero-primary" href="/resources">Start with free resources <span>→</span></Link>
