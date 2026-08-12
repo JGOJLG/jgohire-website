@@ -31,6 +31,12 @@ const pages = [
     tag: "Client Page",
   },
   {
+    title: "Free 15 Minute Call",
+    description: "Complimentary career consultation page with fit details and email scheduling.",
+    href: "/free15",
+    tag: "Client Page",
+  },
+  {
     title: "LinkedIn Guide Course",
     description: "The member course dashboard customers land in after purchase and account creation.",
     href: "/course",
