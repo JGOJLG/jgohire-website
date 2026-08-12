@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import JobSearchQuizPopup from "@/components/JobSearchQuizPopup";
 import "./welcome.css";
 
 function InstagramIcon() {
@@ -59,6 +60,31 @@ const socials = [
   { label: "LinkedIn", detail: "JGO Hire", href: "https://www.linkedin.com/company/jgohire/", icon: <LinkedInIcon /> },
 ];
 
+const paths = [
+  {
+    eyebrow: "Start free",
+    title: "Free Resources",
+    description: "Templates, guides, and practical tools built to make the job search feel a lot less confusing.",
+    href: "/resources",
+    cta: "Browse free resources",
+    featured: true,
+  },
+  {
+    eyebrow: "Free guide + quiz",
+    title: "Job Seeker Survival Guide",
+    description: "Take the 30-second reality check and get the recruiter-backed guide for navigating the modern job search.",
+    href: "/freesurvivalguide",
+    cta: "Get the free guide",
+  },
+  {
+    eyebrow: "Work with JGO Hire",
+    title: "Explore JGO Hire",
+    description: "Resume support, interview coaching, career strategy, and recruiter insight when you want more hands-on help.",
+    href: "/",
+    cta: "Explore services",
+  },
+];
+
 export default function WelcomePage() {
   return (
     <main>
@@ -70,65 +96,85 @@ export default function WelcomePage() {
         <div className="jgo-orb orb-three" />
 
         <div className="jgo-welcome-wrap">
-          <div className="jgo-pill"><span className="jgo-spark">✦</span> JGO Hire</div>
+          <section className="jgo-welcome-hero">
+            <div className="jgo-welcome-hero-copy">
+              <div className="jgo-pill"><span className="jgo-spark">✦</span> JGO Hire</div>
+              <h1>Welcome to your job search advantage.</h1>
+              <p className="jgo-welcome-lead">
+                Real recruiter insight, practical career tools, and support designed to help you show up stronger at every stage of the search.
+              </p>
+              <div className="jgo-welcome-hero-actions">
+                <Link className="jgo-hero-button jgo-hero-primary" href="/resources">Start with free resources <span>→</span></Link>
+                <Link className="jgo-hero-button jgo-hero-secondary" href="/free15">Book a free 15 minute call <span>→</span></Link>
+              </div>
+            </div>
 
-          <h1>Welcome!</h1>
-          <div className="subhead">Happy you’re here.</div>
+            <aside className="jgo-welcome-hero-panel">
+              <span className="jgo-panel-kicker">Not sure where to begin?</span>
+              <h2>Start with the job search reality check.</h2>
+              <p>Four quick questions. Mild recruiter commentary. A free survival guide at the end.</p>
+              <Link href="/freesurvivalguide" className="jgo-panel-link">Take the quiz <span>→</span></Link>
+            </aside>
+          </section>
 
-          <div className="jgo-path-card">
-            <h2>Choose your next step</h2>
-            <p>Not sure where to start? Pick what feels most helpful right now.</p>
+          <section className="jgo-welcome-paths">
+            <div className="jgo-welcome-section-heading">
+              <div>
+                <span className="jgo-section-eyebrow">Choose your next step</span>
+                <h2>Start wherever you are.</h2>
+              </div>
+              <p>You do not need to have the whole job search figured out. Pick the support that feels most useful right now.</p>
+            </div>
 
-            <Link className="jgo-button jgo-primary" href="/resources">
-              <strong>Free Resources</strong>
-              <span className="jgo-arrow">→</span>
-            </Link>
+            <div className="jgo-path-grid">
+              {paths.map((path) => (
+                <Link key={path.title} href={path.href} className={`jgo-path-tile${path.featured ? " featured" : ""}`}>
+                  <span className="jgo-path-eyebrow">{path.eyebrow}</span>
+                  <h3>{path.title}</h3>
+                  <p>{path.description}</p>
+                  <span className="jgo-path-cta">{path.cta} <span>→</span></span>
+                </Link>
+              ))}
+            </div>
+          </section>
 
-            <Link className="jgo-button" href="/freesurvivalguide">
-              <strong>Free Job Seekers Survival Guide</strong>
-              <span className="jgo-arrow">→</span>
-            </Link>
-
-            <Link className="jgo-button" href="/">
-              <strong>Explore JGO Hire</strong>
-              <span className="jgo-arrow">→</span>
-            </Link>
-          </div>
-
-          <div className="jgo-section-card">
-            <h2>Let’s stay connected</h2>
-            <p>Follow along for resume tips, interview strategy, job search reminders, and real recruiter insight.</p>
+          <section className="jgo-section-card jgo-social-section-card">
+            <div className="jgo-welcome-section-heading compact">
+              <div>
+                <span className="jgo-section-eyebrow">Stay connected</span>
+                <h2>Find JGO Hire everywhere.</h2>
+              </div>
+              <p>Resume tips, interview strategy, job search reminders, and real recruiter insight without the corporate fluff.</p>
+            </div>
 
             <div className="jgo-social-grid">
               {socials.map((social) => (
                 <a key={social.label} className="jgo-social" href={social.href} target="_blank" rel="noopener noreferrer">
                   <div className="jgo-icon">{social.icon}</div>
-                  {social.label}
+                  <strong>{social.label}</strong>
                   <small>{social.detail}</small>
                 </a>
               ))}
             </div>
+          </section>
 
-            <div className="jgo-mini-note">
-              <strong>✦</strong>
-              <span>Career tips, interview prep, job search strategy, and the reminders you need before you hit submit.</span>
+          <section className="jgo-connect-card">
+            <div>
+              <span className="jgo-section-eyebrow light">Connect directly</span>
+              <h2>Want a recruiter in your corner?</h2>
+              <p>Connect with Jen on LinkedIn or explore JGO Hire to see how we can work together.</p>
             </div>
-          </div>
+            <div className="jgo-connect-actions">
+              <a className="jgo-connect-button light" href="https://www.linkedin.com/in/jennifergordon23/" target="_blank" rel="noopener noreferrer">Connect with Jen <span>→</span></a>
+              <Link className="jgo-connect-button outline" href="/">Explore JGO Hire <span>→</span></Link>
+            </div>
+          </section>
 
-          <div className="jgo-section-card">
-            <h2>Connect with Jen</h2>
-
-            <a className="jgo-button" href="https://www.linkedin.com/in/jennifergordon23/" target="_blank" rel="noopener noreferrer">
-              <strong>Connect with Jen</strong>
-              <span className="jgo-arrow">→</span>
-            </a>
-          </div>
-
-          <p className="jgo-footer-note">
-            JGO Hire helps job seekers show up stronger, communicate with confidence, and navigate the job search with more clarity.
-          </p>
+          <p className="jgo-footer-note">JGO Hire helps job seekers show up stronger, communicate with confidence, and navigate the job search with more clarity.</p>
         </div>
       </section>
+
+      <JobSearchQuizPopup />
     </main>
   );
 }
