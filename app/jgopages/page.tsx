@@ -25,6 +25,12 @@ const pages = [
     tag: "Hidden Page",
   },
   {
+    title: "Make a Payment",
+    description: "Client payment page with Venmo, Zelle, and card payment options.",
+    href: "/pay",
+    tag: "Client Page",
+  },
+  {
     title: "LinkedIn Guide Course",
     description: "The member course dashboard customers land in after purchase and account creation.",
     href: "/course",
