@@ -26,7 +26,7 @@ export default function LinkedInGuide() {
             <div className="linkedin-guide-price">
               <span className="linkedin-guide-old-price">$500 value</span>
 
-              <span className="linkedin-guide-new-price">only $23</span>
+              <span className="linkedin-guide-new-price">only $150</span>
             </div>
 
             <Link
