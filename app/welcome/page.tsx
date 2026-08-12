@@ -85,7 +85,7 @@ export default function WelcomePage() {
             </Link>
 
             <Link className="jgo-button" href="/freesurvivalguide">
-              <strong>Free Survival Guide</strong>
+              <strong>Free Job Seekers Survival Guide</strong>
               <span className="jgo-arrow">→</span>
             </Link>
 
