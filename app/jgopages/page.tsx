@@ -37,9 +37,9 @@ const pages = [
     tag: "Client Page",
   },
   {
-    title: "LinkedIn Guide Course",
-    description: "The member course dashboard customers land in after purchase and account creation.",
-    href: "/course",
+    title: "LinkedIn Guide Purchase Success",
+    description: "The post-purchase account creation page customers see before entering the course.",
+    href: "/purchase-success",
     tag: "Member Page",
   },
 ];
