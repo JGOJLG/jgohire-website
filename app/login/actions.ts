@@ -1,1 +1,13 @@
-"use server";import{redirect}from"next/navigation";import{createClient}from"@/lib/supabase/server";export type LoginState={error?:string};function safeNext(value:FormDataEntryValue|null){const next=String(value??"");return next.startsWith("/")&&!next.startsWith("//")?next:"/portal"}export async function login(_p:LoginState,formData:FormData):Promise<LoginState>{const email=String(formData.get("email")??"").trim(),password=String(formData.get("password")??""),next=safeNext(formData.get("next"));if(!email||!password)return{error:"Enter your email and password."};const s=await createClient(),{error}=await s.auth.signInWithPassword({email,password});if(error)return{error:"The email or password is not correct."};redirect(next)}
+"use server";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+export type LoginState={error?:string};
+function safeNext(value:FormDataEntryValue|null){const next=String(value??"");return next.startsWith("/")&&!next.startsWith("//")?next:"/portal"}
+export async function login(_p:LoginState,formData:FormData):Promise<LoginState>{
+ const email=String(formData.get("email")??"").trim(),password=String(formData.get("password")??""),next=safeNext(formData.get("next"));
+ if(!email||!password)return{error:"Enter your email and password."};
+ const s=await createClient(),{error}=await s.auth.signInWithPassword({email,password});
+ if(error)return{error:"The email or password is not correct."};
+ await Promise.all([s.rpc("claim_member_entitlements"),s.rpc("claim_jgo_client_portal")]);
+ redirect(next);
+}
