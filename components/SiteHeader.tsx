@@ -36,10 +36,10 @@ export default function SiteHeader() {
           </nav>
 
           <Link
-            href="/contact"
+            href="/client-portal/login"
             className="button button-primary header-button"
           >
-            Book a Consultation
+            Member Login
           </Link>
 
           <button
