@@ -15,6 +15,7 @@ const navigation = [
   { label: "Resources", href: "/resources" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "LinkedIn Guide", href: "/guide" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function MobileMenu({
@@ -86,19 +87,19 @@ export default function MobileMenu({
 
         <div className="mobile-menu-actions">
           <Link
-            href="/contact"
+            href="/client-portal/login"
             className="button button-primary mobile-menu-cta"
             onClick={onClose}
           >
-            Book a Consultation
+            Member Login
           </Link>
 
           <Link
-            href="/login?redirect=/course"
+            href="/contact"
             className="mobile-menu-member-link"
             onClick={onClose}
           >
-            Course Member Login
+            Book a Consultation
           </Link>
         </div>
 
