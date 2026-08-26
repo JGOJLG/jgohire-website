@@ -1,0 +1,1 @@
+Restored to the last complete site version immediately before the auth-cookie changes. This preserves the current JGO Hire website design and portal work while removing the auth changes that caused the production regression.
