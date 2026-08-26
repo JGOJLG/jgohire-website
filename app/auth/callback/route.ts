@@ -3,9 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 
 function safeNextPath(value: string | null) {
   if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/course";
+    return "/client-portal";
   }
-
   return value;
 }
 
@@ -16,7 +15,6 @@ export async function GET(request: NextRequest) {
 
   if (code) {
     const supabase = await createClient();
-
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
@@ -24,7 +22,5 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  return NextResponse.redirect(
-    new URL("/login?error=confirmation-failed", requestUrl.origin)
-  );
+  return NextResponse.redirect(new URL("/login?error=confirmation-failed", requestUrl.origin));
 }
