@@ -8,10 +8,12 @@ import RecruiterAdvantage from "@/components/RecruiterAdvantage";
 import FinalCTA from "@/components/FinalCTA";
 import LinkedInGuide from "@/components/LinkedInGuide";
 import JobSearchQuizPopup from "@/components/JobSearchQuizPopup";
+import VidleyRecoveryRedirect from "@/components/VidleyRecoveryRedirect";
 
 export default function HomePage() {
   return (
     <main>
+      <VidleyRecoveryRedirect />
       <SiteHeader />
       <Hero />
       <CredibilityStrip />
