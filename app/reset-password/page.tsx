@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import "../login/login.css";
@@ -10,6 +10,22 @@ export default function ResetPasswordPage() {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [passwordHint, setPasswordHint] = useState("");
+
+  useEffect(() => {
+    const supabase = createClient();
+    let active = true;
+
+    supabase.auth.getUser().then(({ data }) => {
+      if (!active) return;
+      const hint = data.user?.user_metadata?.password_hint;
+      if (typeof hint === "string") setPasswordHint(hint.trim());
+    });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,6 +65,12 @@ export default function ResetPasswordPage() {
           <div className="course-login-glow" aria-hidden="true" />
           <div className="course-login-card">
             <div className="course-login-card-icon" aria-hidden="true">JGO</div><p className="course-login-card-label">New Password</p><h2>Update access</h2>
+            {passwordHint ? (
+              <div style={{ marginBottom: 18, padding: "13px 15px", borderRadius: 14, background: "#f3f5f0", border: "1px solid #dfe5da" }}>
+                <strong style={{ display: "block", fontSize: 12, color: "#3e5041", marginBottom: 5 }}>Your password hint</strong>
+                <span style={{ fontSize: 13, lineHeight: 1.5, color: "#68746b" }}>{passwordHint}</span>
+              </div>
+            ) : null}
             <form className="course-login-form" onSubmit={handleSubmit}>
               <label htmlFor="reset-password"><span>New password</span><input id="reset-password" type="password" name="password" minLength={8} autoComplete="new-password" placeholder="At least 8 characters" required /></label>
               <label htmlFor="reset-confirm-password"><span>Confirm new password</span><input id="reset-confirm-password" type="password" name="confirmPassword" minLength={8} autoComplete="new-password" placeholder="Enter it again" required /></label>
