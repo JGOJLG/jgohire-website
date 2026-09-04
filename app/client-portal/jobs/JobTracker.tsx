@@ -4,6 +4,13 @@ import { useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import QuickStatus from "./QuickStatus";
 
+type InterviewPerson = {
+  id: string;
+  name: string;
+  title: string;
+  linkedin: string;
+};
+
 type InterviewRound = {
   id: string;
   label: string;
@@ -11,6 +18,7 @@ type InterviewRound = {
   date: string;
   status: string;
   notes: string;
+  people?: InterviewPerson[];
 };
 
 type Job = {
@@ -248,6 +256,7 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
       date: "",
       status: "Upcoming",
       notes: "",
+      people: [{ id: crypto.randomUUID(), name: "", title: "", linkedin: "" }],
     }]);
     if (job.status === "Open / Interested" || job.status === "Application Submitted" || job.status === "Messaged Contact") {
       patch(job.id, "status", "Interviewing");
@@ -256,6 +265,31 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
 
   function updateRound(job: Job, roundId: string, key: keyof InterviewRound, value: string) {
     const rounds = (job.interview_rounds || []).map((r) => r.id === roundId ? { ...r, [key]: value } : r);
+    patch(job.id, "interview_rounds", rounds);
+  }
+
+  function addInterviewPerson(job: Job, roundId: string) {
+    const rounds = (job.interview_rounds || []).map((r) => {
+      if (r.id !== roundId) return r;
+      const people = r.people || [];
+      return { ...r, people: [...people, { id: crypto.randomUUID(), name: "", title: "", linkedin: "" }] };
+    });
+    patch(job.id, "interview_rounds", rounds);
+  }
+
+  function updateInterviewPerson(job: Job, roundId: string, personId: string, key: keyof InterviewPerson, value: string) {
+    const rounds = (job.interview_rounds || []).map((r) => {
+      if (r.id !== roundId) return r;
+      return { ...r, people: (r.people || []).map((p) => p.id === personId ? { ...p, [key]: value } : p) };
+    });
+    patch(job.id, "interview_rounds", rounds);
+  }
+
+  function removeInterviewPerson(job: Job, roundId: string, personId: string) {
+    const rounds = (job.interview_rounds || []).map((r) => {
+      if (r.id !== roundId) return r;
+      return { ...r, people: (r.people || []).filter((p) => p.id !== personId) };
+    });
     patch(job.id, "interview_rounds", rounds);
   }
 
@@ -327,15 +361,29 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
         <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "flex-start", marginBottom: 18 }}><div><p className="cp-eyebrow">Job details</p><h2 style={{ marginBottom: 4 }}>{selectedJob.company || "Company not added"}</h2><p className="cp-muted">{selectedJob.job_title || "Job title not added"}</p></div><button type="button" className="cp-button secondary" onClick={() => setSelectedJobId(null)}>Close</button></div>
 
         <section className="cp-card" style={{ padding: 16, background: "#f8faf7", marginBottom: 18 }}>
-          <div className="cp-section-head"><div><p className="cp-eyebrow">Interview board</p><h3>See every interview step</h3><p className="cp-muted">Add each round, how it is happening, the date, and your notes afterward.</p></div><button type="button" className="cp-button secondary" onClick={() => addInterviewRound(selectedJob)}>+ Add interview</button></div>
+          <div className="cp-section-head"><div><p className="cp-eyebrow">Interview board</p><h3>See every interview step</h3><p className="cp-muted">Add each round, who it is with, how it is happening, the date, and your notes afterward.</p></div><button type="button" className="cp-button secondary" onClick={() => addInterviewRound(selectedJob)}>+ Add interview</button></div>
           {(selectedJob.interview_rounds || []).length ? <div style={{ display: "flex", gap: 10, overflowX: "auto", alignItems: "stretch", paddingBottom: 6 }}>
             {(selectedJob.interview_rounds || []).map((round, i) => <div key={round.id} style={{ display: "flex", gap: 10, alignItems: "center" }}>
-              <div className="cp-card" style={{ width: 260, flex: "0 0 260px", padding: 14 }}>
+              <div className="cp-card" style={{ width: 300, flex: "0 0 300px", padding: 14 }}>
                 <label className="cp-label">Round<input className="cp-input" value={round.label} onChange={(e) => updateRound(selectedJob, round.id, "label", e.target.value)} /></label>
                 <label className="cp-label">Type<select className="cp-select" value={round.format} onChange={(e) => updateRound(selectedJob, round.id, "format", e.target.value)}>{formats.map((x) => <option key={x}>{x}</option>)}</select></label>
                 <label className="cp-label">Date / time<input className="cp-input" type="datetime-local" value={round.date} onChange={(e) => updateRound(selectedJob, round.id, "date", e.target.value)} /></label>
+
+                <div style={{ marginTop: 4 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
+                    <strong style={{ fontSize: 12 }}>Who is this interview with?</strong>
+                    <button type="button" className="cp-link" onClick={() => addInterviewPerson(selectedJob, round.id)}>+ Add person</button>
+                  </div>
+                  {(round.people || []).length ? (round.people || []).map((person, personIndex) => <div key={person.id} className="cp-card" style={{ padding: 10, marginBottom: 8, background: "#fff" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 6 }}><span className="cp-muted" style={{ fontSize: 11, fontWeight: 800 }}>Person {personIndex + 1}</span>{(round.people || []).length > 1 ? <button type="button" className="cp-link" onClick={() => removeInterviewPerson(selectedJob, round.id, person.id)}>Remove</button> : null}</div>
+                    <label className="cp-label">Name<input className="cp-input" value={person.name} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "name", e.target.value)} placeholder="Name" /></label>
+                    <label className="cp-label">Title<input className="cp-input" value={person.title} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "title", e.target.value)} placeholder="Hiring Manager, Recruiter, VP..." /></label>
+                    <label className="cp-label">LinkedIn profile<input className="cp-input" value={person.linkedin} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "linkedin", e.target.value)} placeholder="Paste LinkedIn profile" /></label>
+                  </div>) : <button type="button" className="cp-button secondary" onClick={() => addInterviewPerson(selectedJob, round.id)} style={{ width: "100%" }}>+ Add interviewer</button>}
+                </div>
+
                 <label className="cp-label">Status<select className="cp-select" value={round.status} onChange={(e) => updateRound(selectedJob, round.id, "status", e.target.value)}>{roundStatuses.map((x) => <option key={x}>{x}</option>)}</select></label>
-                <label className="cp-label">Notes after interview<textarea className="cp-textarea" rows={5} value={round.notes} onChange={(e) => updateRound(selectedJob, round.id, "notes", e.target.value)} placeholder="Who you met, what they asked, how it went, what to remember..." /></label>
+                <label className="cp-label">Notes after interview<textarea className="cp-textarea" rows={5} value={round.notes} onChange={(e) => updateRound(selectedJob, round.id, "notes", e.target.value)} placeholder="What they asked, how it went, what to remember, follow-up notes..." /></label>
               </div>
               {i < (selectedJob.interview_rounds || []).length - 1 ? <div style={{ fontSize: 26, fontWeight: 900, color: "#82907f" }}>›››</div> : null}
             </div>)}
@@ -355,7 +403,7 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}><button type="button" className="cp-button" onClick={() => save(selectedJob)} disabled={busy}>{saveState[selectedJob.id] === "Saving..." ? "Saving..." : "Save changes"}</button>{selectedJob.job_url?.startsWith("http") ? <a className="cp-button secondary" href={selectedJob.job_url} target="_blank" rel="noreferrer">Open posting</a> : null}<button type="button" className="cp-button secondary" onClick={() => remove(selectedJob)}>Remove</button>{saveState[selectedJob.id] ? <span className="cp-muted" style={{ fontWeight: 700 }}>{saveState[selectedJob.id]}</span> : null}</div>
         </div>
 
-        <div className="cp-section"><p className="cp-eyebrow">People connected to this job</p><div className="cp-contact-list">{contacts.filter((c) => c.job_id === selectedJob.id).map((c) => <div className="cp-contact" key={c.id}><div className="cp-contact-head"><strong>{c.name}</strong>{c.outreach_method ? <span className="cp-badge">{c.outreach_method}</span> : null}</div>{c.title ? <div>{c.title}</div> : null}{c.email ? <div>{c.email}</div> : null}{c.phone ? <div>{c.phone}</div> : null}{c.outreach_note ? <div className="cp-contact-note">{c.outreach_note}</div> : null}{c.notes ? <div className="cp-muted">{c.notes}</div> : null}</div>)}</div><details className="cp-card" style={{ padding: 14 }}><summary style={{ cursor: "pointer", fontWeight: 800 }}>+ Add another contact</summary><form action={(fd) => addContact(selectedJob.id, fd)} className="cp-form" style={{ marginTop: 12 }}>{contactFields()}<button className="cp-button secondary" disabled={busy}>Add person</button></form></details></div>
+        <div className="cp-section"><p className="cp-eyebrow">People connected to this job</p><div className="cp-contact-list">{contacts.filter((c) => c.job_id === selectedJob.id).map((c) => <div className="cp-contact" key={c.id}><div className="cp-contact-head"><strong>{c.name}</strong>{c.outreach_method ? <span className="cp-badge">{c.outreach_method}</span> : null}</div>{c.title ? <div>{c.title}</div> : null}{c.linkedin_url ? <a className="cp-link" href={c.linkedin_url} target="_blank" rel="noreferrer">LinkedIn profile</a> : null}{c.email ? <div>{c.email}</div> : null}{c.phone ? <div>{c.phone}</div> : null}{c.outreach_note ? <div className="cp-contact-note">{c.outreach_note}</div> : null}{c.notes ? <div className="cp-muted">{c.notes}</div> : null}</div>)}</div><details className="cp-card" style={{ padding: 14 }}><summary style={{ cursor: "pointer", fontWeight: 800 }}>+ Add another contact</summary><form action={(fd) => addContact(selectedJob.id, fd)} className="cp-form" style={{ marginTop: 12 }}>{contactFields()}<button className="cp-button secondary" disabled={busy}>Add person</button></form></details></div>
       </div>
     </div> : null}
   </>;
