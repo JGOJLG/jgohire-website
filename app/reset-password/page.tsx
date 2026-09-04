@@ -61,7 +61,13 @@ export default function ResetPasswordPage() {
 
     if (error) {
       setStatus("error");
-      setMessage("This reset link may have expired. Please request a new one.");
+      if (error.code === "same_password" || error.message.toLowerCase().includes("different from the old password")) {
+        setMessage("That is already your current password. You can log in with it, or choose a different password here.");
+      } else if (error.message.toLowerCase().includes("expired") || error.message.toLowerCase().includes("session")) {
+        setMessage("This reset link may have expired. Please request a new one.");
+      } else {
+        setMessage("We couldn't update your password. Please try a different password or request a new reset link.");
+      }
       return;
     }
 
