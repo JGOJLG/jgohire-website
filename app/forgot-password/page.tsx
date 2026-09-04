@@ -2,17 +2,15 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import "../login/login.css";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function ForgotPasswordPage() {
-  const searchParams = useSearchParams();
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState(searchParams.get("email") || "");
+  const [email, setEmail] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
