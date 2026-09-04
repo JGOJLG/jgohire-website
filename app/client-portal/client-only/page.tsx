@@ -35,10 +35,10 @@ export default async function Page() {
             The Job Tracker, client documents, coaching resources, and full JGO client workspace are available to active JGO Hire coaching clients.
           </p>
           <p>
-            To become a client, contact <a href="mailto:jen@jgohire.com">jen@jgohire.com</a> to set up your first session.
+            To become a client, visit the JGO Hire contact page to set up your first session.
           </p>
           <div className="cp-access-actions">
-            <a className="cp-button" href="mailto:jen@jgohire.com">Contact Jen</a>
+            <a className="cp-button" href="https://jgohire.com/contact">Contact Jen</a>
             <Link className="cp-button secondary" href="/client-portal">Back to My Account</Link>
           </div>
         </section>
