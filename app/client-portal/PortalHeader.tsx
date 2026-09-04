@@ -27,7 +27,21 @@ export default function PortalHeader() {
           <Link href="/client-portal/jobs">Job Tracker</Link>
           <Link href="/client-portal/files">Documents</Link>
           <Link href="/client-portal/resources">Resources</Link>
-          <Link href="/auth/signout">Log out</Link>
+          <form action="/auth/signout" method="post" style={{ display: "contents" }}>
+            <button
+              type="submit"
+              style={{
+                border: 0,
+                background: "transparent",
+                font: "inherit",
+                color: "inherit",
+                cursor: "pointer",
+                padding: 0,
+              }}
+            >
+              Log out
+            </button>
+          </form>
         </nav>
       </div>
     </header>
