@@ -1,5 +1,505 @@
 "use client";
-import{useMemo,useState}from"react";import{createClient}from"@/lib/supabase/client";import QuickStatus from"./QuickStatus";
-type Job={id:number;user_id:string;company:string|null;job_title:string|null;job_url:string|null;location:string|null;status:string;date_applied:string|null;next_step:string|null;next_step_date:string|null;notes:string|null;source:string|null;recruiter_name:string|null;recruiter_email:string|null;recruiter_phone:string|null;follow_up_date:string|null;interview_date:string|null;compensation:string|null;remote_type:string|null;priority:string|null};type Contact={id:number;job_id:number;user_id:string;name:string;title:string|null;email:string|null;phone:string|null;contact_type:string|null;notes:string|null;linkedin_url:string|null;outreach_method:string|null;outreach_date:string|null;outreach_note:string|null};
-const statuses=["Open / Interested","Application Submitted","Messaged Contact","Recruiter Screen","Interviewing","Final Interview","Offer","Rejected","Withdrawn","Closed"],methods=["LinkedIn message","LinkedIn connection request","Email","Phone call","Text message","Referral / introduction","In person","Other"],nullable=(v:string|null)=>v&&v.trim()?v.trim():null;
-export default function JobTracker({userId,initialJobs,initialContacts}:{userId:string;initialJobs:Job[];initialContacts:Contact[]}){const s=createClient();const[jobs,setJobs]=useState(initialJobs),[contacts,setContacts]=useState(initialContacts),[busy,setBusy]=useState(false),[message,setMessage]=useState(""),[saveState,setSaveState]=useState<Record<number,string>>({});const stats=useMemo(()=>({out:jobs.filter(j=>!["Open / Interested","Rejected","Withdrawn","Closed"].includes(j.status)).length,contacts:contacts.filter(c=>c.outreach_method).length,interviewing:jobs.filter(j=>["Recruiter Screen","Interviewing","Final Interview"].includes(j.status)).length,offers:jobs.filter(j=>j.status==="Offer").length}),[jobs,contacts]);async function addJob(fd:FormData){setBusy(true);setMessage("");const payload={user_id:userId,company:String(fd.get("company")||"").trim()||null,job_title:String(fd.get("title")||"").trim()||null,job_url:String(fd.get("url")||"").trim()||null,status:String(fd.get("status")||statuses[0]),notes:String(fd.get("notes")||"").trim()||null};const{data,error}=await s.from("client_job_applications").insert(payload).select("*").single();if(error)setMessage("Something went wrong. Please try again.");else if(data){setJobs(v=>[data as Job,...v]);setMessage("Congrats! New job added.")}setBusy(false)}async function save(job:Job){setBusy(true);setSaveState(v=>({...v,[job.id]:"Saving..."}));const payload={company:nullable(job.company),job_title:nullable(job.job_title),job_url:nullable(job.job_url),location:nullable(job.location),status:job.status||statuses[0],date_applied:nullable(job.date_applied),next_step:nullable(job.next_step),next_step_date:nullable(job.next_step_date),notes:nullable(job.notes),source:nullable(job.source),recruiter_name:nullable(job.recruiter_name),recruiter_email:nullable(job.recruiter_email),recruiter_phone:nullable(job.recruiter_phone),follow_up_date:nullable(job.follow_up_date),interview_date:nullable(job.interview_date),compensation:nullable(job.compensation),remote_type:nullable(job.remote_type),priority:nullable(job.priority),updated_at:new Date().toISOString()};const{data,error}=await s.from("client_job_applications").update(payload).eq("id",job.id).eq("user_id",userId).select("*").single();if(error)setSaveState(v=>({...v,[job.id]:"Couldn’t save. Please try again."}));else if(data){setJobs(v=>v.map(x=>x.id===job.id?data as Job:x));setSaveState(v=>({...v,[job.id]:job.status==="Offer"?"Amazing — offer added!":"Saved!"}));setTimeout(()=>{document.querySelector(`details[data-job-id="${job.id}"]`)?.removeAttribute("open")},450);setTimeout(()=>setSaveState(v=>({...v,[job.id]:""})),2800)}setBusy(false)}async function remove(job:Job){if(!confirm(`Remove ${job.company||job.job_title||"this job"}?`))return;setBusy(true);const{error}=await s.from("client_job_applications").delete().eq("id",job.id).eq("user_id",userId);if(!error){setJobs(v=>v.filter(x=>x.id!==job.id));setContacts(v=>v.filter(x=>x.job_id!==job.id))}setBusy(false)}async function addContact(jobId:number,fd:FormData){const name=String(fd.get("name")||"").trim();if(!name)return;setBusy(true);const{data,error}=await s.from("client_job_contacts").insert({job_id:jobId,user_id:userId,name,title:String(fd.get("title")||"").trim()||null,email:String(fd.get("email")||"").trim()||null,phone:String(fd.get("phone")||"").trim()||null,linkedin_url:String(fd.get("linkedin")||"").trim()||null,contact_type:String(fd.get("type")||"Contact"),outreach_method:String(fd.get("method")||"").trim()||null,outreach_date:String(fd.get("date")||"").trim()||null,outreach_note:String(fd.get("outreach_note")||"").trim()||null,notes:String(fd.get("notes")||"").trim()||null}).select("*").single();if(!error&&data)setContacts(v=>[...v,data as Contact]);setBusy(false)}function patch(id:number,key:keyof Job,value:string){setJobs(v=>v.map(j=>j.id===id?{...j,[key]:value}:j));setSaveState(v=>({...v,[id]:""}))}return <><section className="cp-grid cp-grid-4"><div className="cp-card cp-stat"><strong>{stats.out}</strong><span>Applications out</span></div><div className="cp-card cp-stat"><strong>{stats.contacts}</strong><span>Outreach logged</span></div><div className="cp-card cp-stat"><strong>{stats.interviewing}</strong><span>Interviewing</span></div><div className="cp-card cp-stat"><strong>{stats.offers}</strong><span>Offers</span></div></section><section className="cp-section cp-card"><div className="cp-section-head"><div><p className="cp-eyebrow">Quick add</p><h2>Add a job in seconds</h2><p className="cp-muted">Add what you have now. Open it later to add more details.</p></div></div><form action={addJob} className="cp-form"><div className="cp-form-row"><label className="cp-label">Company<input className="cp-input" name="company" placeholder="Company"/></label><label className="cp-label">Job title<input className="cp-input" name="title" placeholder="Job title"/></label></div><label className="cp-label">Job posting link<input className="cp-input" name="url" type="url" placeholder="Paste job link"/></label><div className="cp-form-row"><label className="cp-label">Status<select className="cp-select" name="status">{statuses.map(x=><option key={x}>{x}</option>)}</select></label><label className="cp-label">Notes<input className="cp-input" name="notes" placeholder="Optional note"/></label></div><div><button className="cp-button" disabled={busy}>{busy?"Adding...":"Add to tracker"}</button>{message?<span className="cp-muted" style={{marginLeft:12,fontWeight:700}}>{message}</span>:null}</div></form></section><section className="cp-section"><div className="cp-section-head"><div><p className="cp-eyebrow">Your jobs</p><h2>See exactly where you stand</h2><p className="cp-muted">Update the status right from the list, or click a job when you need the full details.</p></div></div><div className="cp-grid">{jobs.length?jobs.map(job=><details className="cp-job-row" data-status={job.status} data-job-id={job.id} key={job.id}><summary className="cp-job-summary" style={{cursor:"pointer",listStyle:"none"}}><div><h3>{job.company||"Company not added"}</h3><p>{job.job_title||"Job title not added"}{job.location?` · ${job.location}`:""}</p></div><div style={{display:"flex",alignItems:"center",gap:8}}>{saveState[job.id]&&saveState[job.id]!=="Saving..."&&!saveState[job.id].startsWith("Couldn’t")?<span style={{fontSize:11,fontWeight:800,color:"#3f654c",background:"#e4eee7",padding:"6px 9px",borderRadius:999}}>{saveState[job.id]}</span>:null}<QuickStatus jobId={job.id} userId={userId} status={job.status}/></div></summary><div className="cp-job-details"><div className="cp-form"><div className="cp-form-row"><label className="cp-label">Company<input className="cp-input" value={job.company||""} onChange={e=>patch(job.id,"company",e.target.value)}/></label><label className="cp-label">Job title<input className="cp-input" value={job.job_title||""} onChange={e=>patch(job.id,"job_title",e.target.value)}/></label></div><label className="cp-label">Job link<input className="cp-input" value={job.job_url||""} onChange={e=>patch(job.id,"job_url",e.target.value)}/></label><div className="cp-form-row"><label className="cp-label" style={{background:"#eef3e9",border:"1px solid #d4dfcf",borderRadius:14,padding:12}}>STATUS<select className="cp-select" style={{fontWeight:800,borderColor:"#9caf93"}} value={job.status} onChange={e=>patch(job.id,"status",e.target.value)}>{statuses.map(x=><option key={x}>{x}</option>)}</select><span className="cp-muted">Keep this current so your dashboard stays accurate.</span></label><label className="cp-label">Location<input className="cp-input" value={job.location||""} onChange={e=>patch(job.id,"location",e.target.value)}/></label></div><div className="cp-form-row"><label className="cp-label">Compensation<input className="cp-input" value={job.compensation||""} onChange={e=>patch(job.id,"compensation",e.target.value)} placeholder="$120k-$140k"/></label><label className="cp-label">Work setup<input className="cp-input" value={job.remote_type||""} onChange={e=>patch(job.id,"remote_type",e.target.value)} placeholder="Remote, Hybrid, Onsite"/></label></div><div className="cp-form-row"><label className="cp-label">Recruiter name<input className="cp-input" value={job.recruiter_name||""} onChange={e=>patch(job.id,"recruiter_name",e.target.value)}/></label><label className="cp-label">Recruiter email<input className="cp-input" value={job.recruiter_email||""} onChange={e=>patch(job.id,"recruiter_email",e.target.value)}/></label></div><div className="cp-form-row"><label className="cp-label">Recruiter phone<input className="cp-input" value={job.recruiter_phone||""} onChange={e=>patch(job.id,"recruiter_phone",e.target.value)}/></label><label className="cp-label">Follow-up date<input className="cp-input" type="date" value={job.follow_up_date||""} onChange={e=>patch(job.id,"follow_up_date",e.target.value)}/></label></div><div className="cp-form-row"><label className="cp-label">Interview date<input className="cp-input" type="date" value={job.interview_date||""} onChange={e=>patch(job.id,"interview_date",e.target.value)}/></label><label className="cp-label">Next step date<input className="cp-input" type="date" value={job.next_step_date||""} onChange={e=>patch(job.id,"next_step_date",e.target.value)}/></label></div><label className="cp-label">Next step<input className="cp-input" value={job.next_step||""} onChange={e=>patch(job.id,"next_step",e.target.value)} placeholder="Follow up, prep, send thank-you..."/></label><label className="cp-label">Notes<textarea className="cp-textarea" value={job.notes||""} onChange={e=>patch(job.id,"notes",e.target.value)} placeholder="Interview notes, recruiter feedback, salary details, reminders..."/></label><div style={{display:"flex",gap:10,flexWrap:"wrap",alignItems:"center"}}><button type="button" className="cp-button" onClick={()=>save(job)} disabled={busy}>{saveState[job.id]==="Saving..."?"Saving...":"Save changes"}</button>{job.job_url?<a className="cp-button secondary" href={job.job_url} target="_blank" rel="noreferrer">Open posting</a>:null}<button type="button" className="cp-button secondary" onClick={()=>remove(job)}>Remove</button>{saveState[job.id]?<span className="cp-muted" style={{fontWeight:700}}>{saveState[job.id]}</span>:null}</div></div><div className="cp-section"><p className="cp-eyebrow">People connected to this job</p><p className="cp-muted">Track who you know, exactly how you reached out, and what happened next.</p><div className="cp-contact-list">{contacts.filter(c=>c.job_id===job.id).map(c=><div className="cp-contact" key={c.id}><div className="cp-contact-head"><strong>{c.name}</strong>{c.outreach_method?<span className="cp-badge">{c.outreach_method}</span>:null}</div>{c.title?<div>{c.title}</div>:null}<div className="cp-contact-links">{c.linkedin_url?<a className="cp-link" href={c.linkedin_url} target="_blank" rel="noreferrer">LinkedIn</a>:null}{c.email?<a className="cp-link" href={`mailto:${c.email}`}>{c.email}</a>:null}{c.phone?<a className="cp-link" href={`tel:${c.phone}`}>{c.phone}</a>:null}</div>{c.outreach_date?<div className="cp-muted">Reached out: {c.outreach_date}</div>:null}{c.outreach_note?<div className="cp-contact-note">{c.outreach_note}</div>:null}{c.notes?<div className="cp-muted">{c.notes}</div>:null}</div>)}</div><form action={fd=>addContact(job.id,fd)} className="cp-form cp-contact-form"><div className="cp-form-row"><label className="cp-label">Contact name<input className="cp-input" name="name" required placeholder="Name"/></label><label className="cp-label">Title / relationship<input className="cp-input" name="title" placeholder="Recruiter, hiring manager, referral..."/></label></div><label className="cp-label">LinkedIn URL<input className="cp-input" name="linkedin" type="url" placeholder="https://linkedin.com/in/..."/></label><div className="cp-form-row"><label className="cp-label">Email<input className="cp-input" name="email" type="email"/></label><label className="cp-label">Phone<input className="cp-input" name="phone"/></label></div><div className="cp-form-row"><label className="cp-label">How did you reach out?<select className="cp-select" name="method" defaultValue=""><option value="">Not yet / choose method</option>{methods.map(m=><option key={m}>{m}</option>)}</select></label><label className="cp-label">Date reached out<input className="cp-input" name="date" type="date"/></label></div><label className="cp-label">What did you send / what happened?<textarea className="cp-textarea" name="outreach_note" placeholder="Sent a LinkedIn connection with a short note, emailed after applying, recruiter replied and scheduled a call..."/></label><label className="cp-label">Additional notes<input className="cp-input" name="notes" placeholder="Anything else to remember"/></label><button className="cp-button secondary" disabled={busy}>Add person</button></form></div></div></details>):<div className="cp-card cp-empty">No jobs yet. Add your first one above.</div>}</div></section></>}
+
+import { useMemo, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
+import QuickStatus from "./QuickStatus";
+
+type Job = {
+  id: number;
+  user_id: string;
+  company: string | null;
+  job_title: string | null;
+  job_url: string | null;
+  job_description: string | null;
+  location: string | null;
+  status: string;
+  date_applied: string | null;
+  next_step: string | null;
+  next_step_date: string | null;
+  notes: string | null;
+  source: string | null;
+  recruiter_name: string | null;
+  recruiter_email: string | null;
+  recruiter_phone: string | null;
+  follow_up_date: string | null;
+  interview_date: string | null;
+  compensation: string | null;
+  remote_type: string | null;
+  priority: string | null;
+};
+
+type Contact = {
+  id: number;
+  job_id: number;
+  user_id: string;
+  name: string;
+  title: string | null;
+  email: string | null;
+  phone: string | null;
+  contact_type: string | null;
+  notes: string | null;
+  linkedin_url: string | null;
+  outreach_method: string | null;
+  outreach_date: string | null;
+  outreach_note: string | null;
+};
+
+const statuses = [
+  "Open / Interested",
+  "Application Submitted",
+  "Messaged Contact",
+  "Recruiter Screen",
+  "Interviewing",
+  "Final Interview",
+  "Offer",
+  "Rejected",
+  "Withdrawn",
+  "Closed",
+];
+
+const methods = [
+  "LinkedIn message",
+  "LinkedIn connection request",
+  "Email",
+  "Phone call",
+  "Text message",
+  "Referral / introduction",
+  "In person",
+  "Other",
+];
+
+const nullable = (v: string | null) => (v && v.trim() ? v.trim() : null);
+
+export default function JobTracker({
+  userId,
+  initialJobs,
+  initialContacts,
+}: {
+  userId: string;
+  initialJobs: Job[];
+  initialContacts: Contact[];
+}) {
+  const s = createClient();
+  const [jobs, setJobs] = useState(initialJobs);
+  const [contacts, setContacts] = useState(initialContacts);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState("");
+  const [saveState, setSaveState] = useState<Record<number, string>>({});
+  const [showAddDetails, setShowAddDetails] = useState(false);
+  const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
+
+  const selectedJob = jobs.find((job) => job.id === selectedJobId) || null;
+
+  const stats = useMemo(
+    () => ({
+      out: jobs.filter(
+        (j) => !["Open / Interested", "Rejected", "Withdrawn", "Closed"].includes(j.status)
+      ).length,
+      contacts: contacts.filter((c) => c.outreach_method).length,
+      interviewing: jobs.filter((j) =>
+        ["Recruiter Screen", "Interviewing", "Final Interview"].includes(j.status)
+      ).length,
+      offers: jobs.filter((j) => j.status === "Offer").length,
+    }),
+    [jobs, contacts]
+  );
+
+  async function addJob(fd: FormData) {
+    setBusy(true);
+    setMessage("");
+    const payload = {
+      user_id: userId,
+      company: String(fd.get("company") || "").trim() || null,
+      job_title: String(fd.get("title") || "").trim() || null,
+      job_url: String(fd.get("url") || "").trim() || null,
+      job_description: String(fd.get("job_description") || "").trim() || null,
+      status: String(fd.get("status") || statuses[0]),
+      notes: String(fd.get("notes") || "").trim() || null,
+    };
+
+    const { data, error } = await s
+      .from("client_job_applications")
+      .insert(payload)
+      .select("*")
+      .single();
+
+    if (error) {
+      setMessage("Something went wrong. Please try again.");
+    } else if (data) {
+      setJobs((v) => [data as Job, ...v]);
+      setMessage("Job added.");
+      setShowAddDetails(false);
+    }
+    setBusy(false);
+  }
+
+  async function save(job: Job) {
+    setBusy(true);
+    setSaveState((v) => ({ ...v, [job.id]: "Saving..." }));
+    const payload = {
+      company: nullable(job.company),
+      job_title: nullable(job.job_title),
+      job_url: nullable(job.job_url),
+      job_description: nullable(job.job_description),
+      location: nullable(job.location),
+      status: job.status || statuses[0],
+      date_applied: nullable(job.date_applied),
+      next_step: nullable(job.next_step),
+      next_step_date: nullable(job.next_step_date),
+      notes: nullable(job.notes),
+      source: nullable(job.source),
+      recruiter_name: nullable(job.recruiter_name),
+      recruiter_email: nullable(job.recruiter_email),
+      recruiter_phone: nullable(job.recruiter_phone),
+      follow_up_date: nullable(job.follow_up_date),
+      interview_date: nullable(job.interview_date),
+      compensation: nullable(job.compensation),
+      remote_type: nullable(job.remote_type),
+      priority: nullable(job.priority),
+      updated_at: new Date().toISOString(),
+    };
+
+    const { data, error } = await s
+      .from("client_job_applications")
+      .update(payload)
+      .eq("id", job.id)
+      .eq("user_id", userId)
+      .select("*")
+      .single();
+
+    if (error) {
+      setSaveState((v) => ({ ...v, [job.id]: "Couldn’t save. Please try again." }));
+    } else if (data) {
+      setJobs((v) => v.map((x) => (x.id === job.id ? (data as Job) : x)));
+      setSaveState((v) => ({
+        ...v,
+        [job.id]: job.status === "Offer" ? "Amazing — offer added!" : "Saved!",
+      }));
+      setTimeout(() => setSaveState((v) => ({ ...v, [job.id]: "" })), 2800);
+    }
+    setBusy(false);
+  }
+
+  async function remove(job: Job) {
+    if (!confirm(`Remove ${job.company || job.job_title || "this job"}?`)) return;
+    setBusy(true);
+    const { error } = await s
+      .from("client_job_applications")
+      .delete()
+      .eq("id", job.id)
+      .eq("user_id", userId);
+
+    if (!error) {
+      setJobs((v) => v.filter((x) => x.id !== job.id));
+      setContacts((v) => v.filter((x) => x.job_id !== job.id));
+      setSelectedJobId(null);
+    }
+    setBusy(false);
+  }
+
+  async function addContact(jobId: number, fd: FormData) {
+    const name = String(fd.get("name") || "").trim();
+    if (!name) return;
+    setBusy(true);
+    const { data, error } = await s
+      .from("client_job_contacts")
+      .insert({
+        job_id: jobId,
+        user_id: userId,
+        name,
+        title: String(fd.get("title") || "").trim() || null,
+        email: String(fd.get("email") || "").trim() || null,
+        phone: String(fd.get("phone") || "").trim() || null,
+        linkedin_url: String(fd.get("linkedin") || "").trim() || null,
+        contact_type: String(fd.get("type") || "Contact"),
+        outreach_method: String(fd.get("method") || "").trim() || null,
+        outreach_date: String(fd.get("date") || "").trim() || null,
+        outreach_note: String(fd.get("outreach_note") || "").trim() || null,
+        notes: String(fd.get("notes") || "").trim() || null,
+      })
+      .select("*")
+      .single();
+
+    if (!error && data) setContacts((v) => [...v, data as Contact]);
+    setBusy(false);
+  }
+
+  function patch(id: number, key: keyof Job, value: string) {
+    setJobs((v) => v.map((j) => (j.id === id ? { ...j, [key]: value } : j)));
+    setSaveState((v) => ({ ...v, [id]: "" }));
+  }
+
+  return (
+    <>
+      <section className="cp-grid cp-grid-4">
+        <div className="cp-card cp-stat"><strong>{stats.out}</strong><span>Applications out</span></div>
+        <div className="cp-card cp-stat"><strong>{stats.contacts}</strong><span>Outreach logged</span></div>
+        <div className="cp-card cp-stat"><strong>{stats.interviewing}</strong><span>Interviewing</span></div>
+        <div className="cp-card cp-stat"><strong>{stats.offers}</strong><span>Offers</span></div>
+      </section>
+
+      <section className="cp-section cp-card">
+        <div className="cp-section-head">
+          <div>
+            <p className="cp-eyebrow">Quick add</p>
+            <h2>Add a job</h2>
+            <p className="cp-muted">Start with the basics. Add the rest only if you want to.</p>
+          </div>
+        </div>
+
+        <form action={addJob} className="cp-form">
+          <div className="cp-form-row">
+            <label className="cp-label">Company<input className="cp-input" name="company" placeholder="Company" required /></label>
+            <label className="cp-label">Job title<input className="cp-input" name="title" placeholder="Job title" required /></label>
+          </div>
+          <label className="cp-label">Job posting link<input className="cp-input" name="url" type="url" placeholder="Paste job link" /></label>
+
+          <button
+            type="button"
+            className="cp-button secondary"
+            onClick={() => setShowAddDetails((v) => !v)}
+            style={{ width: "fit-content" }}
+          >
+            {showAddDetails ? "Hide extra details" : "+ Add details"}
+          </button>
+
+          {showAddDetails ? (
+            <div className="cp-card" style={{ padding: 16, background: "#f8faf7" }}>
+              <div className="cp-form">
+                <div className="cp-form-row">
+                  <label className="cp-label">Status<select className="cp-select" name="status">{statuses.map((x) => <option key={x}>{x}</option>)}</select></label>
+                  <label className="cp-label">Notes<input className="cp-input" name="notes" placeholder="Optional note" /></label>
+                </div>
+                <label className="cp-label">
+                  Copy and paste the full job description
+                  <span className="cp-muted" style={{ display: "block", margin: "4px 0 8px" }}>
+                    Paste the actual posting here, not just the link. This keeps a copy in your tracker if the posting is removed later.
+                  </span>
+                  <textarea
+                    className="cp-textarea"
+                    name="job_description"
+                    rows={10}
+                    placeholder="Paste the complete job description here..."
+                  />
+                </label>
+              </div>
+            </div>
+          ) : null}
+
+          <div>
+            <button className="cp-button" disabled={busy}>{busy ? "Adding..." : "Add to tracker"}</button>
+            {message ? <span className="cp-muted" style={{ marginLeft: 12, fontWeight: 700 }}>{message}</span> : null}
+          </div>
+        </form>
+      </section>
+
+      <section className="cp-section">
+        <div className="cp-section-head">
+          <div>
+            <p className="cp-eyebrow">Your jobs</p>
+            <h2>Job tracker</h2>
+            <p className="cp-muted">One job per row. Click any row to open all of its details.</p>
+          </div>
+        </div>
+
+        {jobs.length ? (
+          <div className="cp-card" style={{ padding: 0, overflowX: "auto" }}>
+            <div style={{ minWidth: 760 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px",
+                  gap: 12,
+                  padding: "10px 16px",
+                  borderBottom: "1px solid #e4e8e2",
+                  fontSize: 11,
+                  fontWeight: 800,
+                  textTransform: "uppercase",
+                  letterSpacing: ".05em",
+                  color: "#68736a",
+                }}
+              >
+                <span>Company</span><span>Job title</span><span>Status</span><span>Next step</span><span></span>
+              </div>
+
+              {jobs.map((job) => (
+                <div
+                  key={job.id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setSelectedJobId(job.id)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedJobId(job.id); }}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px",
+                    gap: 12,
+                    alignItems: "center",
+                    padding: "11px 16px",
+                    borderBottom: "1px solid #edf0eb",
+                    cursor: "pointer",
+                    minHeight: 48,
+                  }}
+                >
+                  <strong style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.company || "Company not added"}</strong>
+                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.job_title || "Job title not added"}</span>
+                  <div onClick={(e) => e.stopPropagation()}><QuickStatus jobId={job.id} userId={userId} status={job.status} /></div>
+                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "#68736a" }}>{job.next_step || "—"}</span>
+                  <button type="button" className="cp-button secondary" style={{ padding: "7px 10px" }} onClick={(e) => { e.stopPropagation(); setSelectedJobId(job.id); }}>View</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="cp-card cp-empty">No jobs yet. Add your first one above.</div>
+        )}
+      </section>
+
+      {selectedJob ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedJob.company || "Job"} details`}
+          onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedJobId(null); }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "rgba(20,30,22,.52)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 18,
+          }}
+        >
+          <div
+            className="cp-card"
+            style={{
+              width: "min(920px, 100%)",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              padding: 22,
+              boxShadow: "0 24px 70px rgba(0,0,0,.22)",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "flex-start", marginBottom: 18 }}>
+              <div>
+                <p className="cp-eyebrow">Job details</p>
+                <h2 style={{ marginBottom: 4 }}>{selectedJob.company || "Company not added"}</h2>
+                <p className="cp-muted">{selectedJob.job_title || "Job title not added"}</p>
+              </div>
+              <button type="button" className="cp-button secondary" onClick={() => setSelectedJobId(null)}>Close</button>
+            </div>
+
+            <div className="cp-form">
+              <div className="cp-form-row">
+                <label className="cp-label">Company<input className="cp-input" value={selectedJob.company || ""} onChange={(e) => patch(selectedJob.id, "company", e.target.value)} /></label>
+                <label className="cp-label">Job title<input className="cp-input" value={selectedJob.job_title || ""} onChange={(e) => patch(selectedJob.id, "job_title", e.target.value)} /></label>
+              </div>
+              <label className="cp-label">Job link<input className="cp-input" value={selectedJob.job_url || ""} onChange={(e) => patch(selectedJob.id, "job_url", e.target.value)} /></label>
+
+              <div className="cp-form-row">
+                <label className="cp-label" style={{ background: "#eef3e9", border: "1px solid #d4dfcf", borderRadius: 14, padding: 12 }}>
+                  STATUS
+                  <select className="cp-select" style={{ fontWeight: 800, borderColor: "#9caf93" }} value={selectedJob.status} onChange={(e) => patch(selectedJob.id, "status", e.target.value)}>
+                    {statuses.map((x) => <option key={x}>{x}</option>)}
+                  </select>
+                  <span className="cp-muted">Keep this current so your dashboard stays accurate.</span>
+                </label>
+                <label className="cp-label">Location<input className="cp-input" value={selectedJob.location || ""} onChange={(e) => patch(selectedJob.id, "location", e.target.value)} /></label>
+              </div>
+
+              <div className="cp-form-row">
+                <label className="cp-label">Compensation<input className="cp-input" value={selectedJob.compensation || ""} onChange={(e) => patch(selectedJob.id, "compensation", e.target.value)} placeholder="$120k-$140k" /></label>
+                <label className="cp-label">Work setup<input className="cp-input" value={selectedJob.remote_type || ""} onChange={(e) => patch(selectedJob.id, "remote_type", e.target.value)} placeholder="Remote, Hybrid, Onsite" /></label>
+              </div>
+
+              <div className="cp-form-row">
+                <label className="cp-label">Recruiter name<input className="cp-input" value={selectedJob.recruiter_name || ""} onChange={(e) => patch(selectedJob.id, "recruiter_name", e.target.value)} /></label>
+                <label className="cp-label">Recruiter email<input className="cp-input" value={selectedJob.recruiter_email || ""} onChange={(e) => patch(selectedJob.id, "recruiter_email", e.target.value)} /></label>
+              </div>
+
+              <div className="cp-form-row">
+                <label className="cp-label">Recruiter phone<input className="cp-input" value={selectedJob.recruiter_phone || ""} onChange={(e) => patch(selectedJob.id, "recruiter_phone", e.target.value)} /></label>
+                <label className="cp-label">Follow-up date<input className="cp-input" type="date" value={selectedJob.follow_up_date || ""} onChange={(e) => patch(selectedJob.id, "follow_up_date", e.target.value)} /></label>
+              </div>
+
+              <div className="cp-form-row">
+                <label className="cp-label">Interview date<input className="cp-input" type="date" value={selectedJob.interview_date || ""} onChange={(e) => patch(selectedJob.id, "interview_date", e.target.value)} /></label>
+                <label className="cp-label">Next step date<input className="cp-input" type="date" value={selectedJob.next_step_date || ""} onChange={(e) => patch(selectedJob.id, "next_step_date", e.target.value)} /></label>
+              </div>
+
+              <label className="cp-label">Next step<input className="cp-input" value={selectedJob.next_step || ""} onChange={(e) => patch(selectedJob.id, "next_step", e.target.value)} placeholder="Follow up, prep, send thank-you..." /></label>
+              <label className="cp-label">Notes<textarea className="cp-textarea" value={selectedJob.notes || ""} onChange={(e) => patch(selectedJob.id, "notes", e.target.value)} placeholder="Interview notes, recruiter feedback, salary details, reminders..." /></label>
+
+              <details className="cp-card" style={{ padding: 14, background: "#f8faf7" }}>
+                <summary style={{ cursor: "pointer", fontWeight: 800 }}>
+                  {selectedJob.job_description ? "View / edit saved job description" : "Add the full job description"}
+                </summary>
+                <div style={{ marginTop: 12 }}>
+                  <p className="cp-muted" style={{ marginBottom: 8 }}>
+                    Copy and paste the actual job description here so you still have it if the posting closes or disappears.
+                  </p>
+                  <textarea
+                    className="cp-textarea"
+                    rows={18}
+                    value={selectedJob.job_description || ""}
+                    onChange={(e) => patch(selectedJob.id, "job_description", e.target.value)}
+                    placeholder="Paste the complete job description here..."
+                  />
+                </div>
+              </details>
+
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                <button type="button" className="cp-button" onClick={() => save(selectedJob)} disabled={busy}>{saveState[selectedJob.id] === "Saving..." ? "Saving..." : "Save changes"}</button>
+                {selectedJob.job_url ? <a className="cp-button secondary" href={selectedJob.job_url} target="_blank" rel="noreferrer">Open posting</a> : null}
+                <button type="button" className="cp-button secondary" onClick={() => remove(selectedJob)}>Remove</button>
+                {saveState[selectedJob.id] ? <span className="cp-muted" style={{ fontWeight: 700 }}>{saveState[selectedJob.id]}</span> : null}
+              </div>
+            </div>
+
+            <div className="cp-section">
+              <p className="cp-eyebrow">People connected to this job</p>
+              <p className="cp-muted">Track who you know, how you reached out, and what happened next.</p>
+
+              <div className="cp-contact-list">
+                {contacts.filter((c) => c.job_id === selectedJob.id).map((c) => (
+                  <div className="cp-contact" key={c.id}>
+                    <div className="cp-contact-head"><strong>{c.name}</strong>{c.outreach_method ? <span className="cp-badge">{c.outreach_method}</span> : null}</div>
+                    {c.title ? <div>{c.title}</div> : null}
+                    <div className="cp-contact-links">
+                      {c.linkedin_url ? <a className="cp-link" href={c.linkedin_url} target="_blank" rel="noreferrer">LinkedIn</a> : null}
+                      {c.email ? <a className="cp-link" href={`mailto:${c.email}`}>{c.email}</a> : null}
+                      {c.phone ? <a className="cp-link" href={`tel:${c.phone}`}>{c.phone}</a> : null}
+                    </div>
+                    {c.outreach_date ? <div className="cp-muted">Reached out: {c.outreach_date}</div> : null}
+                    {c.outreach_note ? <div className="cp-contact-note">{c.outreach_note}</div> : null}
+                    {c.notes ? <div className="cp-muted">{c.notes}</div> : null}
+                  </div>
+                ))}
+              </div>
+
+              <form action={(fd) => addContact(selectedJob.id, fd)} className="cp-form cp-contact-form">
+                <div className="cp-form-row">
+                  <label className="cp-label">Contact name<input className="cp-input" name="name" required placeholder="Name" /></label>
+                  <label className="cp-label">Title / relationship<input className="cp-input" name="title" placeholder="Recruiter, hiring manager, referral..." /></label>
+                </div>
+                <label className="cp-label">LinkedIn URL<input className="cp-input" name="linkedin" type="url" placeholder="https://linkedin.com/in/..." /></label>
+                <div className="cp-form-row">
+                  <label className="cp-label">Email<input className="cp-input" name="email" type="email" /></label>
+                  <label className="cp-label">Phone<input className="cp-input" name="phone" /></label>
+                </div>
+                <div className="cp-form-row">
+                  <label className="cp-label">How did you reach out?<select className="cp-select" name="method" defaultValue=""><option value="">Not yet / choose method</option>{methods.map((m) => <option key={m}>{m}</option>)}</select></label>
+                  <label className="cp-label">Date reached out<input className="cp-input" name="date" type="date" /></label>
+                </div>
+                <label className="cp-label">What did you send / what happened?<textarea className="cp-textarea" name="outreach_note" placeholder="Sent a LinkedIn connection with a short note, emailed after applying, recruiter replied and scheduled a call..." /></label>
+                <label className="cp-label">Additional notes<input className="cp-input" name="notes" placeholder="Anything else to remember" /></label>
+                <button className="cp-button secondary" disabled={busy}>Add person</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
