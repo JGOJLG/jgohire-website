@@ -30,13 +30,19 @@ export default function PortalHeader() {
           <form action="/auth/signout" method="post" style={{ display: "contents" }}>
             <button
               type="submit"
+              aria-label="Log out of client portal"
               style={{
-                border: 0,
-                background: "transparent",
-                font: "inherit",
-                color: "inherit",
+                border: "1px solid #d7dfd2",
+                background: "rgba(255,255,255,.78)",
+                color: "#4d6247",
                 cursor: "pointer",
-                padding: 0,
+                padding: "8px 14px",
+                borderRadius: "999px",
+                font: "inherit",
+                fontSize: "13px",
+                fontWeight: 700,
+                lineHeight: 1,
+                boxShadow: "0 5px 16px rgba(34,48,40,.06)",
               }}
             >
               Log out
