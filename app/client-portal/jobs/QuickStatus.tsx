@@ -12,6 +12,8 @@ const statuses = [
   "Interviewing",
   "Final Interview",
   "Offer",
+  "Accepted Offer",
+  "Declined Offer",
   "Rejected",
   "Withdrawn",
   "Closed",
@@ -64,9 +66,9 @@ export default function QuickStatus({
     setValue(savedStatus);
     onStatusSaved?.(savedStatus);
 
-    if (savedStatus === "Offer") {
+    if (savedStatus === "Accepted Offer") {
       setCelebrate(true);
-      setTimeout(() => setCelebrate(false), 3200);
+      setTimeout(() => setCelebrate(false), 4200);
     }
   }
 
@@ -79,8 +81,8 @@ export default function QuickStatus({
               <i key={i} style={{ "--i": i } as React.CSSProperties} />
             ))}
           </div>
-          <strong>YOU GOT AN OFFER!</strong>
-          <span>Congrats! This is huge.</span>
+          <strong>YOU DID IT!</strong>
+          <span>You accepted the offer. Congratulations on your new role!</span>
         </div>
       ) : null}
 
