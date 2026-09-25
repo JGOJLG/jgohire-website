@@ -4475,3 +4475,22 @@ body {
 @media(max-width:480px){
 .book-sales-hero{padding-top:28px}.book-sales-topline{margin-bottom:18px}.book-sales-copy h1{font-size:58px}.book-sales-copy h2{font-size:26px}.book-sales-subtitle{font-size:17px}.book-search-tags{gap:7px}.book-search-tags span{padding:8px 11px;font-size:11px}.book-story-grid h2,.book-ai-grid h2,.book-section-heading h2,.book-for-you h2,.book-final-sales h2{font-size:36px}.book-not-grid>div,.book-inside-grid article{padding:22px}.book-for-grid span{width:100%;padding:12px 14px}.book-buy-button{width:100%}
 }
+
+/* Book sales conversion additions */
+.book-course-origin{margin:20px 0 6px;padding:18px 20px;border-left:3px solid #789184;background:rgba(255,255,255,.52);border-radius:0 14px 14px 0;font-size:15px!important;line-height:1.6!important}
+.book-story-copy .book-buy-button,.book-ai-grid .book-buy-button{margin-top:22px}
+.book-cta-lead{max-width:660px;margin:0 auto 22px!important;font-size:19px!important;line-height:1.55!important;color:#355247!important}
+.book-workbook-cta{padding:82px 0;background:#f4f1e9}
+.book-workbook-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:center}
+.book-workbook-grid h2,.book-mid-cta h2{font-size:clamp(38px,4.6vw,62px);line-height:1.02;letter-spacing:-.035em;color:#173d30}
+.book-workbook-grid>div:first-child>p:last-child{font-size:18px;line-height:1.7;max-width:690px}
+.book-workbook-card{padding:34px;border:1px solid rgba(22,55,43,.12);border-radius:24px;background:#fff;box-shadow:0 18px 45px rgba(28,50,41,.07)}
+.book-workbook-card>strong{display:block;font-family:var(--font-serif);font-size:28px;line-height:1.2;color:#173d30;padding:9px 0;border-bottom:1px solid rgba(22,55,43,.1)}
+.book-workbook-card .book-buy-button{display:block;margin-top:26px}
+.book-workbook-card small,.book-mid-cta small{display:block;margin-top:10px;color:#6b7772}
+.book-mid-cta{padding:74px 0;text-align:center;background:#173d30;color:#fff}
+.book-mid-cta p{margin:0 0 12px;text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800;opacity:.72}
+.book-mid-cta h2{color:#fff;max-width:780px;margin:0 auto 26px}
+.book-mid-cta small{color:rgba(255,255,255,.68)}
+@media(max-width:800px){.book-workbook-cta{padding:58px 0}.book-workbook-grid{grid-template-columns:1fr;gap:28px}.book-workbook-card{padding:26px}.book-mid-cta{padding:56px 0}}
+@media(max-width:480px){.book-workbook-grid h2,.book-mid-cta h2{font-size:36px}.book-workbook-card .book-buy-button,.book-story-copy .book-buy-button,.book-ai-grid .book-buy-button{width:100%;text-align:center}}
