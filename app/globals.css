@@ -4373,3 +4373,10 @@ body {
 .book-cover-image{width:min(300px,70%)!important;max-height:none!important;filter:drop-shadow(0 18px 18px rgba(20,37,30,.16))!important;transform:none!important}
 @media(max-width:800px){.book-feature-art{min-height:360px!important}.book-cover-image,.book-page-art .book-cover-image{width:min(260px,68vw)!important;max-height:none!important}}
 @media(max-width:480px){.book-feature-art{min-height:320px!important}.book-cover-image,.book-page-art .book-cover-image{width:min(235px,66vw)!important}}
+
+/* Final book art sizing: crisp 2x source on desktop, clean mobile crop */
+.book-feature-art{min-height:500px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.book-cover-image{width:min(360px,76%)!important;height:auto!important;max-height:none!important;object-fit:contain!important;filter:drop-shadow(0 22px 24px rgba(20,37,30,.16))!important}
+.book-page-art .book-cover-image{width:min(400px,82%)!important}
+@media(max-width:800px){.book-feature-art{min-height:380px!important}.book-cover-image,.book-page-art .book-cover-image{width:min(300px,72vw)!important}}
+@media(max-width:480px){.book-feature-art{min-height:340px!important}.book-cover-image,.book-page-art .book-cover-image{width:min(270px,76vw)!important}}
