@@ -9,7 +9,7 @@ export default function BookFeature() {
             <span className="book-feature-kicker">A new book from JGO Hire</span>
             <span className="book-feature-status">Coming Soon</span>
           </div>
-          <h2 id="book-feature-title">Found. Noticed. Hired.</h2>
+          <h2 id="book-feature-title">Found Noticed Hired</h2>
           <p className="book-feature-subtitle">A Recruiter’s Guide to a Stronger LinkedIn® Profile</p>
           <p className="book-feature-hook">Someone searched for you on LinkedIn today. <strong>You didn’t show up.</strong></p>
           <p className="book-feature-body">Learn how recruiters search for candidates, what they notice, and how to build a profile designed to get found.</p>
@@ -22,8 +22,8 @@ export default function BookFeature() {
             <span>Coming soon exclusively on Amazon</span>
           </div>
         </div>
-        <div className="book-feature-art" aria-label="Found. Noticed. Hired. book preview">
-          <img className="book-cover-image" src="/found-noticed-hired.webp" alt="Found. Noticed. Hired. by Jennifer Gordon" />
+        <div className="book-feature-art" aria-label="Found Noticed Hired book preview">
+          <img className="book-cover-image" src="/found-noticed-hired.webp" alt="Found Noticed Hired by Jennifer Gordon" />
         </div>
       </div>
     </section>
