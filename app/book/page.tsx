@@ -24,7 +24,7 @@ export default function BookPage() {
             <p className="book-button-note">Amazon link coming soon</p>
           </div>
           <div className="book-sales-art">
-            <img src="/found-noticed-hired.webp" alt="Found Noticed Hired by Jennifer Gordon" />
+            <img src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
           </div>
         </div>
       </section>
@@ -114,7 +114,7 @@ export default function BookPage() {
 
       <section className="book-final-sales">
         <div className="site-shell book-final-grid">
-          <div className="book-final-art"><img src="/found-noticed-hired.webp" alt="Found Noticed Hired book cover" /></div>
+          <div className="book-final-art"><img src="/found-noticed-hired.png" alt="Found Noticed Hired book cover" /></div>
           <div>
             <p className="eyebrow">Found Noticed Hired</p>
             <h2>Before a recruiter can decide whether you might be right for a job, they have to find you.</h2>
