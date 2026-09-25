@@ -4400,3 +4400,8 @@ body {
 .book-cover-image{width:min(265px,66%)!important}
 @media(max-width:800px){.book-feature-status{padding:8px 14px!important;font-size:10px!important}.book-feature-art{min-height:260px!important}.book-cover-image{width:min(210px,54vw)!important}}
 @media(max-width:480px){.book-feature-art{min-height:235px!important}.book-cover-image{width:min(190px,52vw)!important}}
+
+/* Slightly larger book image */
+.book-cover-image{width:min(285px,70%)!important}
+@media(max-width:800px){.book-cover-image{width:min(225px,58vw)!important}}
+@media(max-width:480px){.book-cover-image{width:min(205px,56vw)!important}}
