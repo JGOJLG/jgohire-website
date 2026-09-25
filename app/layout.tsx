@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import "./mobile-polish.css";
 
 export const metadata: Metadata = {
   title: "JGO Hire | Career Coach & Recruiter",
