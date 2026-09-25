@@ -17,13 +17,7 @@ export default function BookPage() {
             <Link href="/" className="button button-primary">Explore JGO Hire</Link>
           </div>
           <div className="book-feature-art book-page-art" aria-label="Found. Noticed. Hired. book preview">
-            <div className="book-cover">
-              <small>A RECRUITER’S GUIDE TO A<br/>STRONGER LinkedIn® PROFILE</small>
-              <div className="book-cover-title">FOUND.<br/>NOTICED.<br/>HIRED.</div>
-              <i />
-              <b>JENNIFER GORDON</b>
-              <span>RECRUITER AND CAREER COACH</span>
-            </div>
+            <img className="book-cover-image" src="/found-noticed-hired.webp" alt="Found. Noticed. Hired. by Jennifer Gordon" />
           </div>
         </div>
       </section>
