@@ -19,7 +19,8 @@ export default function BookPage() {
             <h2>You have a LinkedIn® profile. But is it actually helping recruiters find you?</h2>
             <p>Most people build their profile based on what they <em>think</em> recruiters want to see. But recruiters are on the other side searching.</p>
             <p><strong>This book shows you that side.</strong></p>
-            <BookButton />
+            <p className="book-course-origin">Built from the same recruiter-backed strategy behind the JGO Hire LinkedIn® course, now organized into a practical book you can keep, mark up, and work through at your own pace.</p>
+            <BookButton children="Get Found. Noticed. Hired." />
             <p className="book-button-note">Amazon link coming soon</p>
           </div>
           <div className="book-sales-art">
@@ -48,6 +49,8 @@ export default function BookPage() {
             <p><strong>Found, Noticed, Hired</strong> was written to show you the side of LinkedIn® most job seekers never see.</p>
             <p>I’m Jennifer Gordon, a Recruiter, Certified Career Coach, and Founder of JGO Hire. I have spent years recruiting, interviewing candidates, reviewing resumes and LinkedIn® profiles, working with hiring managers, and seeing firsthand why some people are easy to find and understand while others get lost in the search.</p>
             <p className="book-pullquote">This is the LinkedIn® book I wish every job seeker could read before starting their job search.</p>
+            <p>It takes the strategy taught through JGO Hire and turns it into a step-by-step resource you can use while you are actually building and updating your profile.</p>
+            <BookButton children="I Want the Book" />
           </div>
         </div>
       </section>
@@ -77,9 +80,11 @@ export default function BookPage() {
             <article><span>05</span><h3>Put It Into Practice</h3><p>Work through practical exercises, recruiter tips, and prompts you can actually use as you update your own profile.</p></article>
             <article><span>06</span><h3>Audit the Final Profile</h3><p>Finish with a full LinkedIn® profile audit so you can review your profile from top to bottom before putting it to work.</p></article>
           </div>
-          <div className="book-center-cta"><BookButton children="Explore the Book" /><p>Coming soon exclusively on Amazon</p></div>
+          <div className="book-center-cta"><p className="book-cta-lead">Your LinkedIn® profile should do more than exist. Make it easier for the right recruiter to find you and quickly understand why you may fit.</p><BookButton children="Get the Book" /><p>Coming soon exclusively on Amazon</p></div>
         </div>
       </section>
+
+      <section className="book-workbook-cta"><div className="site-shell book-workbook-grid"><div><p className="eyebrow">More than something to read</p><h2>Use the book while you rebuild your profile.</h2><p>Recruiter tips, practical exercises, usable AI prompts, and a final profile audit help you turn the strategy into actual changes on LinkedIn®.</p></div><div className="book-workbook-card"><strong>Read it.</strong><strong>Apply it.</strong><strong>Audit it.</strong><BookButton children="Start With the Book" /><small>Amazon link coming soon</small></div></div></section>
 
       <section className="book-ai-section">
         <div className="site-shell book-ai-grid">
@@ -90,7 +95,7 @@ export default function BookPage() {
           <div>
             <p>Yes, AI can help. But if you give it a generic prompt and paste the first thing it gives you into LinkedIn®, you are probably going to sound exactly like everyone else using AI.</p>
             <p>The book includes prompts you can actually use, while helping you understand what you are trying to accomplish before you ask AI to write it.</p>
-            <div className="book-ai-card"><span>RECRUITER TIP</span><p>Use AI to create options, organize your thinking, and improve what is already true. Your profile still needs to sound like you.</p></div>
+            <div className="book-ai-card"><span>RECRUITER TIP</span><p>Use AI to create options, organize your thinking, and improve what is already true. Your profile still needs to sound like you.</p></div><BookButton children="Get the Recruiter Strategy" />
           </div>
         </div>
       </section>
@@ -104,6 +109,8 @@ export default function BookPage() {
           </div>
         </div>
       </section>
+
+      <section className="book-mid-cta"><div className="site-shell"><p>Before you rewrite another section of your LinkedIn® profile...</p><h2>Learn what recruiters are actually searching for.</h2><BookButton children="Get Found. Noticed. Hired." /><small>Coming soon exclusively on Amazon</small></div></section>
 
       <section className="book-final-sales">
         <div className="site-shell book-final-grid">
