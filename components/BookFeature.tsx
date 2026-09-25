@@ -23,7 +23,7 @@ export default function BookFeature() {
           </div>
         </div>
         <div className="book-feature-art" aria-label="Found Noticed Hired book preview">
-          <img className="book-cover-image" src="/found-noticed-hired.webp" alt="Found Noticed Hired by Jennifer Gordon" />
+          <img className="book-cover-image" src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
         </div>
       </div>
     </section>
