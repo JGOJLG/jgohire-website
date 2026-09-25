@@ -32,6 +32,7 @@ export default function SiteHeader() {
             <Link href="/resources">Resources</Link>
             <Link href="/testimonials">Testimonials</Link>
             <Link href="/guide">LinkedIn Guide</Link>
+            <Link href="/book">The Book</Link>
             <Link href="/contact">Contact</Link>
           </nav>
 
