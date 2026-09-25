@@ -13,6 +13,10 @@ export default function BookFeature() {
           <p className="book-feature-subtitle">A Recruiter’s Guide to a Stronger LinkedIn® Profile</p>
           <p className="book-feature-hook">Someone searched for you on LinkedIn today. <strong>You didn’t show up.</strong></p>
           <p className="book-feature-body">Learn how recruiters search for candidates, what they notice, and how to build a profile designed to get found.</p>
+          <div className="book-feature-points" aria-label="Book highlights">
+            <span>Practical Strategies</span>
+            <span>Real Recruiter Insights</span>
+          </div>
           <div className="book-feature-actions">
             <Link href="/book" className="button button-primary">Explore the Book</Link>
             <span>Coming soon exclusively on Amazon</span>
