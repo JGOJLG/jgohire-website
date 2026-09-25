@@ -6,7 +6,7 @@ export default function BookFeature() {
       <div className="site-shell book-feature-inner">
         <div className="book-feature-copy">
           <div className="book-feature-topline">
-            <span className="book-feature-kicker">A new resource from JGO Hire</span>
+            <span className="book-feature-kicker">A new book from JGO Hire</span>
             <span className="book-feature-status">Coming Soon</span>
           </div>
           <h2 id="book-feature-title">Found. Noticed. Hired.</h2>
@@ -14,8 +14,8 @@ export default function BookFeature() {
           <p className="book-feature-hook">Someone searched for you on LinkedIn today. <strong>You didn’t show up.</strong></p>
           <p className="book-feature-body">Learn how recruiters search for candidates, what they notice, and how to build a profile designed to get found.</p>
           <div className="book-feature-points" aria-label="Book highlights">
-            <span>Practical Strategies</span>
-            <span>Real Recruiter Insights</span>
+            <span>Optimize Your LinkedIn Profile</span>
+            <span>Get Found in Recruiter Searches</span>
           </div>
           <div className="book-feature-actions">
             <Link href="/book" className="button button-primary">Explore the Book</Link>
