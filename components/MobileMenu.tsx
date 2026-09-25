@@ -15,6 +15,7 @@ const navigation = [
   { label: "Resources", href: "/resources" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "LinkedIn Guide", href: "/guide" },
+  { label: "The Book", href: "/book" },
   { label: "Contact", href: "/contact" },
 ];
 
