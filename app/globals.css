@@ -4380,3 +4380,16 @@ body {
 .book-page-art .book-cover-image{width:min(400px,82%)!important}
 @media(max-width:800px){.book-feature-art{min-height:380px!important}.book-cover-image,.book-page-art .book-cover-image{width:min(300px,72vw)!important}}
 @media(max-width:480px){.book-feature-art{min-height:340px!important}.book-cover-image,.book-page-art .book-cover-image{width:min(270px,76vw)!important}}
+
+/* Compact modern book promo */
+.book-feature{padding:58px 0!important;background:linear-gradient(120deg,#fbfaf7 0%,#f5f0e7 68%,#e9e4da 100%)!important}
+.book-feature-inner{grid-template-columns:1.18fr .82fr!important;gap:44px!important}
+.book-feature h2{font-size:clamp(46px,5vw,68px)!important;margin-bottom:12px!important}
+.book-feature-subtitle{font-size:18px!important;margin-bottom:20px!important}
+.book-feature-hook{font-size:clamp(22px,2.25vw,29px)!important;margin-bottom:14px!important}
+.book-feature-body{font-size:15.5px!important;line-height:1.6!important;margin-bottom:20px!important}
+.book-feature-points{margin:2px 0 22px!important;gap:14px 24px!important}
+.book-feature-art{min-height:390px!important}
+.book-cover-image{width:min(310px,74%)!important}
+@media(max-width:800px){.book-feature{padding:34px 0!important}.book-feature-inner{gap:22px!important}.book-feature-copy{padding:24px 20px!important;border:1px solid rgba(255,255,255,.68)!important;border-radius:26px!important;background:rgba(255,255,255,.44)!important;box-shadow:0 16px 44px rgba(28,50,41,.08)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}.book-feature-topline{margin-bottom:14px!important}.book-feature h2{font-size:clamp(40px,12vw,54px)!important}.book-feature-subtitle{font-size:16px!important;margin-bottom:16px!important}.book-feature-hook{font-size:22px!important}.book-feature-body{font-size:15px!important;margin-bottom:18px!important}.book-feature-points{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-bottom:20px!important}.book-feature-art{min-height:285px!important;padding:4px 0 8px!important}.book-cover-image{width:min(225px,58vw)!important}.book-feature-actions{gap:10px!important}.book-feature-actions .button{padding-top:13px!important;padding-bottom:13px!important}}
+@media(max-width:480px){.book-feature{padding:28px 0!important}.book-feature-copy{padding:21px 17px!important;border-radius:22px!important}.book-feature-art{min-height:260px!important}.book-cover-image{width:min(205px,57vw)!important}.book-feature-status{padding:6px 9px!important}.book-feature-kicker{font-size:10px!important}.book-feature-actions span{font-size:12px!important}}
