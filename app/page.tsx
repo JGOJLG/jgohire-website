@@ -18,9 +18,9 @@ export default function HomePage() {
       <SiteHeader />
       <Hero />
       <CredibilityStrip />
+      <BookFeature />
       <HowCanIHelp />
       <Services />
-      <BookFeature />
 
       <FreeSurvivalGuide />
 
