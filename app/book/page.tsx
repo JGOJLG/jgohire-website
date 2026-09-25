@@ -20,11 +20,11 @@ export default function BookPage() {
             <p>Most people build their profile based on what they <em>think</em> recruiters want to see. But recruiters are on the other side searching.</p>
             <p><strong>This book shows you that side.</strong></p>
             <p className="book-course-origin">Built from the same recruiter-backed strategy behind the JGO Hire LinkedIn® course, now organized into a practical book you can keep, mark up, and work through at your own pace.</p>
-            <BookButton children="Get Found. Noticed. Hired." />
+            <BookButton children="Get Found Noticed Hired" />
             <p className="book-button-note">Amazon link coming soon</p>
           </div>
           <div className="book-sales-art">
-            <img src="/found-noticed-hired.webp" alt="Found. Noticed. Hired. by Jennifer Gordon" />
+            <img src="/found-noticed-hired.webp" alt="Found Noticed Hired by Jennifer Gordon" />
           </div>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default function BookPage() {
             <h2>A better LinkedIn® profile starts with understanding how recruiters search.</h2>
           </div>
           <div className="book-story-copy">
-            <p><strong>Found, Noticed, Hired</strong> was written to show you the side of LinkedIn® most job seekers never see.</p>
+            <p><strong>Found Noticed Hired</strong> was written to show you the side of LinkedIn® most job seekers never see.</p>
             <p>I’m Jennifer Gordon, a Recruiter, Certified Career Coach, and Founder of JGO Hire. I have spent years recruiting, interviewing candidates, reviewing resumes and LinkedIn® profiles, working with hiring managers, and seeing firsthand why some people are easy to find and understand while others get lost in the search.</p>
             <p className="book-pullquote">This is the LinkedIn® book I wish every job seeker could read before starting their job search.</p>
             <p>It takes the strategy taught through JGO Hire and turns it into a step-by-step resource you can use while you are actually building and updating your profile.</p>
@@ -110,13 +110,13 @@ export default function BookPage() {
         </div>
       </section>
 
-      <section className="book-mid-cta"><div className="site-shell"><p>Before you rewrite another section of your LinkedIn® profile...</p><h2>Learn what recruiters are actually searching for.</h2><BookButton children="Get Found. Noticed. Hired." /><small>Coming soon exclusively on Amazon</small></div></section>
+      <section className="book-mid-cta"><div className="site-shell"><p>Before you rewrite another section of your LinkedIn® profile...</p><h2>Learn what recruiters are actually searching for.</h2><BookButton children="Get Found Noticed Hired" /><small>Coming soon exclusively on Amazon</small></div></section>
 
       <section className="book-final-sales">
         <div className="site-shell book-final-grid">
-          <div className="book-final-art"><img src="/found-noticed-hired.webp" alt="Found. Noticed. Hired. book cover" /></div>
+          <div className="book-final-art"><img src="/found-noticed-hired.webp" alt="Found Noticed Hired book cover" /></div>
           <div>
-            <p className="eyebrow">Found. Noticed. Hired.</p>
+            <p className="eyebrow">Found Noticed Hired</p>
             <h2>Before a recruiter can decide whether you might be right for a job, they have to find you.</h2>
             <p>And once they find you, they need to understand you.</p>
             <p className="book-final-line">Get found. Get understood. Give them a reason to keep reading.</p>
@@ -129,7 +129,7 @@ export default function BookPage() {
       <section className="book-author-note">
         <div className="site-shell">
           <p>Learn more about JGO Hire, career coaching, and additional job-search resources at <Link href="/">jgohire.com</Link>.</p>
-          <small>LinkedIn® is a registered trademark of LinkedIn Corporation. Found, Noticed, Hired, Jennifer Gordon, JGO Hire, and JG Collective LLC are not affiliated with, sponsored by, or endorsed by LinkedIn Corporation.</small>
+          <small>LinkedIn® is a registered trademark of LinkedIn Corporation. Found Noticed Hired, Jennifer Gordon, JGO Hire, and JG Collective LLC are not affiliated with, sponsored by, or endorsed by LinkedIn Corporation.</small>
         </div>
       </section>
     </main>
