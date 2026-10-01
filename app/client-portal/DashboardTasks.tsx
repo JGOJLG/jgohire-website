@@ -47,7 +47,8 @@ export default function DashboardTasks({userId,initialTasks,suggestedActions,com
    <input className="cp-input cp-task-date" type="date" value={dueDate} onChange={event=>setDueDate(event.target.value)} aria-label="Due date"/>
    <button className="cp-button" disabled={busy||!title.trim()} onClick={addTask}>{busy?"Adding...":"+ Add task"}</button>
   </div>
-  {visibleActions.length?<div className="cp-todo-list cp-combined-next-moves">{visibleActions.slice(0,5).map(action=><div className={"cp-todo"+(action.urgent?" urgent":"")} key={action.key}><button className="cp-check" aria-label={"Mark "+action.title+" complete"} onClick={()=>completeAction(action.key)}></button><div className="cp-todo-copy"><strong>{action.title}</strong><span>{action.detail}</span></div>{action.href?<a className="cp-todo-action" href={action.href}>{action.cta||"Do it"}</a>:null}</div>)}</div>:null}\n  <div className="cp-task-list">
+  {visibleActions.length?<div className="cp-todo-list cp-combined-next-moves">{visibleActions.slice(0,5).map(action=><div className={"cp-todo"+(action.urgent?" urgent":"")} key={action.key}><button className="cp-check" aria-label={"Mark "+action.title+" complete"} onClick={()=>completeAction(action.key)}></button><div className="cp-todo-copy"><strong>{action.title}</strong><span>{action.detail}</span></div>{action.href?<a className="cp-todo-action" href={action.href}>{action.cta||"Do it"}</a>:null}</div>)}</div>:null}
+  <div className="cp-task-list">
    {tasks.length?tasks.map(task=><div className={"cp-task-row"+(task.completed?" completed":"")} key={task.id}>
     <button className="cp-task-check" onClick={()=>toggleTask(task)} aria-label={task.completed?"Mark incomplete":"Mark complete"}>{task.completed?"X":""}</button>
     <div className="cp-task-copy"><strong>{task.title}</strong>{task.due_date?<small>Due {new Date(task.due_date+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"})}</small>:null}</div>
