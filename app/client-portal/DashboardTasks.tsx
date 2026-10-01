@@ -1,11 +1,53 @@
 "use client";
 import {useState} from "react";
 import {createClient} from "@/lib/supabase/client";
+
 type Task={id:number;user_id:string;title:string;due_date:string|null;completed:boolean;created_at:string;updated_at:string};
+
 export default function DashboardTasks({userId,initialTasks}:{userId:string;initialTasks:Task[]}){
- const s=createClient();const[tasks,setTasks]=useState<Task[]>(initialTasks);const[title,setTitle]=useState("");const[due,setDue]=useState("");const[busy,setBusy]=useState(false);
- async function add(){if(!title.trim()||busy)return;setBusy(true);const{data,error}=await s.from("client_dashboard_tasks").insert({user_id:userId,title:title.trim(),due_date:due||null}).select("*").single();setBusy(false);if(error||!data){alert("Could not add that task. Please try again.");return}const added=data as unknown as Task;setTasks(v=>[...v,added].sort((a,b)=>(a.completed===b.completed?String(a.due_date||"9999").localeCompare(String(b.due_date||"9999")):Number(a.completed)-Number(b.completed)));setTitle("");setDue("")}
- async function toggle(t:Task){const next=!t.completed;const{data,error}=await s.from("client_dashboard_tasks").update({completed:next,updated_at:new Date().toISOString()}).eq("id",t.id).eq("user_id",userId).select("*").single();if(error||!data){alert("Could not update that task.");return}const updated=data as unknown as Task;setTasks(v=>v.map(x=>x.id===t.id?updated:x))}
- async function remove(t:Task){const{data,error}=await s.from("client_dashboard_tasks").delete().eq("id",t.id).eq("user_id",userId).select("id");if(error||!data?.length){alert("Could not delete that task.");return}setTasks(v=>v.filter(x=>x.id!==t.id))}
- return <div className="cp-card cp-dashboard-tasks"><div className="cp-section-head"><div><p className="cp-eyebrow">My tasks</p><h2>What do you need to get done?</h2><p className="cp-muted">Add anything here, even if it is not tied to a job.</p></div></div><div className="cp-task-add"><input className="cp-input" value={title} onChange={e=>setTitle(e.target.value)} onKeyDown={e=>{if(e.key==="Enter")add()}} placeholder="Add a task..." aria-label="Task"/><input className="cp-input cp-task-date" type="date" value={due} onChange={e=>setDue(e.target.value)} aria-label="Due date"/><button className="cp-button" disabled={busy||!title.trim()} onClick={add}>{busy?"Adding...":"+ Add task"}</button></div><div className="cp-task-list">{tasks.length?tasks.map(t=><div className={"cp-task-row"+(t.completed?" completed":"")} key={t.id}><button className="cp-task-check" onClick={()=>toggle(t)} aria-label={t.completed?"Mark incomplete":"Mark complete"}>{t.completed?"Done":""}</button><div className="cp-task-copy"><strong>{t.title}</strong>{t.due_date?<small>Due {new Date(t.due_date+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"})}</small>:null}</div><button className="cp-task-delete" onClick={()=>remove(t)} aria-label="Delete task">Delete</button></div>):<div className="cp-task-empty">No personal tasks yet. Add one above.</div>}</div></div>
+ const supabase=createClient();
+ const[tasks,setTasks]=useState<Task[]>(initialTasks);
+ const[title,setTitle]=useState("");
+ const[dueDate,setDueDate]=useState("");
+ const[busy,setBusy]=useState(false);
+
+ async function addTask(){
+  const cleanTitle=title.trim();
+  if(!cleanTitle||busy)return;
+  setBusy(true);
+  const result=await supabase.from("client_dashboard_tasks").insert({user_id:userId,title:cleanTitle,due_date:dueDate||null}).select().single();
+  setBusy(false);
+  if(result.error||!result.data){window.alert("Could not add that task. Please try again.");return}
+  setTasks(current=>[...current,result.data as Task]);
+  setTitle("");
+  setDueDate("");
+ }
+
+ async function toggleTask(task:Task){
+  const result=await supabase.from("client_dashboard_tasks").update({completed:!task.completed,updated_at:new Date().toISOString()}).eq("id",task.id).eq("user_id",userId).select().single();
+  if(result.error||!result.data){window.alert("Could not update that task.");return}
+  setTasks(current=>current.map(item=>item.id===task.id?result.data as Task:item));
+ }
+
+ async function deleteTask(task:Task){
+  const result=await supabase.from("client_dashboard_tasks").delete().eq("id",task.id).eq("user_id",userId);
+  if(result.error){window.alert("Could not delete that task.");return}
+  setTasks(current=>current.filter(item=>item.id!==task.id));
+ }
+
+ return <div className="cp-card cp-dashboard-tasks">
+  <div className="cp-section-head"><div><p className="cp-eyebrow">My tasks</p><h2>What do you need to get done?</h2><p className="cp-muted">Add anything here, even if it is not tied to a job.</p></div></div>
+  <div className="cp-task-add">
+   <input className="cp-input" value={title} onChange={event=>setTitle(event.target.value)} placeholder="Add a task..." aria-label="Task"/>
+   <input className="cp-input cp-task-date" type="date" value={dueDate} onChange={event=>setDueDate(event.target.value)} aria-label="Due date"/>
+   <button className="cp-button" disabled={busy||!title.trim()} onClick={addTask}>{busy?"Adding...":"+ Add task"}</button>
+  </div>
+  <div className="cp-task-list">
+   {tasks.length?tasks.map(task=><div className={"cp-task-row"+(task.completed?" completed":"")} key={task.id}>
+    <button className="cp-task-check" onClick={()=>toggleTask(task)} aria-label={task.completed?"Mark incomplete":"Mark complete"}>{task.completed?"X":""}</button>
+    <div className="cp-task-copy"><strong>{task.title}</strong>{task.due_date?<small>Due {new Date(task.due_date+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"})}</small>:null}</div>
+    <button className="cp-task-delete" onClick={()=>deleteTask(task)} aria-label="Delete task">Delete</button>
+   </div>):<div className="cp-task-empty">No personal tasks yet. Add one above.</div>}
+  </div>
+ </div>;
 }
