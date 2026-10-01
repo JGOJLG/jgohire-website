@@ -295,3 +295,21 @@ linear-gradient(180deg,#f8f6f1 0%,#f4f2ed 100%)}
 .cp-job-modal .cp-form-row{grid-template-columns:1fr}
 .cp-job-modal .cp-section-head{align-items:flex-start}
 }
+
+
+/* Dashboard launchpad and compact purchased resources */
+.cp-home-launchpad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.cp-launch-card{min-height:112px;padding:17px 18px;border-radius:19px;text-decoration:none;color:#222329;display:flex;align-items:center;gap:14px;border:1px solid rgba(31,32,36,.045);transition:transform .16s ease,box-shadow .16s ease;box-shadow:0 8px 24px rgba(31,32,36,.035)}
+.cp-launch-card:hover{transform:translateY(-2px);box-shadow:0 13px 30px rgba(31,32,36,.075)}
+.cp-launch-job{background:#e5f4ec}.cp-launch-track{background:#eee8ff}.cp-launch-message{background:#fff0cf}.cp-launch-docs{background:#e4effb}
+.cp-launch-icon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.7);font-size:12px;font-weight:900;flex:0 0 auto}
+.cp-launch-job .cp-launch-icon{font-size:23px}
+.cp-launch-card div{display:grid;gap:4px}.cp-launch-card strong{font-size:15px}.cp-launch-card small{font-size:11px;color:#70727a;font-weight:650}
+.cp-member-resource-strip{margin-top:12px}
+.cp-member-resource-link{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:13px;padding:13px 16px;border:1px solid #e3e4e6;border-radius:17px;background:rgba(255,255,255,.88);text-decoration:none;color:#24252a;box-shadow:0 6px 18px rgba(31,32,36,.025)}
+.cp-resource-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#e4f4ec;color:#294936;font-size:11px;font-weight:900}
+.cp-member-resource-link>div{display:grid;grid-template-columns:auto 1fr;column-gap:9px;align-items:baseline}
+.cp-resource-kicker{grid-column:1/-1;color:#7b806f;text-transform:uppercase;letter-spacing:.08em;font-size:8px;font-weight:900;margin-bottom:2px}
+.cp-member-resource-link strong{font-size:13px}.cp-member-resource-link small{font-size:10px;color:#777a81}
+.cp-home-simple-hero{padding-bottom:20px!important}
+@media(max-width:800px){.cp-home-launchpad{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.cp-launch-card{min-height:88px;padding:12px;border-radius:16px;gap:10px}.cp-launch-icon{width:38px;height:38px;border-radius:12px}.cp-launch-card strong{font-size:13px}.cp-launch-card small{font-size:9px}.cp-member-resource-link{padding:11px 12px}.cp-member-resource-link>div{display:grid;grid-template-columns:1fr}.cp-member-resource-link small{margin-top:2px}}
