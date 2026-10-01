@@ -21,6 +21,16 @@ type InterviewRound = {
   people?: InterviewPerson[];
 };
 
+type MessageLog = {
+  id: string;
+  to: string;
+  via: string;
+  via_other: string;
+  content: string;
+  date_sent: string;
+  created_at: string;
+};
+
 type Job = {
   id: number;
   user_id: string;
@@ -44,6 +54,7 @@ type Job = {
   remote_type: string | null;
   priority: string | null;
   interview_rounds?: InterviewRound[];
+  message_history?: MessageLog[];
   followed_company_linkedin: boolean;
   archived_at: string | null;
 };
@@ -109,6 +120,7 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
   const [saveState, setSaveState] = useState<Record<number, string>>({});
   const [showAddDetails, setShowAddDetails] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
+  const [messageVia, setMessageVia] = useState<Record<number, string>>({});
 
   const selectedJob = jobs.find((j) => j.id === selectedJobId) || null;
   const activeJobs = useMemo(() => jobs.filter((j) => !j.archived_at), [jobs]);
@@ -315,6 +327,46 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
     setBusy(false);
   }
 
+  async function addJobMessage(job: Job, fd: FormData) {
+    setBusy(true);
+    const entry: MessageLog = {
+      id: crypto.randomUUID(),
+      to: String(fd.get("message_to") || "").trim(),
+      via: String(fd.get("via") || "").trim(),
+      via_other: String(fd.get("via_other") || "").trim(),
+      content: String(fd.get("content") || "").trim(),
+      date_sent: String(fd.get("date_sent") || "").trim(),
+      created_at: new Date().toISOString(),
+    };
+    const next = [...(job.message_history || []), entry];
+    const { data, error } = await s.from("client_job_applications")
+      .update({ message_history: next, updated_at: new Date().toISOString() })
+      .eq("id", job.id)
+      .eq("user_id", userId)
+      .select("*")
+      .single();
+    if (!error && data) {
+      setJobs((v) => v.map((x) => x.id === job.id ? data as Job : x));
+      setMessageVia((v) => ({ ...v, [job.id]: "" }));
+      const form = document.getElementById(`job-message-form-${job.id}`) as HTMLFormElement | null;
+      form?.reset();
+    } else {
+      setSaveState((v) => ({ ...v, [job.id]: "Couldn’t save message. Please try again." }));
+    }
+    setBusy(false);
+  }
+
+  async function removeJobMessage(job: Job, messageId: string) {
+    const next = (job.message_history || []).filter((m) => m.id !== messageId);
+    const { data, error } = await s.from("client_job_applications")
+      .update({ message_history: next, updated_at: new Date().toISOString() })
+      .eq("id", job.id)
+      .eq("user_id", userId)
+      .select("*")
+      .single();
+    if (!error && data) setJobs((v) => v.map((x) => x.id === job.id ? data as Job : x));
+  }
+
   function addInterviewRound(job: Job) {
     const rounds = job.interview_rounds || [];
     patch(job.id, "interview_rounds", [...rounds, {
@@ -493,6 +545,51 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
             : <button type="button" className="cp-button secondary" onClick={() => archiveJob(selectedJob)} disabled={busy}>Archive job</button>}
           <button type="button" className="cp-button secondary" onClick={() => remove(selectedJob)}>Remove</button>{saveState[selectedJob.id] ? <span className="cp-muted" style={{ fontWeight: 700 }}>{saveState[selectedJob.id]}</span> : null}</div>
         </div>
+
+        <section className="cp-section cp-card" style={{ padding: 18, background: "#fbfcfa", border: "1px solid #dde5db" }}>
+          <div className="cp-section-head" style={{ marginBottom: 12 }}>
+            <div>
+              <p className="cp-eyebrow">Messages</p>
+              <h3 style={{ marginBottom: 4 }}>Message history</h3>
+              <p className="cp-muted">Keep messages you sent for this job in one place so you can reference them later.</p>
+            </div>
+          </div>
+
+          {(selectedJob.message_history || []).length ? <div style={{ display: "grid", gap: 10, marginBottom: 12 }}>
+            {[...(selectedJob.message_history || [])].reverse().map((m) => (
+              <details className="cp-card" key={m.id} style={{ padding: 14, background: "#fff" }}>
+                <summary style={{ cursor: "pointer", fontWeight: 800 }}>
+                  {m.to || "Message"}{m.via ? ` · ${m.via === "Other" && m.via_other ? m.via_other : m.via}` : ""}{m.date_sent ? ` · ${m.date_sent}` : ""}
+                </summary>
+                <div style={{ marginTop: 12 }}>
+                  {m.content ? <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.6 }}>{m.content}</div> : <p className="cp-muted">No message content added.</p>}
+                  <button type="button" className="cp-button secondary" style={{ marginTop: 12 }} onClick={() => removeJobMessage(selectedJob, m.id)}>Remove message</button>
+                </div>
+              </details>
+            ))}
+          </div> : <p className="cp-muted" style={{ marginBottom: 12 }}>No messages logged yet.</p>}
+
+          <details className="cp-card" style={{ padding: 14, background: "#fff" }}>
+            <summary style={{ cursor: "pointer", fontWeight: 800 }}>+ Add message</summary>
+            <form id={`job-message-form-${selectedJob.id}`} action={(fd) => addJobMessage(selectedJob, fd)} className="cp-form" style={{ marginTop: 12 }}>
+              <div className="cp-form-row">
+                <label className="cp-label">Message to<input className="cp-input" name="message_to" placeholder="Name or person" /></label>
+                <label className="cp-label">Via
+                  <select className="cp-select" name="via" defaultValue="" onChange={(e) => setMessageVia((v) => ({ ...v, [selectedJob.id]: e.target.value }))}>
+                    <option value="">Choose</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Email">Email</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+              </div>
+              {messageVia[selectedJob.id] === "Other" ? <label className="cp-label">Other method<input className="cp-input" name="via_other" placeholder="Text, referral, company portal..." /></label> : null}
+              <label className="cp-label">Message content<textarea className="cp-textarea" name="content" rows={6} placeholder="Paste or type the message you sent" /></label>
+              <label className="cp-label">Date sent<input className="cp-input" name="date_sent" type="date" /></label>
+              <button className="cp-button secondary" disabled={busy}>Save message</button>
+            </form>
+          </details>
+        </section>
 
         <section className="cp-section cp-card" style={{ padding: 18, background: "#fbfcfa", border: "1px solid #dde5db" }}>
           <div className="cp-section-head" style={{ marginBottom: 14 }}>
