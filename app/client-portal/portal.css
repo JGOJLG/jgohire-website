@@ -326,3 +326,7 @@ linear-gradient(180deg,#f8f6f1 0%,#f4f2ed 100%)}
 .cp-task-delete{border:0;background:transparent;color:#7b7d82;font-size:11px;font-weight:700;cursor:pointer;padding:6px}
 .cp-task-delete:hover{color:#24252a}.cp-task-empty{padding:15px;border-radius:13px;background:#f6f7f5;color:#777a81;font-size:12px}
 @media(max-width:700px){.cp-dashboard-tasks{padding:16px}.cp-task-add{grid-template-columns:1fr}.cp-task-date{width:100%}.cp-task-add .cp-button{width:100%}}
+
+/* Unified dashboard task card */
+.cp-combined-next-moves{margin-top:14px;margin-bottom:10px;padding-bottom:12px;border-bottom:1px solid #ecece8}
+.cp-dashboard-tasks .cp-section-head{margin-bottom:4px}
