@@ -510,16 +510,16 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
                 <label className="cp-label">Date / time<input className="cp-input" type="datetime-local" value={round.date} onChange={(e) => updateRound(selectedJob, round.id, "date", e.target.value)} /></label>
 
                 <div style={{ marginTop: 4 }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
-                    <strong style={{ fontSize: 12 }}>Who is this interview with?</strong>
-                    <button type="button" className="cp-link" onClick={() => addInterviewPerson(selectedJob, round.id)}>+ Add person</button>
+                  <strong style={{ fontSize: 12, display: "block", marginBottom: 8 }}>Who is this interview with?</strong>
+                  <div style={{ height: 238, overflowY: "auto", paddingRight: 4, marginBottom: 8 }}>
+                    {(round.people || []).length ? (round.people || []).map((person, personIndex) => <div key={person.id} className="cp-card" style={{ padding: 10, marginBottom: 8, background: "#fff" }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 6 }}><span className="cp-muted" style={{ fontSize: 11, fontWeight: 800 }}>Person {personIndex + 1}</span>{(round.people || []).length > 1 ? <button type="button" className="cp-link" onClick={() => removeInterviewPerson(selectedJob, round.id, person.id)}>Remove</button> : null}</div>
+                      <label className="cp-label">Name<input className="cp-input" value={person.name} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "name", e.target.value)} placeholder="Name" /></label>
+                      <label className="cp-label">Title<input className="cp-input" value={person.title} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "title", e.target.value)} placeholder="Hiring Manager, Recruiter, VP..." /></label>
+                      <label className="cp-label">LinkedIn profile<input className="cp-input" value={person.linkedin} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "linkedin", e.target.value)} placeholder="Paste LinkedIn profile" /></label>
+                    </div>) : <div className="cp-muted" style={{ padding: "12px 2px" }}>No interviewer added yet.</div>}
                   </div>
-                  {(round.people || []).length ? (round.people || []).map((person, personIndex) => <div key={person.id} className="cp-card" style={{ padding: 10, marginBottom: 8, background: "#fff" }}>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 6 }}><span className="cp-muted" style={{ fontSize: 11, fontWeight: 800 }}>Person {personIndex + 1}</span>{(round.people || []).length > 1 ? <button type="button" className="cp-link" onClick={() => removeInterviewPerson(selectedJob, round.id, person.id)}>Remove</button> : null}</div>
-                    <label className="cp-label">Name<input className="cp-input" value={person.name} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "name", e.target.value)} placeholder="Name" /></label>
-                    <label className="cp-label">Title<input className="cp-input" value={person.title} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "title", e.target.value)} placeholder="Hiring Manager, Recruiter, VP..." /></label>
-                    <label className="cp-label">LinkedIn profile<input className="cp-input" value={person.linkedin} onChange={(e) => updateInterviewPerson(selectedJob, round.id, person.id, "linkedin", e.target.value)} placeholder="Paste LinkedIn profile" /></label>
-                  </div>) : <button type="button" className="cp-button secondary" onClick={() => addInterviewPerson(selectedJob, round.id)} style={{ width: "100%" }}>+ Add interviewer</button>}
+                  <button type="button" className="cp-button secondary" onClick={() => addInterviewPerson(selectedJob, round.id)} style={{ width: "100%", padding: "8px 12px" }}>+ Add person</button>
                 </div>
 
                 <label className="cp-label">Status<select className="cp-select" value={round.status} onChange={(e) => updateRound(selectedJob, round.id, "status", e.target.value)}>{roundStatuses.map((x) => <option key={x}>{x}</option>)}</select></label>
