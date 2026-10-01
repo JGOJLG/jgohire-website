@@ -392,8 +392,8 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
       </div></div> : <div className="cp-card cp-empty">No jobs yet. Add your first one above.</div>}
     </section>
 
-    {selectedJob ? <div className="cp-job-modal-backdrop" role="dialog" aria-modal="true" className="cp-job-modal-backdrop" aria-label={`${selectedJob.company || "Job"} details`} onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedJobId(null); }} style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(20,30,22,.52)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
-      <div className="cp-card cp-job-modal" style={{ width: "min(980px, 100%)", maxHeight: "92vh", overflowY: "auto", padding: 22, boxShadow: "0 24px 70px rgba(0,0,0,.22)" }}>
+    {selectedJob ? <div className="cp-job-modal-backdrop" role="dialog" aria-modal="true" aria-label={`${selectedJob.company || "Job"} details`} onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedJobId(null); }} style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(20,30,22,.52)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
+      <div className="cp-card" style={{ width: "min(980px, 100%)", maxHeight: "92vh", overflowY: "auto", padding: 22, boxShadow: "0 24px 70px rgba(0,0,0,.22)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "flex-start", marginBottom: 18 }}><div><p className="cp-eyebrow">Job details</p><h2 style={{ marginBottom: 4 }}>{selectedJob.company || "Company not added"}</h2><p className="cp-muted">{selectedJob.job_title || "Job title not added"}</p></div><button type="button" className="cp-button secondary" onClick={() => setSelectedJobId(null)}>Close</button></div>
 
         <section className="cp-card" style={{ padding: 16, background: "#f8faf7", marginBottom: 18 }}>
