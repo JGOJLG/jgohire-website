@@ -44,6 +44,7 @@ type Job = {
   remote_type: string | null;
   priority: string | null;
   interview_rounds?: InterviewRound[];
+  followed_company_linkedin: boolean;
 };
 
 type Contact = {
@@ -59,6 +60,9 @@ type Contact = {
   outreach_method: string | null;
   outreach_date: string | null;
   outreach_note: string | null;
+  connected_on_linkedin: boolean;
+  message_sent: boolean;
+  follow_up_sent: boolean;
 };
 
 const statuses = [
@@ -167,6 +171,9 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
         outreach_date: String(fd.get("contact_date") || "").trim() || null,
         outreach_note: String(fd.get("contact_outreach_note") || "").trim() || null,
         notes: String(fd.get("contact_notes") || "").trim() || null,
+        connected_on_linkedin: false,
+        message_sent: false,
+        follow_up_sent: false,
       }).select("*").single();
       if (contact) setContacts((v) => [...v, contact as Contact]);
     }
@@ -226,6 +233,32 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
     setBusy(false);
   }
 
+  async function toggleCompanyLinkedIn(job: Job) {
+    const next = !job.followed_company_linkedin;
+    setJobs((v) => v.map((j) => j.id === job.id ? { ...j, followed_company_linkedin: next } : j));
+    const { error } = await s.from("client_job_applications")
+      .update({ followed_company_linkedin: next, updated_at: new Date().toISOString() })
+      .eq("id", job.id)
+      .eq("user_id", userId);
+    if (error) {
+      setJobs((v) => v.map((j) => j.id === job.id ? { ...j, followed_company_linkedin: !next } : j));
+      setSaveState((v) => ({ ...v, [job.id]: "Couldn’t save. Please try again." }));
+    }
+  }
+
+  async function toggleContactProgress(contact: Contact, key: "connected_on_linkedin" | "message_sent" | "follow_up_sent") {
+    const next = !contact[key];
+    setContacts((v) => v.map((x) => x.id === contact.id ? { ...x, [key]: next } : x));
+    const { error } = await s.from("client_job_contacts")
+      .update({ [key]: next })
+      .eq("id", contact.id)
+      .eq("user_id", userId)
+      .eq("job_id", contact.job_id);
+    if (error) {
+      setContacts((v) => v.map((x) => x.id === contact.id ? { ...x, [key]: !next } : x));
+    }
+  }
+
   async function addContact(jobId: number, fd: FormData) {
     const name = String(fd.get("name") || "").trim();
     if (!name) return;
@@ -242,6 +275,9 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
       outreach_date: String(fd.get("date") || "").trim() || null,
       outreach_note: String(fd.get("outreach_note") || "").trim() || null,
       notes: String(fd.get("notes") || "").trim() || null,
+      connected_on_linkedin: false,
+      message_sent: false,
+      follow_up_sent: false,
     }).select("*").single();
     if (!error && data) setContacts((v) => [...v, data as Contact]);
     setBusy(false);
@@ -403,7 +439,74 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}><button type="button" className="cp-button" onClick={() => save(selectedJob)} disabled={busy}>{saveState[selectedJob.id] === "Saving..." ? "Saving..." : "Save changes"}</button>{selectedJob.job_url?.startsWith("http") ? <a className="cp-button secondary" href={selectedJob.job_url} target="_blank" rel="noreferrer">Open posting</a> : null}<button type="button" className="cp-button secondary" onClick={() => remove(selectedJob)}>Remove</button>{saveState[selectedJob.id] ? <span className="cp-muted" style={{ fontWeight: 700 }}>{saveState[selectedJob.id]}</span> : null}</div>
         </div>
 
-        <div className="cp-section"><p className="cp-eyebrow">People connected to this job</p><div className="cp-contact-list">{contacts.filter((c) => c.job_id === selectedJob.id).map((c) => <div className="cp-contact" key={c.id}><div className="cp-contact-head"><strong>{c.name}</strong>{c.outreach_method ? <span className="cp-badge">{c.outreach_method}</span> : null}</div>{c.title ? <div>{c.title}</div> : null}{c.linkedin_url ? <a className="cp-link" href={c.linkedin_url} target="_blank" rel="noreferrer">LinkedIn profile</a> : null}{c.email ? <div>{c.email}</div> : null}{c.phone ? <div>{c.phone}</div> : null}{c.outreach_note ? <div className="cp-contact-note">{c.outreach_note}</div> : null}{c.notes ? <div className="cp-muted">{c.notes}</div> : null}</div>)}</div><details className="cp-card" style={{ padding: 14 }}><summary style={{ cursor: "pointer", fontWeight: 800 }}>+ Add another contact</summary><form action={(fd) => addContact(selectedJob.id, fd)} className="cp-form" style={{ marginTop: 12 }}>{contactFields()}<button className="cp-button secondary" disabled={busy}>Add person</button></form></details></div>
+        <section className="cp-section cp-card" style={{ padding: 18, background: "#fbfcfa", border: "1px solid #dde5db" }}>
+          <div className="cp-section-head" style={{ marginBottom: 14 }}>
+            <div>
+              <p className="cp-eyebrow">Networking</p>
+              <h3 style={{ marginBottom: 4 }}>LinkedIn & outreach</h3>
+              <p className="cp-muted">Keep the relationship steps simple. Check each item as you complete it.</p>
+            </div>
+          </div>
+
+          <label style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", border: "1px solid #dfe6dd", borderRadius: 12, background: "#fff", cursor: "pointer", fontWeight: 800 }}>
+            <input
+              type="checkbox"
+              checked={!!selectedJob.followed_company_linkedin}
+              onChange={() => toggleCompanyLinkedIn(selectedJob)}
+              style={{ width: 18, height: 18, accentColor: "#294936" }}
+            />
+            Followed {selectedJob.company || "company"} on LinkedIn
+          </label>
+
+          <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
+            {contacts.filter((c) => c.job_id === selectedJob.id).map((c) => (
+              <div className="cp-card" key={c.id} style={{ padding: 14, background: "#fff" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start", flexWrap: "wrap" }}>
+                  <div>
+                    <strong style={{ fontSize: 15 }}>{c.name}</strong>
+                    {c.title ? <div className="cp-muted" style={{ marginTop: 2 }}>{c.title}</div> : null}
+                    {c.linkedin_url ? <a className="cp-link" href={c.linkedin_url} target="_blank" rel="noreferrer" style={{ display: "inline-block", marginTop: 4 }}>Open LinkedIn</a> : null}
+                  </div>
+                  {(c.email || c.phone) ? <div className="cp-muted" style={{ fontSize: 12, textAlign: "right" }}>{c.email ? <div>{c.email}</div> : null}{c.phone ? <div>{c.phone}</div> : null}</div> : null}
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 8, marginTop: 12 }}>
+                  {[
+                    ["connected_on_linkedin", "Connected"],
+                    ["message_sent", "Message sent"],
+                    ["follow_up_sent", "Follow-up sent"],
+                  ].map(([key, label]) => (
+                    <label key={key} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px", border: "1px solid #e2e8e0", borderRadius: 10, cursor: "pointer", fontSize: 12, fontWeight: 800, background: c[key as "connected_on_linkedin" | "message_sent" | "follow_up_sent"] ? "#eef5ef" : "#fff" }}>
+                      <input
+                        type="checkbox"
+                        checked={!!c[key as "connected_on_linkedin" | "message_sent" | "follow_up_sent"]}
+                        onChange={() => toggleContactProgress(c, key as "connected_on_linkedin" | "message_sent" | "follow_up_sent")}
+                        style={{ width: 16, height: 16, accentColor: "#294936" }}
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+
+                {(c.outreach_note || c.notes) ? <details style={{ marginTop: 10 }}>
+                  <summary className="cp-link" style={{ cursor: "pointer" }}>Contact notes</summary>
+                  <div style={{ marginTop: 8 }}>
+                    {c.outreach_note ? <div className="cp-contact-note">{c.outreach_note}</div> : null}
+                    {c.notes ? <div className="cp-muted" style={{ marginTop: 6 }}>{c.notes}</div> : null}
+                  </div>
+                </details> : null}
+              </div>
+            ))}
+          </div>
+
+          <details className="cp-card" style={{ padding: 14, marginTop: 12, background: "#fff" }}>
+            <summary style={{ cursor: "pointer", fontWeight: 800 }}>+ Add contact</summary>
+            <form action={(fd) => addContact(selectedJob.id, fd)} className="cp-form" style={{ marginTop: 12 }}>
+              {contactFields()}
+              <button className="cp-button secondary" disabled={busy}>Add person</button>
+            </form>
+          </details>
+        </section>
       </div>
     </div> : null}
   </>;
