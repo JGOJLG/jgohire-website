@@ -169,3 +169,24 @@ linear-gradient(180deg,#f8f6f1 0%,#f4f2ed 100%)}
 .cp-sidebar-foot{display:none}
 .cp-home-simple-hero{padding-top:9px}
 }
+
+
+/* Full-width dashboard with top navigation */
+.client-portal .cp-sidebar{position:static!important;width:auto!important;height:auto!important;background:transparent!important;border:0!important}
+.client-portal .cp-main{margin-left:0!important}
+.cp-dashboard-topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);border-bottom:1px solid #e6e6e9;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.cp-dashboard-topbar .cp-header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.cp-dashboard-topbar .cp-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
+.cp-dashboard-topbar .cp-brand-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#202127;color:#fff;font-size:10px;font-weight:900}
+.cp-dashboard-topbar .cp-brand-copy{display:grid;gap:0}.cp-dashboard-topbar .cp-brand-copy strong{font-size:14px;color:#202127}.cp-dashboard-topbar .cp-brand-copy small{font-size:9px;color:#8a8c94}
+.client-portal .cp-dashboard-topbar .cp-nav{display:flex!important;align-items:center;justify-content:flex-end;gap:5px}
+.client-portal .cp-dashboard-topbar .cp-nav a,.cp-topbar-logout{white-space:nowrap;padding:9px 11px;border:0;border-radius:11px;background:transparent;color:#656870;text-decoration:none;font:inherit;font-size:11px;font-weight:800;cursor:pointer}
+.client-portal .cp-dashboard-topbar .cp-nav a:hover,.client-portal .cp-dashboard-topbar .cp-nav a.active{background:#f0edf8;color:#302943}
+.cp-topbar-logout{border:1px solid #e3e3e6;background:#fff}
+@media(max-width:900px){
+.cp-dashboard-topbar .cp-header-inner{min-height:0;padding:9px 10px 8px;flex-wrap:wrap;gap:8px}
+.client-portal .cp-dashboard-topbar .cp-nav{width:100%;justify-content:flex-start;overflow-x:auto;gap:6px;padding-bottom:2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.client-portal .cp-dashboard-topbar .cp-nav::-webkit-scrollbar{display:none}
+.client-portal .cp-dashboard-topbar .cp-nav a,.cp-topbar-logout{flex:0 0 auto;padding:8px 11px;border:1px solid #e6e6e9;border-radius:12px;background:#fff;font-size:10px}
+.client-portal .cp-dashboard-topbar .cp-nav a.active{background:#eee8ff;border-color:#ded4f5}
+}
