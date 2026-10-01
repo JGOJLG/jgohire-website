@@ -5,9 +5,9 @@ import {createClient} from "@/lib/supabase/client";
 type SavedTemplate={id:number;user_id:string;name:string;body:string;created_at:string;updated_at:string};
 
 const JGO_TEMPLATES=[
-  {name:"Connection Note",timing:"When you send the connection request",body:"Hi {Name}, I recently applied for the {Job Title} role in NYC and wanted to introduce myself. I’m very interested in the opportunity and would love to connect. Thank you for your time!"},
-  {name:"Initial Message",timing:"24 hours after they accept your connection request",body:"Hi {First Name}, thanks for connecting! I’m really interested in the {Role Title} role at {Company}. {1 sentence about why you’re interested in the role}. If you have a few minutes, I’d love to hear anything you’re open to sharing about the team or your experience there."},
-    {name:"Final Follow-Up",timing:"Send about 1 week later",body:"Hi {First Name}, just following up on my note about the {Role Title} role at {Company}. I know things get busy, but I’m still very interested and wanted to stay on your radar. Thanks again!"}
+  {name:"Connection Note",timing:"When you send the connection request",body:"Hi {First Name}, I recently applied for the {Role Title} role in {Location} and wanted to introduce myself. I’m very interested in the opportunity and would love to connect. Thank you for your time!"},
+  {name:"Initial Message",timing:"24 hours after they accept your connection request",body:"Hi {First Name}, thanks for connecting! I’m really interested in the {Role Title} role at {Company}. {1 sentence about why you’re interested in the role}. If you have a few minutes, I’d love to learn more about the role and hear any insight you’re open to sharing about the team or your experience at {Company}. Thanks so much!"},
+    {name:"Final Follow-Up",timing:"Send about 1 week later",body:"Hi {First Name}, just wanted to follow up on my note about the {Role Title} role at {Company}. I know things get busy, but I’m still very interested in the opportunity and wanted to stay on your radar. If you have any insight you’re open to sharing, I’d really appreciate it. Thanks again for connecting!"}
 ];
 
 export default function MessageTemplates({userId,initialTemplates}:{userId:string;initialTemplates:SavedTemplate[]}){
