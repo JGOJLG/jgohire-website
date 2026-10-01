@@ -313,3 +313,16 @@ linear-gradient(180deg,#f8f6f1 0%,#f4f2ed 100%)}
 .cp-member-resource-link strong{font-size:13px}.cp-member-resource-link small{font-size:10px;color:#777a81}
 .cp-home-simple-hero{padding-bottom:20px!important}
 @media(max-width:800px){.cp-home-launchpad{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.cp-launch-card{min-height:88px;padding:12px;border-radius:16px;gap:10px}.cp-launch-icon{width:38px;height:38px;border-radius:12px}.cp-launch-card strong{font-size:13px}.cp-launch-card small{font-size:9px}.cp-member-resource-link{padding:11px 12px}.cp-member-resource-link>div{display:grid;grid-template-columns:1fr}.cp-member-resource-link small{margin-top:2px}}
+
+/* Personal dashboard tasks */
+.cp-dashboard-tasks{padding:22px}
+.cp-task-add{display:grid;grid-template-columns:minmax(0,1fr) 165px auto;gap:9px;align-items:center;margin-top:15px}
+.cp-task-add .cp-input{min-height:44px}
+.cp-task-list{display:grid;gap:8px;margin-top:14px}
+.cp-task-row{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center;padding:11px 12px;border:1px solid #e5e6e2;border-radius:14px;background:#fff}
+.cp-task-check{width:25px;height:25px;border:1.5px solid #b9c8bd;border-radius:8px;background:#f7fbf8;cursor:pointer;font-weight:900}
+.cp-task-copy{display:grid;gap:2px;min-width:0}.cp-task-copy strong{font-size:13px}.cp-task-copy small{font-size:10px;color:#777a81}
+.cp-task-row.completed .cp-task-copy strong{text-decoration:line-through;color:#92958f}.cp-task-row.completed{opacity:.72}
+.cp-task-delete{border:0;background:transparent;color:#7b7d82;font-size:11px;font-weight:700;cursor:pointer;padding:6px}
+.cp-task-delete:hover{color:#24252a}.cp-task-empty{padding:15px;border-radius:13px;background:#f6f7f5;color:#777a81;font-size:12px}
+@media(max-width:700px){.cp-dashboard-tasks{padding:16px}.cp-task-add{grid-template-columns:1fr}.cp-task-date{width:100%}.cp-task-add .cp-button{width:100%}}
