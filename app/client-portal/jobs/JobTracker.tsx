@@ -45,6 +45,7 @@ type Job = {
   priority: string | null;
   interview_rounds?: InterviewRound[];
   followed_company_linkedin: boolean;
+  archived_at: string | null;
 };
 
 type Contact = {
@@ -110,12 +111,14 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
   const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
 
   const selectedJob = jobs.find((j) => j.id === selectedJobId) || null;
+  const activeJobs = useMemo(() => jobs.filter((j) => !j.archived_at), [jobs]);
+  const archivedJobs = useMemo(() => jobs.filter((j) => !!j.archived_at), [jobs]);
   const stats = useMemo(() => ({
-    out: jobs.filter((j) => !["Open / Interested", "Rejected", "Withdrawn", "Closed"].includes(j.status)).length,
-    contacts: contacts.filter((c) => c.outreach_method).length,
-    interviewing: jobs.filter((j) => ["Recruiter Screen", "Interviewing", "Final Interview"].includes(j.status)).length,
-    offers: jobs.filter((j) => j.status === "Offer").length,
-  }), [jobs, contacts]);
+    out: activeJobs.filter((j) => !["Open / Interested", "Rejected", "Withdrawn", "Closed"].includes(j.status)).length,
+    contacts: contacts.filter((c) => c.outreach_method && activeJobs.some((j) => j.id === c.job_id)).length,
+    interviewing: activeJobs.filter((j) => ["Recruiter Screen", "Interviewing", "Final Interview"].includes(j.status)).length,
+    offers: activeJobs.filter((j) => j.status === "Offer").length,
+  }), [activeJobs, contacts]);
 
   function patch(id: number, key: keyof Job, value: string | InterviewRound[]) {
     setJobs((v) => v.map((j) => (j.id === id ? { ...j, [key]: value } : j)));
@@ -229,6 +232,35 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
       setJobs((v) => v.filter((x) => x.id !== job.id));
       setContacts((v) => v.filter((x) => x.job_id !== job.id));
       setSelectedJobId(null);
+    }
+    setBusy(false);
+  }
+
+  async function archiveJob(job: Job) {
+    if (!confirm(`Archive ${job.company || job.job_title || "this job"}? You can restore it anytime from Archived Jobs.`)) return;
+    setBusy(true);
+    const archivedAt = new Date().toISOString();
+    const { error } = await s.from("client_job_applications")
+      .update({ archived_at: archivedAt, archived_by: userId, updated_at: archivedAt })
+      .eq("id", job.id)
+      .eq("user_id", userId);
+    if (!error) {
+      setJobs((v) => v.map((x) => x.id === job.id ? { ...x, archived_at: archivedAt } : x));
+      setSelectedJobId(null);
+    } else {
+      setSaveState((v) => ({ ...v, [job.id]: "Couldn’t archive. Please try again." }));
+    }
+    setBusy(false);
+  }
+
+  async function restoreJob(job: Job) {
+    setBusy(true);
+    const { error } = await s.from("client_job_applications")
+      .update({ archived_at: null, archived_by: null, archive_reason: null, updated_at: new Date().toISOString() })
+      .eq("id", job.id)
+      .eq("user_id", userId);
+    if (!error) {
+      setJobs((v) => v.map((x) => x.id === job.id ? { ...x, archived_at: null } : x));
     }
     setBusy(false);
   }
@@ -380,9 +412,9 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
 
     <section className="cp-section cp-job-list-section">
       <div className="cp-section-head"><div><p className="cp-eyebrow">Your jobs</p><h2>Job tracker</h2><p className="cp-muted">One short row per job. Click any row to open the full details and interview board.</p></div></div>
-      {jobs.length ? <div className="cp-card cp-job-table" style={{ padding: 0, overflowX: "auto" }}><div style={{ minWidth: 760 }}>
+      {activeJobs.length ? <div className="cp-card cp-job-table" style={{ padding: 0, overflowX: "auto" }}><div style={{ minWidth: 760 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px", gap: 12, padding: "10px 16px", borderBottom: "1px solid #e4e8e2", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".05em", color: "#68736a" }}><span>Company</span><span>Job title</span><span>Status</span><span>Next step</span><span /></div>
-        {jobs.map((job) => <div key={job.id} role="button" tabIndex={0} onClick={() => setSelectedJobId(job.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedJobId(job.id); }} style={{ display: "grid", gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px", gap: 12, alignItems: "center", padding: "11px 16px", borderBottom: "1px solid #edf0eb", cursor: "pointer", minHeight: 48 }}>
+        {activeJobs.map((job) => <div key={job.id} role="button" tabIndex={0} onClick={() => setSelectedJobId(job.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedJobId(job.id); }} style={{ display: "grid", gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px", gap: 12, alignItems: "center", padding: "11px 16px", borderBottom: "1px solid #edf0eb", cursor: "pointer", minHeight: 48 }}>
           <strong style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.company || "Company not added"}</strong>
           <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.job_title || "Job title not added"}</span>
           <QuickStatus jobId={job.id} userId={userId} status={job.status} onStatusSaved={(status) => syncStatus(job.id, status)} />
@@ -391,6 +423,26 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
         </div>)}
       </div></div> : <div className="cp-card cp-empty">No jobs yet. Add your first one above.</div>}
     </section>
+
+    {archivedJobs.length ? <section className="cp-section cp-job-list-section" style={{ marginTop: 28 }}>
+      <details className="cp-card" style={{ padding: 0, overflow: "hidden" }}>
+        <summary style={{ cursor: "pointer", padding: "16px 18px", fontWeight: 800, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+          <span>Archived Jobs</span>
+          <span className="cp-muted" style={{ fontSize: 12 }}>{archivedJobs.length} archived</span>
+        </summary>
+        <div style={{ borderTop: "1px solid #e4e8e2" }}>
+          {archivedJobs.map((job) => <div key={job.id} style={{ display: "grid", gridTemplateColumns: "1.3fr 1.5fr 1fr auto", gap: 12, alignItems: "center", padding: "11px 16px", borderBottom: "1px solid #edf0eb" }}>
+            <strong style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.company || "Company not added"}</strong>
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.job_title || "Job title not added"}</span>
+            <span className="cp-muted" style={{ fontSize: 12 }}>{job.status}</span>
+            <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+              <button type="button" className="cp-button secondary" style={{ padding: "7px 10px" }} onClick={() => setSelectedJobId(job.id)}>View</button>
+              <button type="button" className="cp-button secondary" style={{ padding: "7px 10px" }} onClick={() => restoreJob(job)} disabled={busy}>Restore</button>
+            </div>
+          </div>)}
+        </div>
+      </details>
+    </section> : null}
 
     {selectedJob ? <div className="cp-job-modal-backdrop" role="dialog" aria-modal="true" aria-label={`${selectedJob.company || "Job"} details`} onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedJobId(null); }} style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(20,30,22,.52)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
       <div className="cp-card" style={{ width: "min(980px, 100%)", maxHeight: "92vh", overflowY: "auto", padding: 22, boxShadow: "0 24px 70px rgba(0,0,0,.22)" }}>
@@ -436,7 +488,10 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
           <label className="cp-label">Next step<input className="cp-input" value={selectedJob.next_step || ""} onChange={(e) => patch(selectedJob.id, "next_step", e.target.value)} placeholder="2nd interview, follow up, prep, send thank-you..." /></label>
           <label className="cp-label">General notes<textarea className="cp-textarea" value={selectedJob.notes || ""} onChange={(e) => patch(selectedJob.id, "notes", e.target.value)} /></label>
           <details className="cp-card" style={{ padding: 14, background: "#f8faf7" }}><summary style={{ cursor: "pointer", fontWeight: 800 }}>{selectedJob.job_description ? "View / edit saved job description" : "Add the full job description"}</summary><div style={{ marginTop: 12 }}><p className="cp-muted" style={{ marginBottom: 8 }}>Keep the full posting here in case the job disappears online.</p><textarea className="cp-textarea" rows={18} value={selectedJob.job_description || ""} onChange={(e) => patch(selectedJob.id, "job_description", e.target.value)} /></div></details>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}><button type="button" className="cp-button" onClick={() => save(selectedJob)} disabled={busy}>{saveState[selectedJob.id] === "Saving..." ? "Saving..." : "Save changes"}</button>{selectedJob.job_url?.startsWith("http") ? <a className="cp-button secondary" href={selectedJob.job_url} target="_blank" rel="noreferrer">Open posting</a> : null}<button type="button" className="cp-button secondary" onClick={() => remove(selectedJob)}>Remove</button>{saveState[selectedJob.id] ? <span className="cp-muted" style={{ fontWeight: 700 }}>{saveState[selectedJob.id]}</span> : null}</div>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}><button type="button" className="cp-button" onClick={() => save(selectedJob)} disabled={busy}>{saveState[selectedJob.id] === "Saving..." ? "Saving..." : "Save changes"}</button>{selectedJob.job_url?.startsWith("http") ? <a className="cp-button secondary" href={selectedJob.job_url} target="_blank" rel="noreferrer">Open posting</a> : null}{selectedJob.archived_at
+            ? <button type="button" className="cp-button secondary" onClick={() => restoreJob(selectedJob)} disabled={busy}>Restore job</button>
+            : <button type="button" className="cp-button secondary" onClick={() => archiveJob(selectedJob)} disabled={busy}>Archive job</button>}
+          <button type="button" className="cp-button secondary" onClick={() => remove(selectedJob)}>Remove</button>{saveState[selectedJob.id] ? <span className="cp-muted" style={{ fontWeight: 700 }}>{saveState[selectedJob.id]}</span> : null}</div>
         </div>
 
         <section className="cp-section cp-card" style={{ padding: 18, background: "#fbfcfa", border: "1px solid #dde5db" }}>
