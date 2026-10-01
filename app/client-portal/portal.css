@@ -245,3 +245,53 @@ linear-gradient(180deg,#f8f6f1 0%,#f4f2ed 100%)}
 .cp-job-modal-backdrop .cp-section-head .cp-button{width:100%}
 .cp-job-modal-backdrop input,.cp-job-modal-backdrop textarea,.cp-job-modal-backdrop select{font-size:16px}
 }
+
+
+/* Elevated Job Tracker */
+.cp-jobs-page{background:#f7f7f9;padding-top:28px;padding-bottom:60px}
+.cp-jobs-page .cp-shell{max-width:1240px}
+.cp-jobs-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:18px 0 28px;border-bottom:1px solid #e4e4e8}
+.cp-jobs-hero .cp-title{font-family:Arial,sans-serif;font-weight:800;letter-spacing:-.045em;color:#202126}
+.cp-jobs-hero .cp-subtitle{max-width:650px;font-size:14px;color:#737780}
+.cp-jobs-add-jump{flex:0 0 auto;background:#202127!important;border-color:#202127!important;color:#fff!important;border-radius:15px!important}
+.cp-job-tracker-ui .cp-jobs-stats{gap:12px}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat{min-height:138px;padding:21px;border:1px solid rgba(0,0,0,.04);box-shadow:none}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat:nth-child(1){background:#e4f4ec}.cp-job-tracker-ui .cp-jobs-stats .cp-stat:nth-child(2){background:#fff0d5}.cp-job-tracker-ui .cp-jobs-stats .cp-stat:nth-child(3){background:#eee8ff}.cp-job-tracker-ui .cp-jobs-stats .cp-stat:nth-child(4){background:#e6f0fb}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat strong{font-family:Arial,sans-serif;font-size:39px;color:#202126}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat span{color:#61656d;font-weight:800}
+.cp-job-add-card{scroll-margin-top:92px;border:1px solid #e5e5e8!important;border-radius:22px!important;background:linear-gradient(135deg,#fff 0%,#f7fbf8 100%)!important;box-shadow:0 10px 28px rgba(31,32,36,.04)!important;padding:24px!important}
+.cp-job-add-card .cp-section-head h2,.cp-job-list-section .cp-section-head h2{font-size:28px;letter-spacing:-.025em;color:#202126}
+.cp-job-tracker-ui .cp-input,.cp-job-tracker-ui .cp-select,.cp-job-tracker-ui .cp-textarea{border-color:#dedfe3;background:#fff;border-radius:12px}
+.cp-job-tracker-ui .cp-input:focus,.cp-job-tracker-ui .cp-select:focus,.cp-job-tracker-ui .cp-textarea:focus{border-color:#aaa0c8;box-shadow:0 0 0 3px rgba(133,113,185,.09)}
+.cp-job-tracker-ui .cp-button{border-radius:12px}
+.cp-job-list-section{margin-top:28px!important}
+.cp-job-table-card{border:1px solid #e4e4e8!important;border-radius:20px!important;background:#fff!important;box-shadow:0 10px 30px rgba(31,32,36,.035)!important}
+.cp-job-table-inner>div:first-child{background:#f5f4f8;color:#74717c!important}
+.cp-job-table-inner>div:not(:first-child){transition:background .15s ease}
+.cp-job-table-inner>div:not(:first-child):hover{background:#faf9fc}
+.cp-job-modal-backdrop{background:rgba(28,28,33,.48)!important;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.cp-job-modal{border:1px solid rgba(255,255,255,.65)!important;border-radius:24px!important;background:#fbfbfc!important}
+.cp-job-modal>section:first-of-type{background:#f2edfa!important;border:1px solid #e4dcef!important;border-radius:18px!important}
+.cp-job-modal .cp-section.cp-card{background:#eef7f1!important;border-color:#dce9e0!important;border-radius:18px!important}
+.cp-job-modal .cp-card{border-radius:15px}
+@media(max-width:700px){
+.cp-jobs-page{padding-top:16px;padding-bottom:42px}
+.cp-jobs-page .cp-shell{width:calc(100% - 16px)}
+.cp-jobs-hero{align-items:flex-start;flex-direction:column;padding:9px 3px 20px;gap:15px}
+.cp-jobs-hero .cp-title{font-size:39px;line-height:1}
+.cp-jobs-hero .cp-subtitle{font-size:12px;line-height:1.45}
+.cp-jobs-add-jump{width:100%;display:flex;justify-content:center;min-height:45px;align-items:center}
+.cp-job-tracker-ui .cp-jobs-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat{min-height:96px;padding:15px;border-radius:18px}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat strong{font-size:31px}
+.cp-job-tracker-ui .cp-jobs-stats .cp-stat span{font-size:10px}
+.cp-job-add-card{padding:17px!important;border-radius:19px!important}
+.cp-job-add-card .cp-section-head h2,.cp-job-list-section .cp-section-head h2{font-size:24px}
+.cp-job-tracker-ui .cp-form-row{grid-template-columns:1fr}
+.cp-job-table-card{border-radius:18px!important;margin:0}
+.cp-job-table-inner{min-width:680px!important}
+.cp-job-modal-backdrop{padding:8px!important;align-items:flex-end!important}
+.cp-job-modal{width:100%!important;max-height:94vh!important;border-radius:23px 23px 12px 12px!important;padding:17px!important}
+.cp-job-modal .cp-form-row{grid-template-columns:1fr}
+.cp-job-modal .cp-section-head{align-items:flex-start}
+}
