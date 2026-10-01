@@ -3,54 +3,26 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const AUTH_ROUTES = new Set([
-  "/client-portal/login",
-  "/client-portal/signup",
-]);
+const AUTH_ROUTES = new Set(["/client-portal/login","/client-portal/signup"]);
 
-export default function PortalHeader() {
-  const pathname = usePathname();
+const nav=[
+  {href:"/client-portal",label:"Dashboard",icon:"⌂"},
+  {href:"/client-portal/jobs",label:"Job Tracker",icon:"▣"},
+  {href:"/client-portal#message-templates",label:"Message Templates",icon:"✉"},
+  {href:"/client-portal/files",label:"Documents",icon:"□"},
+  {href:"/client-portal/resources",label:"Resources",icon:"◇"},
+];
 
-  if (AUTH_ROUTES.has(pathname)) {
-    return null;
-  }
-
-  return (
-    <header className="cp-header">
-      <div className="cp-shell cp-header-inner">
-        <Link href="/client-portal" className="cp-brand">
-          <strong>JGO HIRE</strong>
-          <span>Client Portal</span>
-        </Link>
-        <nav className="cp-nav" aria-label="Client portal navigation">
-          <Link href="/client-portal">Home</Link>
-          <Link href="/client-portal/jobs">Job Tracker</Link>
-          <Link href="/client-portal#message-templates">Message Templates</Link>
-          <Link href="/client-portal/files">Documents</Link>
-          <Link href="/client-portal/resources">Resources</Link>
-          <form action="/auth/signout" method="post" style={{ display: "contents" }}>
-            <button
-              type="submit"
-              aria-label="Log out of client portal"
-              style={{
-                border: "1px solid #d7dfd2",
-                background: "rgba(255,255,255,.78)",
-                color: "#4d6247",
-                cursor: "pointer",
-                padding: "8px 14px",
-                borderRadius: "999px",
-                font: "inherit",
-                fontSize: "13px",
-                fontWeight: 700,
-                lineHeight: 1,
-                boxShadow: "0 5px 16px rgba(34,48,40,.06)",
-              }}
-            >
-              Log out
-            </button>
-          </form>
-        </nav>
-      </div>
-    </header>
-  );
+export default function PortalHeader(){
+ const pathname=usePathname();
+ if(AUTH_ROUTES.has(pathname))return null;
+ return <aside className="cp-sidebar">
+   <div className="cp-sidebar-inner">
+    <Link href="/client-portal" className="cp-brand cp-sidebar-brand"><span className="cp-brand-mark">JGO</span><span className="cp-brand-copy"><strong>JGO HIRE</strong><small>Career workspace</small></span></Link>
+    <nav className="cp-nav cp-sidebar-nav" aria-label="Client portal navigation">
+      {nav.map(n=><Link key={n.label} href={n.href} className={pathname===n.href||(n.href!=="/client-portal"&&pathname.startsWith(n.href.split("#")[0]))?"active":""}><span className="cp-side-icon">{n.icon}</span><span>{n.label}</span></Link>)}
+    </nav>
+    <div className="cp-sidebar-foot"><span className="cp-sidebar-label">YOUR WORKSPACE</span><p>Everything for your search, in one place.</p><form action="/auth/signout" method="post"><button type="submit" className="cp-sidebar-logout">Log out</button></form></div>
+   </div>
+ </aside>
 }
