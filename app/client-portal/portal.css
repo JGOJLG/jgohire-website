@@ -190,3 +190,58 @@ linear-gradient(180deg,#f8f6f1 0%,#f4f2ed 100%)}
 .client-portal .cp-dashboard-topbar .cp-nav a,.cp-topbar-logout{flex:0 0 auto;padding:8px 11px;border:1px solid #e6e6e9;border-radius:12px;background:#fff;font-size:10px}
 .client-portal .cp-dashboard-topbar .cp-nav a.active{background:#eee8ff;border-color:#ded4f5}
 }
+
+
+/* Elevated Job Tracker */
+.cp-jobs-page{min-height:100vh;background:#f7f7f9}
+.cp-jobs-page .cp-shell{max-width:1240px}
+.cp-jobs-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;padding:24px 0 28px;border-bottom:1px solid #e5e5e8}
+.cp-jobs-hero .cp-title{font-family:Arial,sans-serif;font-size:clamp(40px,4.5vw,58px);font-weight:800;letter-spacing:-.05em;color:#202126}
+.cp-jobs-hero .cp-subtitle{max-width:650px;font-size:14px;color:#737780}
+.cp-jobs-hero-note{max-width:280px;padding:15px 17px;border:1px solid #cfe4d9;border-radius:17px;background:#e4f4ec;display:grid;gap:3px}
+.cp-jobs-hero-note strong{font-size:12px;color:#355d49}.cp-jobs-hero-note span{font-size:10px;line-height:1.45;color:#62736a}
+.cp-jobtracker-ui{display:grid;gap:16px}
+.cp-jobtracker-stats{gap:12px}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat{min-height:132px;padding:20px;border:1px solid rgba(0,0,0,.045);box-shadow:none}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat:nth-child(1){background:#e4f4ec}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat:nth-child(2){background:#fff0c9}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat:nth-child(3){background:#e3effc}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat:nth-child(4){background:#eee8ff}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat strong{font-family:Arial,sans-serif;font-size:38px;font-weight:800;color:#202126}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat span{font-size:11px;font-weight:800;color:#60636b}
+.cp-job-add-panel{border:1px solid #e4e4e7!important;border-radius:22px!important;background:#fff!important;box-shadow:0 8px 26px rgba(31,32,36,.035)!important}
+.cp-job-add-panel .cp-section-head h2,.cp-job-list-section .cp-section-head h2{font-family:Arial,sans-serif;font-size:25px;letter-spacing:-.025em}
+.cp-job-add-panel .cp-input,.cp-job-add-panel .cp-select,.cp-job-add-panel .cp-textarea{background:#fafafa;border-color:#e1e2e5}
+.cp-job-add-panel .cp-input:focus,.cp-job-add-panel .cp-select:focus,.cp-job-add-panel .cp-textarea:focus{background:#fff;border-color:#92b5a2;box-shadow:0 0 0 3px rgba(132,177,154,.12)}
+.cp-job-table{border:1px solid #e4e4e7!important;border-radius:20px!important;background:#fff!important;box-shadow:0 8px 26px rgba(31,32,36,.035)!important}
+.cp-job-table>div>div:first-child{background:#fafafa}
+.cp-job-table>div>div:not(:first-child){transition:background .14s ease,transform .14s ease}
+.cp-job-table>div>div:not(:first-child):hover{background:#f7faf8}
+.cp-job-modal-backdrop{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.cp-job-modal-backdrop>.cp-card{border-radius:24px!important;border:1px solid rgba(255,255,255,.7)!important}
+.cp-jobs-page .cp-button{border-radius:12px}
+.cp-jobs-page .cp-button:not(.secondary){background:#202127;border-color:#202127}
+.cp-jobs-page .cp-badge{border-radius:999px}
+@media(max-width:700px){
+.cp-jobs-page{padding-top:14px}
+.cp-jobs-page .cp-shell{width:calc(100% - 16px)}
+.cp-jobs-hero{align-items:flex-start;flex-direction:column;gap:13px;padding:8px 3px 19px}
+.cp-jobs-hero .cp-title{font-size:39px;line-height:1}
+.cp-jobs-hero .cp-subtitle{font-size:11px;line-height:1.5}
+.cp-jobs-hero-note{max-width:none;width:100%;grid-template-columns:auto 1fr;align-items:center;gap:8px;padding:12px 13px;border-radius:15px}
+.cp-jobtracker-ui{gap:10px}
+.cp-jobtracker-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat{min-height:94px;padding:14px;border-radius:17px}
+.cp-jobs-page .cp-jobtracker-stats .cp-stat strong{font-size:29px}
+.cp-job-add-panel{padding:16px!important;border-radius:19px!important}
+.cp-job-add-panel .cp-form-row{grid-template-columns:1fr}
+.cp-job-add-panel .cp-button{min-height:42px}
+.cp-job-list-section .cp-section-head{padding:0 3px}
+.cp-job-table{border-radius:17px!important}
+.cp-job-modal-backdrop{padding:8px!important;align-items:flex-end!important}
+.cp-job-modal-backdrop>.cp-card{max-height:94vh!important;border-radius:22px 22px 12px 12px!important;padding:17px!important}
+.cp-job-modal-backdrop .cp-form-row{grid-template-columns:1fr}
+.cp-job-modal-backdrop .cp-section-head{align-items:flex-start;flex-direction:column}
+.cp-job-modal-backdrop .cp-section-head .cp-button{width:100%}
+.cp-job-modal-backdrop input,.cp-job-modal-backdrop textarea,.cp-job-modal-backdrop select{font-size:16px}
+}
