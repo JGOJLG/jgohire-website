@@ -347,15 +347,15 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
     <label className="cp-label">Contact notes<input className="cp-input" name={`${prefix}notes`} /></label>
   </>;
 
-  return <>
-    <section className="cp-grid cp-grid-4">
+  return <div className="cp-jobtracker-ui">
+    <section className="cp-grid cp-grid-4 cp-jobtracker-stats">
       <div className="cp-card cp-stat"><strong>{stats.out}</strong><span>Applications out</span></div>
       <div className="cp-card cp-stat"><strong>{stats.contacts}</strong><span>Outreach logged</span></div>
       <div className="cp-card cp-stat"><strong>{stats.interviewing}</strong><span>Interviewing</span></div>
       <div className="cp-card cp-stat"><strong>{stats.offers}</strong><span>Offers</span></div>
     </section>
 
-    <section className="cp-section cp-card">
+    <section className="cp-section cp-card cp-job-add-panel">
       <div className="cp-section-head"><div><p className="cp-eyebrow">Quick add</p><h2>Add a job</h2><p className="cp-muted">Company and job title are all you need to start. Everything else is optional.</p></div></div>
       <form action={addJob} className="cp-form">
         <div className="cp-form-row">
@@ -378,9 +378,9 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
       </form>
     </section>
 
-    <section className="cp-section">
+    <section className="cp-section cp-job-list-section">
       <div className="cp-section-head"><div><p className="cp-eyebrow">Your jobs</p><h2>Job tracker</h2><p className="cp-muted">One short row per job. Click any row to open the full details and interview board.</p></div></div>
-      {jobs.length ? <div className="cp-card" style={{ padding: 0, overflowX: "auto" }}><div style={{ minWidth: 760 }}>
+      {jobs.length ? <div className="cp-card cp-job-table" style={{ padding: 0, overflowX: "auto" }}><div style={{ minWidth: 760 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px", gap: 12, padding: "10px 16px", borderBottom: "1px solid #e4e8e2", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".05em", color: "#68736a" }}><span>Company</span><span>Job title</span><span>Status</span><span>Next step</span><span /></div>
         {jobs.map((job) => <div key={job.id} role="button" tabIndex={0} onClick={() => setSelectedJobId(job.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedJobId(job.id); }} style={{ display: "grid", gridTemplateColumns: "1.4fr 1.6fr 1fr 1.2fr 110px", gap: 12, alignItems: "center", padding: "11px 16px", borderBottom: "1px solid #edf0eb", cursor: "pointer", minHeight: 48 }}>
           <strong style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{job.company || "Company not added"}</strong>
@@ -392,7 +392,7 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
       </div></div> : <div className="cp-card cp-empty">No jobs yet. Add your first one above.</div>}
     </section>
 
-    {selectedJob ? <div role="dialog" aria-modal="true" aria-label={`${selectedJob.company || "Job"} details`} onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedJobId(null); }} style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(20,30,22,.52)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
+    {selectedJob ? <div className="cp-job-modal-backdrop" role="dialog" aria-modal="true" aria-label={`${selectedJob.company || "Job"} details`} onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedJobId(null); }} style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(20,30,22,.52)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
       <div className="cp-card" style={{ width: "min(980px, 100%)", maxHeight: "92vh", overflowY: "auto", padding: 22, boxShadow: "0 24px 70px rgba(0,0,0,.22)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "flex-start", marginBottom: 18 }}><div><p className="cp-eyebrow">Job details</p><h2 style={{ marginBottom: 4 }}>{selectedJob.company || "Company not added"}</h2><p className="cp-muted">{selectedJob.job_title || "Job title not added"}</p></div><button type="button" className="cp-button secondary" onClick={() => setSelectedJobId(null)}>Close</button></div>
 
@@ -509,5 +509,5 @@ export default function JobTracker({ userId, initialJobs, initialContacts }: { u
         </section>
       </div>
     </div> : null}
-  </>;
+  </div>;
 }
