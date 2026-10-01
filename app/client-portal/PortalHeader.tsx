@@ -5,24 +5,23 @@ import { usePathname } from "next/navigation";
 
 const AUTH_ROUTES = new Set(["/client-portal/login","/client-portal/signup"]);
 
-const nav=[
-  {href:"/client-portal",label:"Dashboard",icon:"⌂"},
-  {href:"/client-portal/jobs",label:"Job Tracker",icon:"▣"},
-  {href:"/client-portal#message-templates",label:"Message Templates",icon:"✉"},
-  {href:"/client-portal/files",label:"Documents",icon:"□"},
-  {href:"/client-portal/resources",label:"Resources",icon:"◇"},
-];
-
 export default function PortalHeader(){
  const pathname=usePathname();
  if(AUTH_ROUTES.has(pathname))return null;
- return <aside className="cp-sidebar">
-   <div className="cp-sidebar-inner">
-    <Link href="/client-portal" className="cp-brand cp-sidebar-brand"><span className="cp-brand-mark">JGO</span><span className="cp-brand-copy"><strong>JGO HIRE</strong><small>Career workspace</small></span></Link>
-    <nav className="cp-nav cp-sidebar-nav" aria-label="Client portal navigation">
-      {nav.map(n=><Link key={n.label} href={n.href} className={pathname===n.href||(n.href!=="/client-portal"&&pathname.startsWith(n.href.split("#")[0]))?"active":""}><span className="cp-side-icon">{n.icon}</span><span>{n.label}</span></Link>)}
+ return <header className="cp-header cp-dashboard-topbar">
+   <div className="cp-shell cp-header-inner">
+    <Link href="/client-portal" className="cp-brand">
+      <span className="cp-brand-mark">JGO</span>
+      <span className="cp-brand-copy"><strong>JGO HIRE</strong><small>Career workspace</small></span>
+    </Link>
+    <nav className="cp-nav" aria-label="Client portal navigation">
+      <Link href="/client-portal" className={pathname==="/client-portal"?"active":""}>Dashboard</Link>
+      <Link href="/client-portal/jobs" className={pathname.startsWith("/client-portal/jobs")?"active":""}>Job Tracker</Link>
+      <Link href="/client-portal#message-templates">Message Templates</Link>
+      <Link href="/client-portal/files" className={pathname.startsWith("/client-portal/files")?"active":""}>Documents</Link>
+      <Link href="/client-portal/resources" className={pathname.startsWith("/client-portal/resources")?"active":""}>Resources</Link>
+      <form action="/auth/signout" method="post" style={{display:"contents"}}><button type="submit" className="cp-topbar-logout">Log out</button></form>
     </nav>
-    <div className="cp-sidebar-foot"><span className="cp-sidebar-label">YOUR WORKSPACE</span><p>Everything for your search, in one place.</p><form action="/auth/signout" method="post"><button type="submit" className="cp-sidebar-logout">Log out</button></form></div>
    </div>
- </aside>
+ </header>
 }
