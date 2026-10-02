@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const amazonBookUrl = "https://www.amazon.com/Found-Noticed-Hired-recruiters-LinkedIn%C2%AE/dp/B0HL4GTJ5H/ref=sr_1_1?crid=2ORU3CVB2NH26&dib=eyJ2IjoiMSJ9.Fhma0qDkTN5Y8k--v8stkg.hz--VKfid_k_IW8Eq0BUtFrMaq-m1GFIiU8T23TPFlE&dib_tag=se&keywords=found+noticed+hired+jen+gordon&qid=1790959922&sprefix=found+noticed+hired+jen+gotf%2Caps%2C137&sr=8-1";
+
 export default function BookFeature() {
   return (
     <section className="book-feature" aria-labelledby="book-feature-title">
@@ -7,7 +9,7 @@ export default function BookFeature() {
         <div className="book-feature-copy">
           <div className="book-feature-topline">
             <span className="book-feature-kicker">A new book from JGO Hire</span>
-            <span className="book-feature-status">Coming Soon</span>
+            <span className="book-feature-status">Now Available</span>
           </div>
           <h2 id="book-feature-title">Found Noticed Hired</h2>
           <p className="book-feature-subtitle">A Recruiter’s Guide to a Stronger LinkedIn® Profile</p>
@@ -18,12 +20,13 @@ export default function BookFeature() {
             <span>Get Found in Recruiter Searches</span>
           </div>
           <div className="book-feature-actions">
-            <Link href="/book" className="button button-primary">Explore the Book</Link>
-            <span>Coming soon exclusively on Amazon</span>
+            <Link href={amazonBookUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">Buy the Guide</Link>
           </div>
         </div>
-        <div className="book-feature-art" aria-label="Found Noticed Hired book preview">
-          <img className="book-cover-image" src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
+        <div className="book-feature-art">
+          <Link href={amazonBookUrl} target="_blank" rel="noopener noreferrer" aria-label="Buy Found Noticed Hired on Amazon">
+            <img className="book-cover-image" src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
+          </Link>
         </div>
       </div>
     </section>
