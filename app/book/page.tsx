@@ -1,8 +1,10 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 
+const amazonBookUrl = "https://www.amazon.com/Found-Noticed-Hired-recruiters-LinkedIn%C2%AE/dp/B0HL4GTJ5H/ref=sr_1_1?crid=2ORU3CVB2NH26&dib=eyJ2IjoiMSJ9.Fhma0qDkTN5Y8k--v8stkg.hz--VKfid_k_IW8Eq0BUtFrMaq-m1GFIiU8T23TPFlE&dib_tag=se&keywords=found+noticed+hired+jen+gordon&qid=1790959922&sprefix=found+noticed+hired+jen+gotf%2Caps%2C137&sr=8-1";
+
 const BookButton = ({ children = "Get the Book" }: { children?: React.ReactNode }) => (
-  <Link href="/book" className="button button-primary book-buy-button">{children}</Link>
+  <Link href={amazonBookUrl} target="_blank" rel="noopener noreferrer" className="button button-primary book-buy-button">{children}</Link>
 );
 
 export default function BookPage() {
@@ -13,7 +15,7 @@ export default function BookPage() {
       <section className="book-sales-hero">
         <div className="site-shell book-sales-hero-grid">
           <div className="book-sales-copy">
-            <div className="book-sales-topline"><span>Coming Soon</span><span>Exclusively on Amazon</span></div>
+            <div className="book-sales-topline"><span>Now Available</span><span>On Amazon</span></div>
             <h1>Found.<br />Noticed.<br />Hired.</h1>
             <p className="book-sales-subtitle">A Recruiter’s Guide to a Stronger LinkedIn® Profile</p>
             <h2>You have a LinkedIn® profile. But is it actually helping recruiters find you?</h2>
@@ -21,10 +23,11 @@ export default function BookPage() {
             <p><strong>This book shows you that side.</strong></p>
             <p className="book-course-origin">Built from the same recruiter-backed strategy behind the JGO Hire LinkedIn® course, now organized into a practical book you can keep, mark up, and work through at your own pace.</p>
             <BookButton children="Get Found Noticed Hired" />
-            <p className="book-button-note">Amazon link coming soon</p>
           </div>
           <div className="book-sales-art">
-            <img src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
+            <Link href={amazonBookUrl} target="_blank" rel="noopener noreferrer" aria-label="Buy Found Noticed Hired on Amazon">
+              <img src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
+            </Link>
           </div>
         </div>
       </section>
@@ -80,11 +83,11 @@ export default function BookPage() {
             <article><span>05</span><h3>Put It Into Practice</h3><p>Work through practical exercises, recruiter tips, and prompts you can actually use as you update your own profile.</p></article>
             <article><span>06</span><h3>Audit the Final Profile</h3><p>Finish with a full LinkedIn® profile audit so you can review your profile from top to bottom before putting it to work.</p></article>
           </div>
-          <div className="book-center-cta"><p className="book-cta-lead">Your LinkedIn® profile should do more than exist. Make it easier for the right recruiter to find you and quickly understand why you may fit.</p><BookButton children="Get the Book" /><p>Coming soon exclusively on Amazon</p></div>
+          <div className="book-center-cta"><p className="book-cta-lead">Your LinkedIn® profile should do more than exist. Make it easier for the right recruiter to find you and quickly understand why you may fit.</p><BookButton children="Get the Book" /></div>
         </div>
       </section>
 
-      <section className="book-workbook-cta"><div className="site-shell book-workbook-grid"><div><p className="eyebrow">More than something to read</p><h2>Use the book while you rebuild your profile.</h2><p>Recruiter tips, practical exercises, usable AI prompts, and a final profile audit help you turn the strategy into actual changes on LinkedIn®.</p></div><div className="book-workbook-card"><strong>Read it.</strong><strong>Apply it.</strong><strong>Audit it.</strong><BookButton children="Start With the Book" /><small>Amazon link coming soon</small></div></div></section>
+      <section className="book-workbook-cta"><div className="site-shell book-workbook-grid"><div><p className="eyebrow">More than something to read</p><h2>Use the book while you rebuild your profile.</h2><p>Recruiter tips, practical exercises, usable AI prompts, and a final profile audit help you turn the strategy into actual changes on LinkedIn®.</p></div><div className="book-workbook-card"><strong>Read it.</strong><strong>Apply it.</strong><strong>Audit it.</strong><BookButton children="Start With the Book" /></div></div></section>
 
       <section className="book-ai-section">
         <div className="site-shell book-ai-grid">
@@ -110,18 +113,17 @@ export default function BookPage() {
         </div>
       </section>
 
-      <section className="book-mid-cta"><div className="site-shell"><p>Before you rewrite another section of your LinkedIn® profile...</p><h2>Learn what recruiters are actually searching for.</h2><BookButton children="Get Found Noticed Hired" /><small>Coming soon exclusively on Amazon</small></div></section>
+      <section className="book-mid-cta"><div className="site-shell"><p>Before you rewrite another section of your LinkedIn® profile...</p><h2>Learn what recruiters are actually searching for.</h2><BookButton children="Get Found Noticed Hired" /></div></section>
 
       <section className="book-final-sales">
         <div className="site-shell book-final-grid">
-          <div className="book-final-art"><img src="/found-noticed-hired.png" alt="Found Noticed Hired book cover" /></div>
+          <div className="book-final-art"><Link href={amazonBookUrl} target="_blank" rel="noopener noreferrer" aria-label="Buy Found Noticed Hired on Amazon"><img src="/found-noticed-hired.png" alt="Found Noticed Hired book cover" /></Link></div>
           <div>
             <p className="eyebrow">Found Noticed Hired</p>
             <h2>Before a recruiter can decide whether you might be right for a job, they have to find you.</h2>
             <p>And once they find you, they need to understand you.</p>
             <p className="book-final-line">Get found. Get understood. Give them a reason to keep reading.</p>
             <BookButton children="Get the Book" />
-            <p className="book-button-note">Coming soon exclusively on Amazon. The button will take you directly to Amazon once the book is available.</p>
           </div>
         </div>
       </section>
