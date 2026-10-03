@@ -2,10 +2,13 @@ import s from "./JgoJobLaunch.module.css";
 export default function JgoJobLaunch(){
  const url="https://jgojob.com/?utm_source=jgohire&utm_medium=website&utm_campaign=jgojob_launch&utm_content=homepage";
  return <section className={s.section} aria-labelledby="jgojob-title"><div className={s.shell}>
-   <div className={s.brand}><span>JGO JOB</span><small>JOB TRACKER</small></div>
-   <div className={s.content}>
-    <div className={s.copy}><h2 id="jgojob-title">Your job search,<br/>organized.</h2><p>Applications. People. Interviews. Follow-ups. Keep everything connected in one simple place.</p><div className={s.action}><div className={s.offer}><span>FREE FOR A LIMITED TIME</span><small>No credit card required. Start organizing your search in minutes.</small></div><a href={url}>Start your job tracker <span>→</span></a></div></div>
-    <div className={s.visual} aria-hidden="true"><div className={s.paper}><div className={s.paperHead}><div><b>JGO JOB</b><span>JOB TRACKER</span></div><em>YOUR SEARCH, ORGANIZED.</em></div><div className={s.previewTitle}><small>AT A GLANCE</small><strong>Know exactly where every opportunity stands.</strong></div><div className={s.row}><i></i><span>Applications</span><b>12</b></div><div className={s.row}><i></i><span>Interviews</span><b>3</b></div><div className={s.row}><i></i><span>Follow-ups</span><b>4</b></div><div className={s.previewFoot}><span>Everything in one place.</span><b>JGOJOB.COM ↗</b></div></div></div>
+   <div className={s.copy}>
+    <div className={s.brand}><span>JGO JOB</span><i></i><small>JOB TRACKER</small></div>
+    <h2 id="jgojob-title">Your job search,<br/>organized.</h2>
+    <p>Applications. People. Interviews. Follow-ups.<br className={s.desktopBreak}/> Keep everything connected in one simple place.</p>
+    <a className={s.cta} href={url}>Start your job tracker <span>→</span></a>
+    <small className={s.note}>Free for a limited time. No credit card required.</small>
    </div>
+   <div className={s.preview}><div className={s.backplate}></div><div className={s.frame}><img src="/jgo-job-homepage-promo.webp" alt="JGO Job dashboard preview" /></div></div>
  </div></section>
 }
