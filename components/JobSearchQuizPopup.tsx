@@ -323,6 +323,7 @@ export default function JobSearchQuizPopup() {
       }}
     >
       <div
+        className="jgo-quiz-modal"
         style={{
           position: "relative",
           width: "100%",
@@ -363,7 +364,7 @@ export default function JobSearchQuizPopup() {
         </button>
 
         {screen === "intro" && (
-          <div
+          <div className="jgo-quiz-screen jgo-quiz-intro"
             style={{
               padding: "48px 46px 42px",
             }}
@@ -386,7 +387,7 @@ export default function JobSearchQuizPopup() {
               30-Second Job Search Reality Check
             </div>
 
-            <h2
+            <h2 className="jgo-quiz-title jgo-quiz-title-intro"
               style={{
                 margin: 0,
                 fontSize: "42px",
@@ -474,7 +475,7 @@ export default function JobSearchQuizPopup() {
         )}
 
         {screen === "quiz" && (
-          <div
+          <div className="jgo-quiz-screen"
             style={{
               padding: "42px 46px 46px",
             }}
@@ -662,7 +663,7 @@ export default function JobSearchQuizPopup() {
         )}
 
         {screen === "guide" && (
-          <div
+          <div className="jgo-quiz-screen"
             style={{
               padding: "48px 46px 44px",
             }}
@@ -685,7 +686,7 @@ export default function JobSearchQuizPopup() {
               Skip the Quiz
             </div>
 
-            <h2
+            <h2 className="jgo-quiz-title"
               style={{
                 margin: 0,
                 fontSize: "40px",
@@ -859,7 +860,7 @@ export default function JobSearchQuizPopup() {
         )}
 
         {screen === "result" && (
-          <div
+          <div className="jgo-quiz-screen"
             style={{
               padding: "46px",
             }}
