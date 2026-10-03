@@ -11,7 +11,7 @@ export default function JgoJobLaunch(){
   </div>
   <div className={s.preview} aria-label="JGO Job dashboard preview">
    <div className={s.backplate}></div>
-   <div className={s.frame}>
+   <div className={s.frame} style={{fontFamily:"Arial, sans-serif",fontSize:"10px",color:"#173f33"}}>
     <div className={s.appTop}><b className={s.appIcon}>J</b><strong>JGO JOB</strong><nav><span className={s.active}>Job Tracker</span><span>Find Jobs</span><span>How It Works</span></nav></div>
     <div className={s.appHero}><div><small>WELCOME BACK</small><h3>Let’s keep this organized.</h3><p>Your applications, follow-ups, interviews and next moves — all in one place.</p></div><button>＋ Add a Job</button></div>
     <div className={s.stats}><div><small>▣ &nbsp; ALL JOBS</small><b>2</b><p>opportunities tracking</p></div><div><small>↗ &nbsp; APPLIED</small><b>2</b><p>You applied. Great. Now don’t disappear.</p></div><div><small>▯ &nbsp; INTERVIEWS</small><b>0</b><p>now we have something to work with</p></div><div><small>☆ &nbsp; OFFERS</small><b>0</b><p>okay, now we’re talking</p></div></div>
