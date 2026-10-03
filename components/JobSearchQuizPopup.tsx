@@ -15,6 +15,7 @@ type QuizQuestion = {
 
 const POPUP_DELAY_MS = 2500;
 const POPUP_DISMISSED_KEY = "jgo-quiz-popup-dismissed-at";
+const POPUP_SEEN_KEY = "jgo-quiz-popup-seen-at";
 const POPUP_CONVERTED_KEY = "jgo-quiz-popup-converted-at";
 const DAY_MS = 24 * 60 * 60 * 1000;
 const CONVERTED_COOLDOWN_MS = 30 * DAY_MS;
@@ -159,13 +160,16 @@ export default function JobSearchQuizPopup() {
 
     const now = Date.now();
     const dismissedAt = Number(window.localStorage.getItem(POPUP_DISMISSED_KEY) || 0);
+    const seenAt = Number(window.localStorage.getItem(POPUP_SEEN_KEY) || 0);
     const convertedAt = Number(window.localStorage.getItem(POPUP_CONVERTED_KEY) || 0);
     const isDismissedRecently = dismissedAt > 0 && now - dismissedAt < DAY_MS;
+    const wasSeenRecently = seenAt > 0 && now - seenAt < DAY_MS;
     const hasConvertedRecently = convertedAt > 0 && now - convertedAt < CONVERTED_COOLDOWN_MS;
 
-    if (isDismissedRecently || hasConvertedRecently) return;
+    if (isDismissedRecently || wasSeenRecently || hasConvertedRecently) return;
 
     const timer = window.setTimeout(() => {
+      window.localStorage.setItem(POPUP_SEEN_KEY, String(Date.now()));
       setIsOpen(true);
     }, POPUP_DELAY_MS);
 
@@ -280,6 +284,7 @@ export default function JobSearchQuizPopup() {
       }
 
       window.localStorage.setItem(POPUP_CONVERTED_KEY, String(Date.now()));
+      window.localStorage.setItem(POPUP_SEEN_KEY, String(Date.now()));
       window.localStorage.removeItem(POPUP_DISMISSED_KEY);
       setScreen("success");
     } catch (error) {
