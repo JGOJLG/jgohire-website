@@ -19,8 +19,8 @@ export default function HomePage() {
       <SiteHeader />
       <Hero />
       <CredibilityStrip />
-      <BookFeature />
       <JgoJobLaunch />
+      <BookFeature />
       <HowCanIHelp />
       <Services />
 
