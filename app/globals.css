@@ -4515,3 +4515,7 @@ body {
 .book-product-caption small{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#74827b}
 @media(max-width:800px){.book-product-stage{min-height:330px;margin:0 auto}.book-product-stage:before{inset:7% 5% 8%;border-radius:26px}.book-product-link .book-cover-image{width:min(250px,62vw)!important}.book-product-caption{right:5%;bottom:6px}.book-product-shadow{bottom:10%}}
 @media(max-width:480px){.book-product-stage{min-height:290px}.book-product-link .book-cover-image{width:min(220px,59vw)!important}.book-product-caption{padding:9px 11px;right:3%;bottom:4px}.book-product-caption span{font-size:13px}.book-product-caption small{font-size:8px}}
+
+/* Match book CTA to availability badge */
+.book-feature-actions .button-primary{background:#173f31!important;border-color:#173f31!important;color:#fff!important;box-shadow:0 8px 22px rgba(23,63,49,.14)!important}
+.book-feature-actions .button-primary:hover{background:#10372a!important;border-color:#10372a!important;color:#fff!important}
