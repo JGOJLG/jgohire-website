@@ -4519,3 +4519,15 @@ body {
 /* Match book CTA to availability badge */
 .book-feature-actions .button-primary{background:#173f31!important;border-color:#173f31!important;color:#fff!important;box-shadow:0 8px 22px rgba(23,63,49,.14)!important}
 .book-feature-actions .button-primary:hover{background:#10372a!important;border-color:#10372a!important;color:#fff!important}
+
+/* Survival guide popup mobile QC */
+@media(max-width:600px){
+ .jgo-quiz-modal{border-radius:20px!important;max-height:calc(100dvh - 24px)!important}
+ .jgo-quiz-screen{padding:34px 22px 30px!important}
+ .jgo-quiz-title{font-size:32px!important;line-height:1.08!important}
+ .jgo-quiz-title-intro{font-size:34px!important}
+}
+@media(max-width:380px){
+ .jgo-quiz-screen{padding-left:18px!important;padding-right:18px!important}
+ .jgo-quiz-title,.jgo-quiz-title-intro{font-size:29px!important}
+}
