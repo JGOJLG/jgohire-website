@@ -35,6 +35,24 @@ export async function POST(request: Request) {
     const session = await stripe.checkout.sessions.retrieve(eventSession.id);
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 10 });
     const firstLineItem = lineItems.data[0];
+
+    // HARD PRODUCT BOUNDARY:
+    // JGO Hire and JGO Job share a Stripe account, so this endpoint can receive
+    // checkout events for both products. This webhook is ONLY allowed to fulfill
+    // the JGO Hire LinkedIn Optimization Guide. Subscription checkouts (including
+    // JGO Job Premium) and unrelated one-time products must be ignored.
+    const lineDescription = String(firstLineItem?.description || "").toLowerCase();
+    const isLinkedInGuide =
+      session.mode === "payment" &&
+      (lineDescription.includes("linkedin") && lineDescription.includes("guide"));
+    if (!isLinkedInGuide) {
+      return NextResponse.json({
+        received: true,
+        ignored: "not_jgohire_linkedin_guide",
+        checkoutMode: session.mode,
+      });
+    }
+
     const customerName = session.customer_details?.name?.trim() || "Not provided";
     const firstName = customerName !== "Not provided" ? customerName.split(" ")[0] : "there";
     const rawEmail = session.customer_details?.email || session.customer_email || "";
