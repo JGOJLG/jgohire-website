@@ -10,12 +10,10 @@ import FinalCTA from "@/components/FinalCTA";
 import LinkedInGuide from "@/components/LinkedInGuide";
 import JobSearchQuizPopup from "@/components/JobSearchQuizPopup";
 import JgoJobLaunch from "@/components/JgoJobLaunch";
-import VidleyRecoveryRedirect from "@/components/VidleyRecoveryRedirect";
 
 export default function HomePage() {
   return (
     <main>
-      <VidleyRecoveryRedirect />
       <SiteHeader />
       <Hero />
       <CredibilityStrip />
