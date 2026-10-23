@@ -11,6 +11,7 @@ type MobileMenuProps = {
 const navigation = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/#services" },
+  { label: "JGO Job", href: "/jgojob" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
