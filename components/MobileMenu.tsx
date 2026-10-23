@@ -11,7 +11,6 @@ type MobileMenuProps = {
 const navigation = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/#services" },
-  { label: "Free Survival Guide", href: "/freesurvivalguide" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
@@ -71,8 +70,9 @@ export default function MobileMenu({
         </div>
 
         <nav className="mobile-menu-nav">
-          <details className="mobile-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><Link href="/resources" onClick={onClose}>Career Resources</Link><Link href="/guide" onClick={onClose}>LinkedIn Optimization Guide</Link></details>
-          {navigation.map((item) => (
+          {navigation.slice(0, 2).map((item) => (<Link key={item.href} href={item.href} onClick={onClose}><span>{item.label}</span><span aria-hidden="true">→</span></Link>))}
+          <details className="mobile-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><Link href="/resources" onClick={onClose}>Career Resources</Link><Link href="/guide" onClick={onClose}>LinkedIn Optimization Guide</Link><Link href="/freesurvivalguide" onClick={onClose}>Free Survival Guide</Link></details>
+          {navigation.slice(2).map((item) => (
             <Link
               key={item.href}
               href={item.href}
