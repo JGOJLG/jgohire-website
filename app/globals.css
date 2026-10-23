@@ -4536,3 +4536,9 @@ body {
 
 /* Match Resources to the existing header links */
 .desktop-nav .nav-resources-dropdown > summary{font:inherit;font-weight:600;color:inherit;line-height:inherit;letter-spacing:inherit}.desktop-nav .nav-resources-dropdown > summary:hover{color:var(--sage)}.desktop-nav .nav-resources-options a{font:inherit;font-weight:600;color:inherit}.mobile-menu-nav .mobile-resources-dropdown > summary{font:inherit;font-weight:600;padding:14px 0;border-bottom:1px solid var(--line)}.mobile-menu-nav .mobile-resources-dropdown > a{display:block;padding:12px 22px;font-weight:600}
+
+/* Keep Resources typography and baseline identical to the other header links */
+.desktop-nav > .nav-resources-dropdown { display:flex; align-items:center; font-size:14px; font-weight:600; line-height:normal; }
+.desktop-nav > .nav-resources-dropdown > summary { font-family:inherit; font-size:14px; font-weight:600; line-height:normal; letter-spacing:normal; color:inherit; gap:6px; }
+.desktop-nav > .nav-resources-dropdown > summary span { display:inline-flex; align-items:center; font-size:0; width:12px; height:12px; }
+.desktop-nav > .nav-resources-dropdown > summary span::after { content:""; display:block; width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg) translateY(-2px); }
