@@ -5,6 +5,11 @@ import { useState } from "react";
 
 const testimonials = [
   {
+    quote: "I felt really good about how I answered the interview questions because they were exactly what we had prepared for, but you never really know who you're up against. Then I heard back from them that same day and got the offer! Yesterday, I heard back from that medical supply company I had interviewed with last week, and they offered me the job too. I went from feeling so discouraged with my job search to having two offers in one week. Thank you so much. I seriously couldn't have done this without your guidance.",
+    name: "Diana K.",
+    result: "Two job offers in one week",
+  },
+  {
     quote:
       "Jen, I got the Program Coordinator job! I am so excited. They were able to offer me the very top of the salary range and can provide a relocation package too. Thank you so much for all your help.",
     name: "Madison S.",
