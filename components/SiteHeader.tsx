@@ -25,6 +25,7 @@ export default function SiteHeader() {
             <Link href="/about">About</Link>
             <Link href="/#services">Services</Link>
 <details className="nav-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><div className="nav-resources-options"><Link href="/resources">Career Resources</Link><Link href="/guide">LinkedIn Optimization Guide</Link><Link href="/freesurvivalguide">Free Survival Guide</Link><Link href="/book">Found. Noticed. Hired. Book</Link></div></details>
+            <Link href="/jgojob">JGO Job</Link>
             <Link href="/testimonials">Testimonials</Link>
             
             <Link href="/contact">Contact</Link>
