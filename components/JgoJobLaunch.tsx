@@ -4,7 +4,7 @@ export default function JgoJobLaunch(){
  return <section className={s.section} aria-labelledby="jgojob-title"><div className={s.shell}>
   <div className={s.copy}>
    <div className={s.brand}><span>JGO JOB</span><i></i><small>JOB TRACKER</small></div>
-   <h2 id="jgojob-title">Your job search,<br/>a little easier.</h2>
+   <h2 id="jgojob-title">Make your job search a little more simple,<br/>a lot more organized.</h2>
    <p>Track applications, manage outreach, and stay on top of interviews and follow-ups. Everything in one place, so your job search feels a little less overwhelming.</p>
    <a className={s.cta} href={url}>Start for free</a>
    <small className={s.note}>Free job tracker. No credit card required.</small>
