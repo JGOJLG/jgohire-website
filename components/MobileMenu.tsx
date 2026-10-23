@@ -12,9 +12,7 @@ const navigation = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/#services" },
   { label: "Free Survival Guide", href: "/freesurvivalguide" },
-  { label: "Resources", href: "/resources" },
   { label: "Testimonials", href: "/testimonials" },
-  { label: "LinkedIn Guide", href: "/guide" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -73,6 +71,7 @@ export default function MobileMenu({
         </div>
 
         <nav className="mobile-menu-nav">
+          <details className="mobile-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><Link href="/resources" onClick={onClose}>Career Resources</Link><Link href="/guide" onClick={onClose}>LinkedIn Optimization Guide</Link></details>
           {navigation.map((item) => (
             <Link
               key={item.href}
