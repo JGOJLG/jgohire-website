@@ -29,9 +29,9 @@ export default function SiteHeader() {
               Free Survival Guide
             </Link>
 
-            <Link href="/resources">Resources</Link>
+            <details className="nav-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><div className="nav-resources-options"><Link href="/resources">Career Resources</Link><Link href="/guide">LinkedIn Optimization Guide</Link></div></details>
             <Link href="/testimonials">Testimonials</Link>
-            <Link href="/guide">LinkedIn Guide</Link>
+            
             <Link href="/contact">Contact</Link>
           </nav>
 
