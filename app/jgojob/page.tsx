@@ -1,53 +1,37 @@
-import Link from "next/link";
-import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import JgoJobPreview from "@/components/JgoJobPreview";
 import styles from "./page.module.css";
 
-const appUrl = "https://jgojob.com";
-const features = [
-  { title: "Keep every application in one place", description: "Save job details, links, salary ranges, benefits, application status, and next steps instead of searching through tabs and spreadsheets." },
-  { title: "Track the people behind each opportunity", description: "Organize recruiters, hiring managers, LinkedIn connections, messages, and outreach follow-ups alongside each job." },
-  { title: "Stay ahead of interviews", description: "Keep interview dates, rounds, notes, and follow-up tasks connected to the role you are pursuing." },
-  { title: "See what needs your attention", description: "Use your dashboard to review upcoming interviews, active applications, and what to do next." },
-  { title: "Write outreach with more confidence", description: "JGO Job+ offers 150+ recruiter-informed message templates for networking, follow-ups, referrals, and more." },
-  { title: "Prepare for the conversation", description: "JGO Job+ includes an interview preparation workspace and additional insights to help you approach each opportunity." },
+const url = "https://jgojob.com/";
+const essentials = [
+  ["01", "Applications", "Save jobs, salaries, links, status updates, and next steps together."],
+  ["02", "Outreach", "Keep track of recruiters, hiring managers, connections, and follow-ups."],
+  ["03", "Interviews", "Manage interview rounds, schedules, notes, and thank-you reminders."],
+  ["04", "Your dashboard", "See your opportunities and what needs your attention without digging through notes."],
 ];
-
-export default function JGOJobPage() {
-  return <main className={styles.page}>
-    <SiteHeader />
-    <section className={styles.hero}>
-      <div className={`${styles.shell} ${styles.heroGrid}`}>
-        <div>
-          <p className={styles.eyebrow}>Introducing JGO Job</p>
-          <h1>Make your job search a little more simple, a lot more organized.</h1>
-          <p>Applying is only one part of the job search. Between tracking applications, reaching out to recruiters, scheduling interviews, and remembering follow-ups, there is a lot to manage. JGO Job puts it all in one place.</p>
-          <div className={styles.buttons}>
-            <a className={styles.primary} href={appUrl} target="_blank" rel="noopener noreferrer">Start for Free ↗</a>
-            <a className={styles.secondary} href="#features">Explore Features</a>
-          </div>
-          <p style={{fontSize:13,marginTop:16}}>Free to get started. Upgrade only if you want more support.</p>
-        </div>
-        <div><Image src="/jgo-job-homepage-promo.webp" alt="Preview of the JGO Job job search organizer" width={900} height={700} className={styles.heroImage} priority /></div>
-      </div>
-    </section>
-    <section className={styles.section} id="features"><div className={styles.shell}>
-      <p className={styles.eyebrow}>Everything in one place</p>
-      <h2>Less tracking. More moving forward.</h2>
-      <p className={styles.lead}>You should not have to piece together your job search across spreadsheets, notes, emails, and browser tabs. Keep the important details together, so you know where things stand.</p>
-      <div className={styles.grid}>{features.map(f=><article className={styles.feature} key={f.title}><h3>{f.title}</h3><p>{f.description}</p></article>)}</div>
-    </div></section>
-    <section className={`${styles.section} ${styles.muted}`}><div className={`${styles.shell} ${styles.split}`}>
-      <div><p className={styles.eyebrow}>Built by a recruiter and career coach</p><h2>Because a job search is more than an application.</h2><p className={styles.lead}>JGO Job was created by Jennifer Gordon, a recruiter and Certified Career Coach, to help job seekers manage the work that happens before and after they click Apply. It is designed to make the process easier to navigate, not more complicated.</p></div>
-      <div><p className={styles.eyebrow}>A simpler workflow</p><ol className={styles.list}><li>Save the jobs you are interested in or have applied to.</li><li>Keep contact information and outreach together.</li><li>Record interviews, notes, and next steps.</li><li>Return to your dashboard to see what comes next.</li></ol></div>
-    </div></section>
-    <section className={styles.section}><div className={styles.shell}>
-      <p className={styles.eyebrow}>Choose what works for you</p><h2>Start free. Add coaching tools when you need them.</h2>
-      <div className={`${styles.grid} ${styles.split}`} style={{gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))"}}>
-        <article className={styles.plan}><h3>JGO Job</h3><div className={styles.price}>Free</div><p>Organize applications, track outreach, manage contacts and interviews, and keep up with your next steps.</p><a className={styles.secondary} href={appUrl} target="_blank" rel="noopener noreferrer">Get Started Free ↗</a></article>
-        <article className={styles.plan}><h3>JGO Job+</h3><div className={styles.price}>$9.23 <span style={{fontSize:15,fontWeight:400}}>/ month</span></div><p>Everything in the free version, plus 150+ message templates, interview preparation, job insights, and personalized next-move guidance.</p><a className={styles.primary} href={appUrl} target="_blank" rel="noopener noreferrer">Explore Job+ ↗</a><p style={{fontSize:13}}>Built to be canceled when you no longer need it.</p></article>
-      </div>
-    </div></section>
-    <section className={styles.foot}><div className={styles.shell}><h2>Your job search has enough moving parts.</h2><p>Give yourself one organized place to keep track of them. Get started with JGO Job for free.</p><a className={styles.primary} href={appUrl} target="_blank" rel="noopener noreferrer">Try JGO Job Free ↗</a></div></section>
-  </main>;
+export default function JGOJobPage(){
+ return <main className={styles.page}>
+  <SiteHeader />
+  <section className={styles.hero}>
+   <div className={styles.wrap}>
+    <div className={styles.heroCopy}>
+     <span className={styles.overline}>JGO JOB / THE JOB SEARCH ORGANIZER</span>
+     <h1>Make your job search a little more simple, <em>a lot more organized.</em></h1>
+     <p>Applications. Recruiter messages. Interviews. Follow-ups. Job searching is a lot to keep track of. JGO Job gives everything its own place, so you can spend less time managing the process.</p>
+     <div className={styles.actions}><a className={styles.button} href={url} target="_blank" rel="noopener noreferrer">Start for free <span aria-hidden="true">↗</span></a><a className={styles.textLink} href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a></div>
+     <small>Free job tracker. No credit card required.</small>
+    </div>
+    <div className={styles.preview}><JgoJobPreview /></div>
+   </div>
+  </section>
+  <section className={styles.intro} id="how-it-works"><div className={styles.wrap}>
+   <div className={styles.introTop}><span className={styles.overline}>WHAT YOU CAN DO</span><h2>More than a list of jobs.</h2><p>Applying is just the beginning. Stay organized through every conversation, interview, and next step.</p></div>
+   <div className={styles.rows}>{essentials.map(([number,title,description])=><div className={styles.featureRow} key={number}><span className={styles.number}>{number}</span><h3>{title}</h3><p>{description}</p></div>)}</div>
+  </div></section>
+  <section className={styles.premium}><div className={styles.wrap}>
+   <div className={styles.premiumLayout}><div><span className={styles.goldLabel}>JGO JOB+ / OPTIONAL UPGRADE</span><h2>A recruiter and career coach in your corner, whenever you need one.</h2><p>Get extra help with the parts of the job search that are hardest to figure out on your own.</p><a className={styles.buttonGold} href={url} target="_blank" rel="noopener noreferrer">Explore JGO Job+ <span aria-hidden="true">↗</span></a><div className={styles.price}>$9.23/month <span>· Built to be canceled.</span></div></div>
+   <div className={styles.premiumDetails}><div><strong>150+ message templates</strong><p>Networking, recruiter outreach, follow-ups, referrals, and more.</p></div><div><strong>Interview preparation</strong><p>Tools to help you prepare your answers and tell your story.</p></div><div><strong>Job insights and your next move</strong><p>Understand your progress and decide where to focus next.</p></div></div></div>
+  </div></section>
+  <section className={styles.close}><div className={styles.wrap}><span className={styles.overline}>BUILT BY JGO HIRE</span><h2>Job searching is enough work. Tracking it shouldn't be.</h2><p>Created by a recruiter and Certified Career Coach to make the process easier to manage, from the first saved job to the final interview.</p><a className={styles.button} href={url} target="_blank" rel="noopener noreferrer">Get started free <span aria-hidden="true">↗</span></a></div></section>
+ </main>;
 }
