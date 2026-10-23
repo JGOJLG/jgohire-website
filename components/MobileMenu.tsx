@@ -71,7 +71,7 @@ export default function MobileMenu({
 
         <nav className="mobile-menu-nav">
           {navigation.slice(0, 2).map((item) => (<Link key={item.href} href={item.href} onClick={onClose}><span>{item.label}</span><span aria-hidden="true">→</span></Link>))}
-          <details className="mobile-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><Link href="/resources" onClick={onClose}>Career Resources</Link><Link href="/guide" onClick={onClose}>LinkedIn Optimization Guide</Link><Link href="/freesurvivalguide" onClick={onClose}>Free Survival Guide</Link></details>
+          <details className="mobile-resources-dropdown"><summary>Resources <span aria-hidden="true">⌄</span></summary><Link href="/resources" onClick={onClose}>Career Resources</Link><Link href="/guide" onClick={onClose}>LinkedIn Optimization Guide</Link><Link href="/freesurvivalguide" onClick={onClose}>Free Survival Guide</Link><Link href="/book" onClick={onClose}>Found. Noticed. Hired. Book</Link></details>
           {navigation.slice(2).map((item) => (
             <Link
               key={item.href}
