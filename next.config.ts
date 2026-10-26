@@ -4,6 +4,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      { source: "/go", destination: "https://jgohire.com/?utm_source=linkedin&utm_medium=social&utm_campaign=jgo_hire&utm_content=linkedin-proposals", permanent: false },
     {
         "source": "/book/instagram-bio",
         "destination": "https://www.amazon.com/dp/B0HL4GTJ5H?maas=maas_adg_B467C26C3901EBE77EE0D1D4BFACE19D_afap_abs&ref_=aa_maas&tag=maas",
