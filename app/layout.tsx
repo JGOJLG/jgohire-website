@@ -37,6 +37,7 @@ export default function RootLayout({
       <body>
         {children}
         <Footer />
+        <script defer src="/_vercel/insights/script.js" />
       </body>
     </html>
   );
