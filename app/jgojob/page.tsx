@@ -2,7 +2,7 @@ import SiteHeader from "@/components/SiteHeader";
 import JgoJobPreview from "@/components/JgoJobPreview";
 import styles from "./page.module.css";
 
-const url = "https://jgojob.com/";
+const url = "https://jgojob.com/?utm_source=jgohire.com&utm_medium=referral&utm_campaign=jgo_job&utm_content=jgo-hire-website";
 const essentials = [
   ["01", "Applications", "Save jobs, salaries, links, status updates, and next steps together."],
   ["02", "Outreach", "Keep track of recruiters, hiring managers, connections, and follow-ups."],
