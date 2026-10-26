@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 
-const amazonBookUrl = "https://www.amazon.com/Found-Noticed-Hired-recruiters-LinkedIn%C2%AE/dp/B0HL4GTJ5H/ref=sr_1_1?crid=2ORU3CVB2NH26&dib=eyJ2IjoiMSJ9.Fhma0qDkTN5Y8k--v8stkg.hz--VKfid_k_IW8Eq0BUtFrMaq-m1GFIiU8T23TPFlE&dib_tag=se&keywords=found+noticed+hired+jen+gordon&qid=1790959922&sprefix=found+noticed+hired+jen+gotf%2Caps%2C137&sr=8-1";
+const amazonBookUrl = "/book/jgo-hire-website";
 
 const BookButton = ({ children = "Get the Book" }: { children?: React.ReactNode }) => (
   <Link href={amazonBookUrl} target="_blank" rel="noopener noreferrer" className="button button-primary book-buy-button">{children}</Link>
