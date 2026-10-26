@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const amazonBookUrl = "https://www.amazon.com/Found-Noticed-Hired-recruiters-LinkedIn%C2%AE/dp/B0HL4GTJ5H/ref=sr_1_1?crid=2ORU3CVB2NH26&dib=eyJ2IjoiMSJ9.Fhma0qDkTN5Y8k--v8stkg.hz--VKfid_k_IW8Eq0BUtFrMaq-m1GFIiU8T23TPFlE&dib_tag=se&keywords=found+noticed+hired+jen+gordon&qid=1790959922&sprefix=found+noticed+hired+jen+gotf%2Caps%2C137&sr=8-1";
+const amazonBookUrl = "/book/jgo-hire-website";
 
 export default function BookFeature() {
   return (
