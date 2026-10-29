@@ -23,7 +23,7 @@ export default function BookPage() {
           </div>
           <div className="book-sales-art">
             <Link href={amazonBookUrl} target="_blank" rel="noopener noreferrer" aria-label="View Found Noticed Hired on Amazon">
-              <img src="/found-noticed-hired.png" alt="Found Noticed Hired book cover by Jennifer Gordon" />
+              <img src="/Found.%20Noticed.%20Hired.%20Book%20Mockup%20(8).png" alt="Found Noticed Hired book cover by Jennifer Gordon" />
             </Link>
           </div>
         </div>
