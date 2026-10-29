@@ -4644,3 +4644,28 @@ body {
  mix-blend-mode:normal!important;
 }
 .book-feature-art .book-product-link,.book-sales-art>a{filter:none!important}
+
+
+/* Seamless book presentation: retain the full section's soft blue backdrop,
+   but isolate the paperback from the rectangular background in the source image. */
+.book-feature,.book-sales-hero{
+ background:#eaf4fb!important;
+ background-image:linear-gradient(110deg,#f5f9fc 0%,#e7f3fb 53%,#d4eafa 100%)!important;
+}
+.book-feature-art,.book-sales-art,.book-product-stage,
+.book-feature-art .book-product-link,.book-sales-art>a{
+ background:none!important;box-shadow:none!important;
+}
+.book-feature-art .book-cover-image,.book-sales-art img{
+ display:block!important;
+ mix-blend-mode:normal!important;
+ /* The source image includes its own blue scene. Clip to the real book edges. */
+ clip-path:polygon(24.5% 12.2%,61% 14%,63.8% 14.1%,63.8% 79.7%,61% 80.6%,24.5% 71.4%)!important;
+ filter:none!important;
+}
+@media(max-width:800px){
+ .book-feature,.book-sales-hero{
+  background:#eaf4fb!important;
+  background-image:linear-gradient(165deg,#f5f9fc 0%,#e7f3fb 53%,#d4eafa 100%)!important;
+ }
+}
