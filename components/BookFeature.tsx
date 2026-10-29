@@ -27,7 +27,7 @@ export default function BookFeature() {
           <div className="book-product-stage">
             <div className="book-product-shadow" aria-hidden="true" />
             <Link className="book-product-link" href={amazonBookUrl} target="_blank" rel="noopener noreferrer" aria-label="Buy Found Noticed Hired on Amazon">
-              <img className="book-cover-image" src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
+              <img className="book-cover-image" src="/Found.%20Noticed.%20Hired.%20Book%20Mockup%20(8).png" alt="Found Noticed Hired by Jennifer Gordon" />
             </Link>
           </div>
         </div>
