@@ -4711,3 +4711,21 @@ body {
  .book-sales-art img{width:min(390px,95vw)!important}
  .book-feature-art .book-cover-image{width:min(340px,90vw)!important}
 }
+
+
+/* The newly uploaded book mockup has its own transparent background.
+   Never clip, mask, blend or scale the actual book image. */
+.book-sales-art img,.book-feature-art .book-cover-image{
+ clip-path:none!important;
+ -webkit-mask-image:none!important;
+ mask-image:none!important;
+ mix-blend-mode:normal!important;
+ transform:none!important;
+ filter:drop-shadow(0 14px 14px rgba(18,34,49,.13))!important;
+ object-fit:contain!important;
+}
+.book-sales-art>a,.book-feature-art .book-product-link{
+ transform:none!important;
+ filter:none!important;
+ mix-blend-mode:normal!important;
+}
