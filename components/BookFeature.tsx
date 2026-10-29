@@ -29,10 +29,6 @@ export default function BookFeature() {
             <Link className="book-product-link" href={amazonBookUrl} target="_blank" rel="noopener noreferrer" aria-label="Buy Found Noticed Hired on Amazon">
               <img className="book-cover-image" src="/found-noticed-hired.png" alt="Found Noticed Hired by Jennifer Gordon" />
             </Link>
-            <div className="book-product-caption" aria-hidden="true">
-              <span>Found Noticed Hired</span>
-              <small>Jennifer Gordon · JGO Hire</small>
-            </div>
           </div>
         </div>
       </div>
