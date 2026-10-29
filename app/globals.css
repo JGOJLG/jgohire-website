@@ -4581,3 +4581,20 @@ body {
  .book-feature,.book-sales-hero{background:linear-gradient(165deg,#faf9f6 0%,#f0f5f9 55%,#e3f0f9 100%)!important}
  .book-feature-art,.book-sales-art{min-height:320px!important}
 }
+
+
+/* Book image: mask the original white photo backdrop without changing the cover art. */
+.book-feature-art .book-product-link,
+.book-sales-art>a{
+  mix-blend-mode:normal!important;
+  filter:drop-shadow(13px 20px 16px rgba(25,48,69,.17))!important;
+}
+.book-feature-art .book-cover-image,
+.book-sales-art img{
+  mix-blend-mode:normal!important;
+  filter:none!important;
+  clip-path:polygon(8.8% 4.6%,91.7% 8.2%,91.7% 93.7%,88.1% 96.5%,9.8% 85.5%,8.8% 4.6%)!important;
+}
+.book-feature,.book-sales-hero{
+  background:radial-gradient(ellipse at 78% 46%,rgba(196,224,242,.65) 0%,rgba(226,240,249,.5) 34%,transparent 69%),linear-gradient(105deg,#faf9f6 0%,#f4f7f9 53%,#e9f3fa 100%)!important;
+}
