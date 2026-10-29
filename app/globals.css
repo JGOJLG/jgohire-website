@@ -4542,3 +4542,42 @@ body {
 .desktop-nav > .nav-resources-dropdown > summary { font-family:inherit; font-size:14px; font-weight:600; line-height:normal; letter-spacing:normal; color:inherit; gap:6px; }
 .desktop-nav > .nav-resources-dropdown > summary span { display:inline-flex; align-items:center; font-size:0; width:12px; height:12px; }
 .desktop-nav > .nav-resources-dropdown > summary span::after { content:""; display:block; width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg) translateY(-2px); }
+
+
+/* Book-only editorial palette. All other JGO Hire sections retain their existing theme. */
+.book-feature,.book-sales-hero{
+  background:linear-gradient(106deg,#faf9f6 0%,#f4f7f9 44%,#e0eef8 100%)!important;
+  color:#101b2b!important;
+  border-color:rgba(25,50,76,.09)!important;
+}
+.book-feature:after,.book-feature-art:before,
+.book-product-stage:before,.book-product-stage:after,.book-product-shadow{display:none!important}
+.book-feature h2,.book-feature-hook,.book-feature-hook strong,
+.book-sales-copy h1,.book-sales-copy h2{color:#101b2b!important}
+.book-feature-kicker,.book-feature-subtitle,.book-sales-subtitle{color:#243c58!important}
+.book-feature-status,.book-sales-topline span{
+  color:#203e5d!important;border-color:#bed5e8!important;background:#e8f2fa!important
+}
+.book-feature-body,.book-sales-copy>p:not(.book-sales-subtitle){color:#34465a!important}
+.book-feature-points span{color:#233e5c!important}
+.book-feature-points span:before{border-color:#91b6d4!important;background:#eaf4fc!important}
+.book-feature-actions .button-primary,.book-sales-hero .book-buy-button{
+  background:#101820!important;border-color:#101820!important;color:#fff!important;
+  box-shadow:0 9px 22px rgba(16,24,32,.12)!important
+}
+.book-feature-actions .button-primary:hover,.book-sales-hero .book-buy-button:hover{
+  background:#263b52!important;border-color:#263b52!important
+}
+.book-feature-art,.book-sales-art{background:transparent!important}
+.book-product-stage{perspective:none!important;background:transparent!important}
+.book-product-link,.book-product-link:hover{transform:none!important}
+.book-product-link .book-cover-image,.book-sales-art img{
+  display:block;mix-blend-mode:multiply;
+  filter:drop-shadow(8px 16px 14px rgba(31,57,78,.12))!important
+}
+.book-feature-art .book-product-link,.book-sales-art>a{display:block;mix-blend-mode:multiply}
+.book-sales-art{display:flex;align-items:center;justify-content:center}
+@media(max-width:800px){
+ .book-feature,.book-sales-hero{background:linear-gradient(165deg,#faf9f6 0%,#f0f5f9 55%,#e3f0f9 100%)!important}
+ .book-feature-art,.book-sales-art{min-height:320px!important}
+}
