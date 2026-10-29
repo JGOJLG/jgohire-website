@@ -4617,3 +4617,21 @@ body {
  content:none!important;
 }
 @media(max-width:800px){.book-feature,.book-sales-hero{background:#f7f5f0!important}}
+
+
+/* Restore the approved pale-blue book backdrop and keep the book edges clean. */
+.book-feature,.book-sales-hero{
+ background:linear-gradient(110deg,#f9fafb 0%,#edf6fc 48%,#d6ebfa 100%)!important;
+ background-image:linear-gradient(110deg,#f9fafb 0%,#edf6fc 48%,#d6ebfa 100%)!important;
+}
+.book-feature-art .book-product-link,.book-sales-art>a{
+ background:transparent!important;filter:none!important;
+}
+.book-feature-art .book-cover-image,.book-sales-art img{
+ mix-blend-mode:normal!important;
+ clip-path:polygon(8.8% 4.6%,91.7% 8.2%,91.7% 93.7%,88.1% 96.5%,9.8% 85.5%)!important;
+ filter:drop-shadow(2px 8px 5px rgba(27,55,77,.10))!important;
+}
+@media(max-width:800px){
+ .book-feature,.book-sales-hero{background:linear-gradient(160deg,#f9fafb 0%,#eaf4fb 62%,#d6ebfa 100%)!important}
+}
