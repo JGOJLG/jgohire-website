@@ -4669,3 +4669,17 @@ body {
   background-image:linear-gradient(165deg,#f5f9fc 0%,#e7f3fb 53%,#d4eafa 100%)!important;
  }
 }
+
+
+/* Correct the small floating book: enlarge the actual silhouette, not its canvas. */
+.book-feature-art .book-cover-image,.book-sales-art img{
+ transform:translateX(15%) scale(1.8)!important;
+ transform-origin:center center!important;
+ filter:drop-shadow(2px 5px 3px rgba(27,55,77,.14))!important;
+}
+.book-feature-art .book-product-link,.book-sales-art>a{overflow:visible!important}
+@media(max-width:800px){
+ .book-feature-art .book-cover-image,.book-sales-art img{
+  transform:translateX(15%) scale(1.65)!important;
+ }
+}
