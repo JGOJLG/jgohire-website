@@ -4635,3 +4635,12 @@ body {
 @media(max-width:800px){
  .book-feature,.book-sales-hero{background:linear-gradient(160deg,#f9fafb 0%,#eaf4fb 62%,#d6ebfa 100%)!important}
 }
+
+
+/* Approved complete book mockup, without clipping the scene artwork. */
+.book-feature-art .book-cover-image,.book-sales-art img{
+ clip-path:none!important;
+ filter:none!important;
+ mix-blend-mode:normal!important;
+}
+.book-feature-art .book-product-link,.book-sales-art>a{filter:none!important}
